@@ -1,2 +1,3 @@
-.vs/
+BusinessLogic/.vs/
 BusinessLogic/BusinessLogic/obj/Debug/
+*.cache
