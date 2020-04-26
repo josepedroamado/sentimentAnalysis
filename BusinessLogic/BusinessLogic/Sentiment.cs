@@ -15,7 +15,7 @@ namespace BusinessLogic
         {
             if (obj == null || GetType() != obj.GetType()) return false;
             Sentiment s = (Sentiment)obj;
-            return (Title == s.Title);
+            return (Title.ToLower() == s.Title.ToLower());
         }
         public override int GetHashCode()
         {

@@ -27,5 +27,13 @@ namespace BusinessLogicTest
             PositiveSentiment OtherSentiment = new PositiveSentiment("aTitle", "AText");
             Assert.AreEqual(ASentiment , OtherSentiment);
         }
+        [TestMethod]
+        public void EqualOverrideMayusTest()
+        {
+            PositiveSentiment ASentiment = new PositiveSentiment("ATITLE", "AText");
+            PositiveSentiment OtherSentiment = new PositiveSentiment("aTitle", "AText");
+            Assert.AreEqual(ASentiment, OtherSentiment);
+        }
+
     }
 }
