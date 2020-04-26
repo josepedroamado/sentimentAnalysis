@@ -1,14 +1,31 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BusinessLogic;
+
 
 namespace BusinessLogicTest
 {
     [TestClass]
-    public class UnitTest1
+    public class PositiveSentimentTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void NewPositiveSentimentTitleTest()
         {
+            PositiveSentiment ASentiment = new PositiveSentiment("aTitle", "AText");
+            Assert.AreEqual(ASentiment.Title , "aTitle");
+        }
+        [TestMethod]
+        public void NewPositiveSentimentTextTest()
+        {
+            PositiveSentiment ASentiment = new PositiveSentiment("aTitle", "AText");
+            Assert.AreEqual(ASentiment.Text, "AText");
+        }
+        [TestMethod]
+        public void EqualOverrideTest()
+        {
+            PositiveSentiment ASentiment = new PositiveSentiment("aTitle", "AText");
+            PositiveSentiment OtherSentiment = new PositiveSentiment("aTitle", "AText");
+            Assert.AreEqual(ASentiment , OtherSentiment);
         }
     }
 }
