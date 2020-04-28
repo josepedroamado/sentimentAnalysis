@@ -11,6 +11,8 @@ namespace BusinessLogic
         public string Title { get; set; }
         public string Text { get; set; }
 
+        readonly int MAX_BODY_TEXT = 100;
+
         public override bool Equals(Object obj)
         {
             if (obj == null || GetType() != obj.GetType()) return false;
@@ -20,6 +22,13 @@ namespace BusinessLogic
         public override int GetHashCode()
         {
             return Tuple.Create(Title, Text).GetHashCode();
+        }
+        public void SetText(String aText)
+        {
+            if(aText.Length > MAX_BODY_TEXT)
+            {
+                throw new TextToLongException(MAX_BODY_TEXT);
+            }
         }
     }
 }
