@@ -11,7 +11,7 @@ namespace BusinessLogic
         public PositiveSentiment(String Title, String Text)
         {
             this.Title = Title;
-            this.Text = Text;
+            this.SetText(Text);
         }
     }
 }

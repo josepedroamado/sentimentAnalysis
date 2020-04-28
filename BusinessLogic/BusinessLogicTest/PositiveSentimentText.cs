@@ -35,24 +35,15 @@ namespace BusinessLogicTest
             Assert.AreEqual(ASentiment, OtherSentiment);
         }
         [TestMethod]
+        [ExpectedException(typeof(TextToLongException))]
         public void TextBiggerThanMaxTest()
         {
             String AText = "1";
-            String response = "atext";
             while(AText.Length<=100)
             {
                 AText = AText + "more characters";
             }
-            try
-            {
-                PositiveSentiment ASentiment = new PositiveSentiment("ATITLE", "AText");
-            }
-            catch(TextToLongException ex)
-            {
-                response = ex.Message;
-            }
-            
-            Assert.AreEqual(response, String.Format("The text cannot be bigger than: " + 100));
+            PositiveSentiment ASentiment = new PositiveSentiment("ATITLE", AText);
         }
 
     }

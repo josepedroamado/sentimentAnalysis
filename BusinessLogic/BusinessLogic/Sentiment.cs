@@ -29,6 +29,7 @@ namespace BusinessLogic
             {
                 throw new TextToLongException(MAX_BODY_TEXT);
             }
+            this.Text = aText;
         }
     }
 }
