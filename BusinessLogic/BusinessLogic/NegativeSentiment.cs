@@ -8,9 +8,9 @@ namespace BusinessLogic
 {
     public class NegativeSentiment : Sentiment
     {
-        public NegativeSentiment(String Title, String Text)
+        public NegativeSentiment(int AnId, String Text)
         {
-            this.Title = Title;
+            this.Id = AnId;
             this.SetText(Text);
         }
         

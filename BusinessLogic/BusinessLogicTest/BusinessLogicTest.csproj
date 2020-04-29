@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NegativeSentimentTest.cs" />
-    <Compile Include="PositiveSentimentText.cs" />
+    <Compile Include="PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
