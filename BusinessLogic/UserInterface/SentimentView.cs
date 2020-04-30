@@ -12,14 +12,22 @@ namespace UserInterface
 {
     public partial class SentimentView : UserControl
     {
-        public SentimentView()
+        private MainWindow mainWin;
+
+        public SentimentView(MainWindow main)
         {
             InitializeComponent();
+            mainWin = main;
         }
 
         private void ComboBoxSentimentType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnAddSentiment_Click(object sender, EventArgs e)
+        {
+            mainWin.SwitchToAddSentimentView();
         }
     }
 }

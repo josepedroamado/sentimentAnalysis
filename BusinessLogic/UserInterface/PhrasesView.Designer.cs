@@ -32,9 +32,10 @@
             this.textBoxPhraseText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelPhraseDate = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerPhraseDate = new System.Windows.Forms.DateTimePicker();
             this.btnAddPhrase = new System.Windows.Forms.Button();
             this.btnCancelAddPhrase = new System.Windows.Forms.Button();
+            this.labelPhraseTextException = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelPhrasesTitle
@@ -77,20 +78,20 @@
             this.labelPhraseDate.AutoSize = true;
             this.labelPhraseDate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPhraseDate.ForeColor = System.Drawing.Color.White;
-            this.labelPhraseDate.Location = new System.Drawing.Point(65, 186);
+            this.labelPhraseDate.Location = new System.Drawing.Point(66, 184);
             this.labelPhraseDate.Name = "labelPhraseDate";
             this.labelPhraseDate.Size = new System.Drawing.Size(98, 13);
             this.labelPhraseDate.TabIndex = 12;
             this.labelPhraseDate.Text = "Fecha de ingreso:";
             // 
-            // dateTimePicker1
+            // dateTimePickerPhraseDate
             // 
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(169, 181);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(300, 22);
-            this.dateTimePicker1.TabIndex = 13;
+            this.dateTimePickerPhraseDate.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerPhraseDate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerPhraseDate.Location = new System.Drawing.Point(169, 184);
+            this.dateTimePickerPhraseDate.Name = "dateTimePickerPhraseDate";
+            this.dateTimePickerPhraseDate.Size = new System.Drawing.Size(300, 22);
+            this.dateTimePickerPhraseDate.TabIndex = 13;
             // 
             // btnAddPhrase
             // 
@@ -113,21 +114,34 @@
             this.btnCancelAddPhrase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelAddPhrase.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddPhrase.ForeColor = System.Drawing.Color.White;
-            this.btnCancelAddPhrase.Location = new System.Drawing.Point(299, 244);
+            this.btnCancelAddPhrase.Location = new System.Drawing.Point(313, 244);
             this.btnCancelAddPhrase.Name = "btnCancelAddPhrase";
             this.btnCancelAddPhrase.Size = new System.Drawing.Size(75, 30);
             this.btnCancelAddPhrase.TabIndex = 15;
             this.btnCancelAddPhrase.Text = "Cancelar";
             this.btnCancelAddPhrase.UseVisualStyleBackColor = false;
             // 
+            // labelPhraseTextException
+            // 
+            this.labelPhraseTextException.AutoSize = true;
+            this.labelPhraseTextException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPhraseTextException.ForeColor = System.Drawing.Color.Red;
+            this.labelPhraseTextException.Location = new System.Drawing.Point(484, 78);
+            this.labelPhraseTextException.Name = "labelPhraseTextException";
+            this.labelPhraseTextException.Size = new System.Drawing.Size(32, 13);
+            this.labelPhraseTextException.TabIndex = 19;
+            this.labelPhraseTextException.Text = "Error";
+            this.labelPhraseTextException.Visible = false;
+            // 
             // PhrasesView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.labelPhraseTextException);
             this.Controls.Add(this.btnCancelAddPhrase);
             this.Controls.Add(this.btnAddPhrase);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerPhraseDate);
             this.Controls.Add(this.labelPhraseDate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxPhraseText);
@@ -145,8 +159,9 @@
         private System.Windows.Forms.TextBox textBoxPhraseText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelPhraseDate;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerPhraseDate;
         private System.Windows.Forms.Button btnAddPhrase;
         private System.Windows.Forms.Button btnCancelAddPhrase;
+        private System.Windows.Forms.Label labelPhraseTextException;
     }
 }

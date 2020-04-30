@@ -10,19 +10,24 @@ using System.Windows.Forms;
 
 namespace UserInterface
 {
-    public partial class EntitiesView : UserControl
+    public partial class AddAlarmView : UserControl
     {
         private MainWindow mainWin;
 
-        public EntitiesView(MainWindow main)
+        public AddAlarmView(MainWindow main)
         {
             InitializeComponent();
             mainWin = main;
         }
 
-        private void BtnAddEntity_Click(object sender, EventArgs e)
+        private void BtnCancelAddAlarm_Click(object sender, EventArgs e)
         {
-            mainWin.SwitchToAddEntityView();
+            mainWin.SwitchToAlarmsView();
+        }
+
+        private void BtnAddAlarm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

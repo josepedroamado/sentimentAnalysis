@@ -19,35 +19,71 @@ namespace UserInterface
             panelView.Controls.Add(view);
         }
 
-        private void BtnSentimentMenu_Click(object sender, EventArgs e)
+        public void SwitchToSentimentView()
         {
             panelView.Controls.Clear();
-            SentimentView view = new SentimentView();
+            SentimentView view = new SentimentView(this);
             panelView.Controls.Add(view);
         }
 
-        private void BtnEntities_Click(object sender, EventArgs e)
+        public void SwitchToAddSentimentView()
         {
             panelView.Controls.Clear();
-            EntitiesView view = new EntitiesView();
+            AddSentimentView view = new AddSentimentView(this);
             panelView.Controls.Add(view);
         }
 
-        private void BtnPhrases_Click(object sender, EventArgs e)
+        public void SwitchToEntitiesView()
+        {
+            panelView.Controls.Clear();
+            EntitiesView view = new EntitiesView(this);
+            panelView.Controls.Add(view);
+        }
+
+        public void SwitchToAddEntityView()
+        {
+            panelView.Controls.Clear();
+            AddEntityView view = new AddEntityView(this);
+            panelView.Controls.Add(view);
+        }
+
+        public void SwitchToAlarmsView()
+        {
+            panelView.Controls.Clear();
+            AlarmsView view = new AlarmsView(this);
+            panelView.Controls.Add(view);
+        }
+
+        public void SwitchToAddAlarmView()
+        {
+            panelView.Controls.Clear();
+            AddAlarmView view = new AddAlarmView(this);
+            panelView.Controls.Add(view);
+        }
+
+        private void BtnSentimentView_Click(object sender, EventArgs e)
+        {
+            SwitchToSentimentView();
+        }
+
+        private void BtnEntitiesView_Click(object sender, EventArgs e)
+        {
+            SwitchToEntitiesView();
+        }
+
+        private void BtnPhrasesView_Click(object sender, EventArgs e)
         {
             panelView.Controls.Clear();
             PhrasesView view = new PhrasesView();
             panelView.Controls.Add(view);
         }
 
-        private void BtnAlarms_Click(object sender, EventArgs e)
+        private void BtnAlarmsView_Click(object sender, EventArgs e)
         {
-            panelView.Controls.Clear();
-            AlarmsView view = new AlarmsView();
-            panelView.Controls.Add(view);
+            SwitchToAlarmsView();
         }
 
-        private void BtnReports_Click(object sender, EventArgs e)
+        private void BtnReportsView_Click(object sender, EventArgs e)
         {
             panelView.Controls.Clear();
             ReportsView view = new ReportsView();

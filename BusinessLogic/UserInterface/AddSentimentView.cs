@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace UserInterface
 {
-    public partial class EntitiesView : UserControl
+    public partial class AddSentimentView : UserControl
     {
         private MainWindow mainWin;
 
-        public EntitiesView(MainWindow main)
+        public AddSentimentView(MainWindow main)
         {
             InitializeComponent();
             mainWin = main;
         }
 
-        private void BtnAddEntity_Click(object sender, EventArgs e)
+        private void BtnCancelAddSentiment_Click(object sender, EventArgs e)
         {
-            mainWin.SwitchToAddEntityView();
+            mainWin.SwitchToSentimentView();
         }
     }
 }

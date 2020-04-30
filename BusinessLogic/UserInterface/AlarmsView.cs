@@ -12,9 +12,17 @@ namespace UserInterface
 {
     public partial class AlarmsView : UserControl
     {
-        public AlarmsView()
+        private MainWindow mainWin;
+
+        public AlarmsView(MainWindow main)
         {
             InitializeComponent();
+            mainWin = main;
+        }
+
+        private void BtnAddAlarm_Click(object sender, EventArgs e)
+        {
+            mainWin.SwitchToAddAlarmView();
         }
     }
 }
