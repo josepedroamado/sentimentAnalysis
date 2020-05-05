@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity.cs" />
     <Compile Include="NegativeSentiment.cs" />
     <Compile Include="PositiveSentiment.cs" />
     <Compile Include="Sentiment.cs" />
