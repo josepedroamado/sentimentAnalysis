@@ -11,8 +11,8 @@ namespace BusinessLogic
         public int Id { get; set; }
         public string Text { get; set; }
 
-        readonly int MAX_BODY_TEXT = 100;
-        readonly int MIN_BODY_TEXT = 1;
+        private const int MAX_BODY_TEXT = 100;
+        private const int MIN_BODY_TEXT = 1;
 
         public override bool Equals(Object obj)
         {
@@ -26,12 +26,29 @@ namespace BusinessLogic
         }
         public void SetText(String aText)
         {
-            if(aText.Length > MAX_BODY_TEXT)
+
+            IsTextCorrect(aText);
+            this.Text = aText;
+        }
+        public void IsTextCorrect(String AText)
+        {
+            IsTextTooLong(AText);
+            IsTextTooShortOrEmpty(AText);
+        }
+        private void IsTextTooLong(String aText)
+        {
+            if (aText.Length > MAX_BODY_TEXT)
             {
                 throw new TextTooLongException(MAX_BODY_TEXT);
             }
-            this.Text = aText;
-            if(aText.Length <= MIN_BODY_TEXT)
+        }
+        private void IsTextTooShortOrEmpty(String aText)
+        {
+            if (aText.Length <= MIN_BODY_TEXT)
+            {
+                throw new TextTooShortException(MIN_BODY_TEXT);
+            }
+            if (aText[0] == ' ')
             {
                 throw new TextTooShortException(MIN_BODY_TEXT);
             }

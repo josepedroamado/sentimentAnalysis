@@ -47,5 +47,6 @@ namespace BusinessLogicTest
             PositiveSentiment ASentiment = new PositiveSentiment(1, AText);
         }
 
+
     }
 }
