@@ -8,10 +8,10 @@ namespace BusinessLogic
 {
     public class PositiveSentiment : Sentiment
     {
-        public PositiveSentiment(String Title, String Text)
+        public PositiveSentiment(int AnId, String Text)
         {
-            this.Title = Title;
-            this.Text = Text;
+            this.Id = AnId;
+            this.SetText(Text);
         }
     }
 }
