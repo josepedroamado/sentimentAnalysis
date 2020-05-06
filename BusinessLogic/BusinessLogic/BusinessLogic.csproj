@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entity.cs" />
     <Compile Include="NegativeSentiment.cs" />
+    <Compile Include="Publication.cs" />
     <Compile Include="PositiveSentiment.cs" />
     <Compile Include="Sentiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
