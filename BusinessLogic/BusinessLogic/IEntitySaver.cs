@@ -8,13 +8,14 @@ namespace BusinessLogic
 {
     public interface IEntitySaver
     {
-        string ActualId { get; set; }
-        List<Entity> Entities { get; set; }
+
 
         void AddEntity(Entity aEntity);
 
-        void DeleteEntity(int aId);
+        void DeleteEntity(String name);
 
         void ModifyEntity(Entity aEntity);
+
+        Entity FetchEntity(String name);
     }
 }
