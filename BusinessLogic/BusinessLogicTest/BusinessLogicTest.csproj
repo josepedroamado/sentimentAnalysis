@@ -54,6 +54,7 @@
     <Compile Include="PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationTest.cs" />
+    <Compile Include="RelationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

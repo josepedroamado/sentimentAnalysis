@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Relation.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="IEntitySaver.cs" />
     <Compile Include="NegativeSentiment.cs" />
