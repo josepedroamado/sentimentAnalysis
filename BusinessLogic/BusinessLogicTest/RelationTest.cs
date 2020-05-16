@@ -7,47 +7,43 @@ namespace BusinessLogicTest
     [TestClass]
     public class RelationTest
     {
+        DateTime aDate;
+        Publication aPublication;
+        Sentiment aSentiment;
+        Entity anEntity;
+        Relation aRelation;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            aDate = new DateTime(2020, 01, 01);
+            aPublication = new Publication("Phrase", aDate, 1);
+            aSentiment = new PositiveSentiment(1, "Positive");
+            anEntity = new Entity("Entity");
+            aRelation = new Relation(aPublication, aSentiment, anEntity);
+        }
+
         [TestMethod]
         public void NewRelationTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("Phrase", aDate, 1);
-            Sentiment aSentiment = new PositiveSentiment(1, "Positive");
-            Entity anEntity = new Entity("Entity");
-            Relation aRelation = new Relation(aPublication, aSentiment, anEntity);
             Assert.IsNotNull(aRelation);
         }
 
         [TestMethod]
         public void NewRelationPublicationTest()
-        {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("Phrase", aDate, 1);
-            Sentiment aSentiment = new PositiveSentiment(1, "Positive");
-            Entity anEntity = new Entity("Entity");
-            Relation aRelation = new Relation(aPublication, aSentiment, anEntity);
+        {     
             Assert.AreEqual(aRelation.Publication, aPublication);
         }
 
         [TestMethod]
         public void NewRelationSentimentTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("Phrase", aDate, 1);
-            Sentiment aSentiment = new PositiveSentiment(1, "Positive");
-            Entity anEntity = new Entity("Entity");
-            Relation aRelation = new Relation(aPublication, aSentiment, anEntity);
             Assert.AreEqual(aRelation.Sentiment, aSentiment);
         }
 
         [TestMethod]
         public void NewRelationEntityTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("Phrase", aDate, 1);
-            Sentiment aSentiment = new PositiveSentiment(1, "Positive");
-            Entity anEntity = new Entity("Entity");
-            Relation aRelation = new Relation(aPublication, aSentiment, anEntity);
             Assert.AreEqual(aRelation.Entity, anEntity);
         }
     }
