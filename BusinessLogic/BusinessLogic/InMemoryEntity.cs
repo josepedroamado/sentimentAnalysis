@@ -39,14 +39,41 @@ namespace BusinessLogic
             
         }
 
-        public Entity FetchEntity(string name)
+        public Entity FetchEntity(string aName)
         {
-            throw new NotImplementedException();
+            if (!this.EntityExists(aName))
+            {
+                throw new EntityDoesntExistException();
+            }
+            else
+            {
+                for (int i = 0; i < this.Entities.Count(); i++)
+                {
+                    if (Entities[i].Name == aName)
+                    {
+                        return Entities[i];
+                    }
+                }
+            }
+            return null;//why?
         }
 
         public void ModifyEntity(Entity aEntity)
         {
-            throw new NotImplementedException();
+            if (!this.EntityExists(aEntity.Name))
+            {
+                throw new EntityDoesntExistException();
+            }
+            else
+            {
+                for (int i = 0; i < this.Entities.Count(); i++)
+                {
+                    if (Entities[i].Name == aEntity.Name)
+                    {
+                        Entities[i] = aEntity;
+                    }
+                }
+            }
         }
         public Boolean EntityExists(string aName)
         {

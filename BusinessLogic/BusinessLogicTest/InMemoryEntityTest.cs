@@ -25,10 +25,28 @@ namespace BusinessLogicTest
         }
         [TestMethod]
         [ExpectedException(typeof(EntityDoesntExistException))]
-        public void EntityDeletetTest()
+        public void EntityDeleteTest()
         {
             IEntitySaver aEntitySaver = new InMemoryEntity();
             aEntitySaver.DeleteEntity("aText");            
+        }
+        [TestMethod]
+        public void EntityFetchTest()
+        {
+            IEntitySaver aEntitySaver = new InMemoryEntity();
+            Entity aEntity = new Entity("aText");
+            aEntitySaver.AddEntity(aEntity);
+            Entity recieved = aEntitySaver.FetchEntity("aText");
+            Assert.AreEqual(aEntity, recieved);            
+        }
+        [TestMethod]
+        [ExpectedException(typeof(EntityDoesntExistException))]
+        public void EntityFetchNoEntityTest()
+        {
+            IEntitySaver aEntitySaver = new InMemoryEntity();
+            Entity aEntity = new Entity("aText");
+            Entity recieved = aEntitySaver.FetchEntity("aText");
+            Assert.AreEqual(aEntity, recieved);
         }
     }
 }
