@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    public class System
+    public class SystemData
     {
         public IEntitySaver EntitySaver;
 
@@ -14,13 +14,11 @@ namespace BusinessLogic
 
         public IPublicationSaver publicationSaver;
 
-        public System(IEntitySaver entitySaver, ISentimentSaver sentimentSaver, IPublicationSaver publicationSaver)
+        public SystemData(IEntitySaver entitySaver, ISentimentSaver sentimentSaver, IPublicationSaver publicationSaver)
         {
             this.EntitySaver = entitySaver;
             this.SentimentSaver = sentimentSaver;
             this.publicationSaver = publicationSaver;
         }
-
-        
     }
 }

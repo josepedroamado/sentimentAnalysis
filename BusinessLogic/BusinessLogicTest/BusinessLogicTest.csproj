@@ -59,6 +59,7 @@
     <Compile Include="RelationTest.cs" />
     <Compile Include="Alarm\PositiveAlarmTest.cs" />
     <Compile Include="Alarm\NegativeAlarmTest.cs" />
+    <Compile Include="SystemDataTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
