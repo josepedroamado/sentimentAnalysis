@@ -15,6 +15,13 @@ namespace BusinessLogicTest
             Entity aEntity = new Entity("AName");
             Assert.IsNotNull(aEntity);
         }
+
+        [TestMethod]
+        public void NewEntityNameTest()
+        {
+            Entity aEntity = new Entity("AName");
+            Assert.AreEqual(aEntity.Name, "AName");
+        }
         //[TestMethod]
         //public void AddSentimentEntityTest()
         //{
