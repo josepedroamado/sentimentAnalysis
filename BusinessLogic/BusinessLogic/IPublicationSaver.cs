@@ -8,12 +8,12 @@ namespace BusinessLogic
 {
     public interface IPublicationSaver
     {
-        void AddPublication(Entity aPublication);
+        void AddPublication(Publication aPublication);
 
         void DeletePublication(int id);
 
         void ModifyPublication(Publication aPublication);
 
-        Entity FetchPublication(int id);
+        Publication FetchPublication(int id);
     }
 }

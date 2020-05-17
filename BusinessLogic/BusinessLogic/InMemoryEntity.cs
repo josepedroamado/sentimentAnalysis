@@ -18,7 +18,7 @@ namespace BusinessLogic
         {
             if(this.EntityExists(aEntity.Name))
             {
-                throw new EntityAlreadyExistsException();
+                throw new ObjectAlreadyExistsException("Entidad");
             }
             this.Entities.Add(aEntity);
         }
@@ -27,7 +27,7 @@ namespace BusinessLogic
         {
             if (!this.EntityExists(aName))
             {
-                throw new EntityDoesntExistException();
+                throw new ObjectDoesntExistException("Entidad");
             }
             for (int i = 0; i < this.Entities.Count(); i++)
             {
@@ -43,7 +43,7 @@ namespace BusinessLogic
         {
             if (!this.EntityExists(aName))
             {
-                throw new EntityDoesntExistException();
+                throw new ObjectDoesntExistException("Entidad");
             }
             else
             {
@@ -62,7 +62,7 @@ namespace BusinessLogic
         {
             if (!this.EntityExists(aEntity.Name))
             {
-                throw new EntityDoesntExistException();
+                throw new ObjectDoesntExistException("Entidad");
             }
             else
             {

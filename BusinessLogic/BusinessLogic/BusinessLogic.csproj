@@ -42,8 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity.cs" />
-    <Compile Include="EntityAlreadyExistsException.cs" />
-    <Compile Include="EntityDoesntExistException.cs" />
+    <Compile Include="InMemoryPublication.cs" />
+    <Compile Include="ObjectAlreadyExistsException.cs" />
+    <Compile Include="ObjectDoesntExistException.cs" />
     <Compile Include="IEntitySaver.cs" />
     <Compile Include="InMemoryEntity.cs" />
     <Compile Include="IPublicationSaver.cs" />

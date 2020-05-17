@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="EntityTest.cs" />
     <Compile Include="InMemoryEntityTest.cs" />
+    <Compile Include="InMemoryPublicationTest.cs" />
     <Compile Include="NegativeSentimentTest.cs" />
     <Compile Include="PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

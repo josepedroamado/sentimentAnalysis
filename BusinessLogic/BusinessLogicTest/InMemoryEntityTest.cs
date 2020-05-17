@@ -14,7 +14,7 @@ namespace BusinessLogicTest
             Assert.IsNotNull(aEntitySaver);
         }
         [TestMethod]
-        [ExpectedException(typeof(EntityAlreadyExistsException))]
+        [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void EntityExistsTest()
         {
             IEntitySaver aEntitySaver = new InMemoryEntity();
@@ -24,8 +24,8 @@ namespace BusinessLogicTest
             Assert.IsNotNull(aEntitySaver);
         }
         [TestMethod]
-        [ExpectedException(typeof(EntityDoesntExistException))]
-        public void EntityDeleteTest()
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void EntityDeleteNotExistsTest()
         {
             IEntitySaver aEntitySaver = new InMemoryEntity();
             aEntitySaver.DeleteEntity("aText");            
@@ -40,11 +40,22 @@ namespace BusinessLogicTest
             Assert.AreEqual(aEntity, recieved);            
         }
         [TestMethod]
-        [ExpectedException(typeof(EntityDoesntExistException))]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
         public void EntityFetchNoEntityTest()
         {
             IEntitySaver aEntitySaver = new InMemoryEntity();
             Entity aEntity = new Entity("aText");
+            Entity recieved = aEntitySaver.FetchEntity("aText");
+            Assert.AreEqual(aEntity, recieved);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void EntityDeleteTest()
+        {
+            IEntitySaver aEntitySaver = new InMemoryEntity();
+            Entity aEntity = new Entity("aText");
+            aEntitySaver.AddEntity(aEntity);
+            aEntitySaver.DeleteEntity("aText");
             Entity recieved = aEntitySaver.FetchEntity("aText");
             Assert.AreEqual(aEntity, recieved);
         }
