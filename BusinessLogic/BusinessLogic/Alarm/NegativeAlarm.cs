@@ -8,8 +8,14 @@ namespace BusinessLogic
 {
     public class NegativeAlarm : Alarm
     {
+        private void AssignId()
+        {
+            this.AlarmId = NextId;
+            NextId++;
+        }
         public NegativeAlarm(Entity aEntity, int aRequiredPostQuantity, TimeSpan aTimeSpan)
         {
+            this.AssignId();
             this.Entity = aEntity;
             this.RequiredPostQuantity = aRequiredPostQuantity;
             this.TimeFrame = aTimeSpan;
