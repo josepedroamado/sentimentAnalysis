@@ -10,14 +10,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void NewPositiveSentimentTitleTest()
         {
-            NegativeSentiment ASentiment = new NegativeSentiment(1, "AText");
-            Assert.AreEqual(ASentiment.Id, 1);
+            NegativeSentiment ASentiment = new NegativeSentiment("AText");
+            Assert.AreEqual(ASentiment.SentimentId, 1);
         }
 
         [TestMethod]
         public void NewPositiveSentimentTextTest()
         {
-            NegativeSentiment ASentiment = new NegativeSentiment(1, "AText");
+            NegativeSentiment ASentiment = new NegativeSentiment("AText");
             Assert.AreEqual(ASentiment.Text, "AText");
         }
     }

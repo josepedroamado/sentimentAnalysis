@@ -22,21 +22,21 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void NewInMemoryAlarm()
+        public void NewInMemoryAlarmTest()
         {
             Assert.IsNotNull(alarmSaver);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
-        public void AddNewInMemoryAlarm()
+        public void AddNewInMemoryAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             alarmSaver.AddAlarm(anAlarm);
         }
 
         [TestMethod]
-        public void DeleteExistingAlarmInMemoryAlarm()
+        public void DeleteExistingAlarmInMemoryAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             alarmSaver.DeleteAlarm(anAlarm);
@@ -44,14 +44,14 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteAlarmInMemoryAlarm()
+        public void DeleteAlarmInMemoryAlarmTest()
         {
             alarmSaver.DeleteAlarm(anAlarm);
             Assert.IsNotNull(alarmSaver);
         }
 
         [TestMethod]
-        public void FetchExistingAlarmInMemoryAlarm()
+        public void FetchExistingAlarmInMemoryAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             Alarm fetchedAlarm = alarmSaver.FetchAlarm(anAlarm);
@@ -60,13 +60,13 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingAlarmInMemoryAlarm()
+        public void FetchNonExistingAlarmInMemoryAlarmTest()
         {
             Assert.IsNotNull(alarmSaver.FetchAlarm(anAlarm));
         }
 
         [TestMethod]
-        public void ModifyExistingAlarmInMemoryAlarm()
+        public void ModifyExistingAlarmInMemoryAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 6, timeFrame);
@@ -80,12 +80,10 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void ModifyNonExistingAlarmInMemoryAlarm()
+        public void ModifyNonExistingAlarmInMemoryAlarmTest()
         {
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 5, timeFrame);
             alarmSaver.ModifyAlarm(anAlarm, modifiedAlarm);
         }
-
-
     }
 }
