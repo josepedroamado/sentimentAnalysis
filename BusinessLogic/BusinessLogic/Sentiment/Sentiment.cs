@@ -45,7 +45,6 @@ namespace BusinessLogic
         {
             IsTextTooLong(AText);
             IsTextTooShort(AText);
-            IsTextEmpty(AText);
         }
 
         private void IsTextTooLong(String aText)
@@ -59,14 +58,6 @@ namespace BusinessLogic
         private void IsTextTooShort(String aText)
         {
             if (aText.Length <= MIN_BODY_TEXT)
-            {
-                throw new TextTooShortException(MIN_BODY_TEXT);
-            }
-        }
-
-        private static void IsTextEmpty(string aText)
-        {
-            if (aText[0] == ' ')
             {
                 throw new TextTooShortException(MIN_BODY_TEXT);
             }

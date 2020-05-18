@@ -97,6 +97,5 @@ namespace BusinessLogicTest
             anotherSentiment.SentimentId = aSentiment.SentimentId;
             Assert.AreEqual(aSentiment.GetHashCode(), anotherSentiment.GetHashCode());
         }
-
     }
 }
