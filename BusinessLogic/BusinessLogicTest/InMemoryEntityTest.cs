@@ -7,57 +7,76 @@ namespace BusinessLogicTest
     [TestClass]
     public class InMemoryEntityTest
     {
+        IEntitySaver entitySaver;
+        Entity anEntity;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            entitySaver = new InMemoryEntity();
+            anEntity = new Entity("InMemoryEntityTest1");
+        }
+
         [TestMethod]
         public void CreateInMemoryEntityTest()
         {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            Assert.IsNotNull(aEntitySaver);
+            Assert.IsNotNull(entitySaver);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void EntityExistsTest()
         {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            Entity aEntity = new Entity("aText");
-            aEntitySaver.AddEntity(aEntity);
-            aEntitySaver.AddEntity(aEntity);
-            Assert.IsNotNull(aEntitySaver);
+            entitySaver.AddEntity(anEntity);
+            entitySaver.AddEntity(anEntity);
         }
+
+        [TestMethod]
+        public void DeleteExistingEntityTest()
+        {
+            entitySaver.AddEntity(anEntity);
+            entitySaver.DeleteEntity(anEntity);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void EntityDeleteNotExistsTest()
+        public void DeleteNonExistingEntityTest()
         {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            aEntitySaver.DeleteEntity("aText");            
+            entitySaver.DeleteEntity(anEntity);
+            Assert.IsNotNull(entitySaver);
         }
+
         [TestMethod]
-        public void EntityFetchTest()
+        public void FetchExistingEntityTest()
         {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            Entity aEntity = new Entity("aText");
-            aEntitySaver.AddEntity(aEntity);
-            Entity recieved = aEntitySaver.FetchEntity("aText");
-            Assert.AreEqual(aEntity, recieved);            
+            entitySaver.AddEntity(anEntity);
+            Entity fetchedEntity = entitySaver.FetchEntity(anEntity);
+            Assert.IsNotNull(fetchedEntity);
         }
-        [TestMethod]
-        [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void EntityFetchNoEntityTest()
-        {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            Entity aEntity = new Entity("aText");
-            Entity recieved = aEntitySaver.FetchEntity("aText");
-            Assert.AreEqual(aEntity, recieved);
-        }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void EntityDeleteTest()
+        public void FetchNonExistingEntityTest()
         {
-            IEntitySaver aEntitySaver = new InMemoryEntity();
-            Entity aEntity = new Entity("aText");
-            aEntitySaver.AddEntity(aEntity);
-            aEntitySaver.DeleteEntity("aText");
-            Entity recieved = aEntitySaver.FetchEntity("aText");
-            Assert.AreEqual(aEntity, recieved);
+            Assert.IsNotNull(entitySaver.FetchEntity(anEntity));
+        }
+
+        [TestMethod]
+        public void ModifyExistingEntityTest()
+        {
+            entitySaver.AddEntity(anEntity);
+            Entity modifiedEntity = new Entity("InMemoryEntityTest2");
+            entitySaver.ModifyEntity(anEntity, modifiedEntity);
+            Entity fetchedEntity = entitySaver.FetchEntity(anEntity);
+            Assert.AreEqual(fetchedEntity.Name, modifiedEntity.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void ModifyNonExistingEntityTest()
+        {
+            Entity modifiedEntity = new Entity("InMemoryEntityTest3");
+            entitySaver.ModifyEntity(anEntity, modifiedEntity);
         }
     }
 }

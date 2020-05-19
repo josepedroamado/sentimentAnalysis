@@ -8,14 +8,12 @@ namespace BusinessLogic
 {
     public interface IEntitySaver
     {
+        void AddEntity(Entity anEntity);
 
+        void DeleteEntity(Entity anEntity);
 
-        void AddEntity(Entity aEntity);
+        void ModifyEntity(Entity original, Entity modified);
 
-        void DeleteEntity(String name);
-
-        void ModifyEntity(Entity aEntity);
-
-        Entity FetchEntity(String name);
+        Entity FetchEntity(Entity aEntity);
     }
 }

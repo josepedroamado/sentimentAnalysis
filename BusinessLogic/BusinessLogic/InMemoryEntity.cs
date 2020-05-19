@@ -14,77 +14,42 @@ namespace BusinessLogic
         {
             this.Entities = new List<Entity>();
         }
-        public void AddEntity(Entity aEntity)
+
+        public void AddEntity(Entity anEntity)
         {
-            if(this.EntityExists(aEntity.Name))
-            {
-                throw new ObjectAlreadyExistsException("Entidad");
-            }
-            this.Entities.Add(aEntity);
+            if (!EntityExists(anEntity)) Entities.Add(anEntity);
+            else throw new ObjectAlreadyExistsException("Entidad");
         }
 
-        public void DeleteEntity(string aName)
+        public void DeleteEntity(Entity anEntity)
         {
-            if (!this.EntityExists(aName))
-            {
-                throw new ObjectDoesntExistException("Entidad");
-            }
-            for (int i = 0; i < this.Entities.Count(); i++)
-            {
-                if (Entities[i].Name == aName)
-                {
-                    Entities.RemoveAt(i);
-                }
-            }
-            
+            if (EntityExists(anEntity)) Entities.Remove(anEntity);
+            else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public Entity FetchEntity(string aName)
+        public void ModifyEntity(Entity original, Entity modified)
         {
-            if (!this.EntityExists(aName))
+            if (EntityExists(original))
             {
-                throw new ObjectDoesntExistException("Entidad");
+                Entities[GetEntityListIndex(original)].Name = modified.Name;
             }
-            else
-            {
-                for (int i = 0; i < this.Entities.Count(); i++)
-                {
-                    if (Entities[i].Name == aName)
-                    {
-                        return Entities[i];
-                    }
-                }
-            }
-            return null;//why?
+            else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public void ModifyEntity(Entity aEntity)
+        public Entity FetchEntity(Entity anEntity)
         {
-            if (!this.EntityExists(aEntity.Name))
-            {
-                throw new ObjectDoesntExistException("Entidad");
-            }
-            else
-            {
-                for (int i = 0; i < this.Entities.Count(); i++)
-                {
-                    if (Entities[i].Name == aEntity.Name)
-                    {
-                        Entities[i] = aEntity;
-                    }
-                }
-            }
+            if (EntityExists(anEntity)) return Entities[GetEntityListIndex(anEntity)];
+            else throw new ObjectDoesntExistException("Entidad");
         }
-        public Boolean EntityExists(string aName)
+
+        private int GetEntityListIndex(Entity anEntity)
         {
-            for(int i = 0; i < this.Entities.Count(); i++)
-            {
-                if(Entities[i].Name == aName)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Entities.IndexOf(anEntity);
+        }
+
+        private bool EntityExists(Entity anEntity)
+        {
+            return Entities.Contains(anEntity);
         }
     }
 }
