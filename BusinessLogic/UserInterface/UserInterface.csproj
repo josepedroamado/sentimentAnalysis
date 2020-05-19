@@ -201,5 +201,11 @@
   <ItemGroup>
     <Content Include="SentimentAnalysisLogoIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{c6da8016-89f8-441a-9fba-aaab433cf6c6}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
