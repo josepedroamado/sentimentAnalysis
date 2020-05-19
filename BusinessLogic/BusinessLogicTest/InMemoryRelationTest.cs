@@ -20,7 +20,7 @@ namespace BusinessLogicTest
             relationSaver = new InMemoryRelation();
             anEntity = new Entity("RelatonInMemoryTest");
             aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("RelationInMemoryPhrase", aDate, 1);
+            aPublication = new Publication("RelationInMemoryPhrase", aDate);
             aSentiment = new PositiveSentiment("RelationInMemoryText");
             aRelation = new Relation(aPublication, aSentiment, anEntity);
         }
@@ -48,7 +48,7 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteRelationInMemoryRelationTest()
+        public void DeleteNonExistingRelationInMemoryRelationTest()
         {
             relationSaver.DeleteRelation(aRelation);
             Assert.IsNotNull(relationSaver);
@@ -75,7 +75,7 @@ namespace BusinessLogicTest
             relationSaver.AddRelation(aRelation);
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate, 1);
+            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
             Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.ModifyRelation(aRelation, modifiedRelation);
@@ -91,7 +91,7 @@ namespace BusinessLogicTest
         {
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate, 1);
+            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
             Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.ModifyRelation(aRelation, modifiedRelation);
