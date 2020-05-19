@@ -8,12 +8,12 @@ namespace BusinessLogic
 {
     public interface ISentimentSaver
     {
-        void AddSentiment(Entity aSentiment);
+        void AddSentiment(Sentiment aSentiment);
 
-        void DeleteSentiment(int id);
+        void DeleteSentiment(Sentiment aSentiment);
 
-        void ModifySentiment(Sentiment aSentiment);
+        void ModifySentiment(Sentiment original, Sentiment modified);
 
-        Entity FetchEntity(int id);
+        Sentiment FetchSentiment(Sentiment aSentiment);
     }
 }

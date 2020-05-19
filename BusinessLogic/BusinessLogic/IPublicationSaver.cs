@@ -10,10 +10,10 @@ namespace BusinessLogic
     {
         void AddPublication(Publication aPublication);
 
-        void DeletePublication(int id);
+        void DeletePublication(Publication aPublication);
 
-        void ModifyPublication(Publication aPublication);
+        void ModifyPublication(Publication original, Publication modified);
 
-        Publication FetchPublication(int id);
+        Publication FetchPublication(Publication aPublication);
     }
 }

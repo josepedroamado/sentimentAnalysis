@@ -7,61 +7,84 @@ namespace BusinessLogicTest
     [TestClass]
     public class InMemoryPublicationTest
     {
+        IPublicationSaver publicationSaver;
+        Entity anEntity;
+        DateTime aDate;
+        Publication aPublication;
+        PositiveSentiment aSentiment;
+        Relation aRelation;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            publicationSaver = new InMemoryPublication();
+            aDate = new DateTime(2020, 01, 01);
+            aPublication = new Publication("PublicationInMemoryPhrase", aDate);
+        }
+
         [TestMethod]
         public void CreateInMemoryPublicationTest()
         {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            Assert.IsNotNull(aPublicationSaver);
+            Assert.IsNotNull(publicationSaver);
         }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void PublicationExistsTest()
         {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            DateTime aDate = new DateTime();
-            Publication aPublication = new Publication("aPhrase", aDate, 1);
-            aPublicationSaver.AddPublication(aPublication);
-            aPublicationSaver.AddPublication(aPublication);
-            Assert.IsNotNull(aPublicationSaver);
+            publicationSaver.AddPublication(aPublication);
+            publicationSaver.AddPublication(aPublication);
         }
+
+        [TestMethod]
+        public void DeleteExistingPublicationTest()
+        {
+            publicationSaver.AddPublication(aPublication);
+            publicationSaver.DeletePublication(aPublication);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void PublicationDeleteNotExistsTest()
+        public void DeleteNonExistingPublicationTest()
         {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            aPublicationSaver.DeletePublication(1);
+            publicationSaver.DeletePublication(aPublication);
+            Assert.IsNotNull(publicationSaver);
         }
+
         [TestMethod]
-        public void PublicationFetchTest()
+        public void FetchExistingPublicationTest()
         {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            DateTime aDate = new DateTime();
-            Publication aPublication = new Publication("aPhrase", aDate, 1);
-            aPublicationSaver.AddPublication(aPublication);
-            Publication recieved = aPublicationSaver.FetchPublication(1);
-            Assert.AreEqual(aPublication, recieved);
+            publicationSaver.AddPublication(aPublication);
+            Publication fetchedPublication = publicationSaver.FetchPublication(aPublication);
+            Assert.IsNotNull(fetchedPublication);
         }
-        [TestMethod]
-        [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void PublicationFetchNoPublicationTest()
-        {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            DateTime aDate = new DateTime();
-            Publication aPublication = new Publication("aPhrase", aDate, 1);
-            Publication recieved = aPublicationSaver.FetchPublication(1);
-            Assert.AreEqual(aPublication, recieved);
-        }
+
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void PublicationDeleteTest()
+        public void FetchNonExistingPublicationTest()
         {
-            IPublicationSaver aPublicationSaver = new InMemoryPublication();
-            DateTime aDate = new DateTime();
-            Publication aPublication = new Publication("aPhrase", aDate, 1);
-            aPublicationSaver.AddPublication(aPublication);
-            aPublicationSaver.DeletePublication(1);
-            Publication recieved = aPublicationSaver.FetchPublication(1);
-            Assert.AreEqual(aPublication, recieved);
+            Assert.IsNotNull(publicationSaver.FetchPublication(aPublication));
+        }
+
+        [TestMethod]
+        public void ModifyExistingPublicationTest()
+        {
+            publicationSaver.AddPublication(aPublication);
+            DateTime anotherDate = new DateTime(2022, 01, 01);
+            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase2", aDate);
+            publicationSaver.ModifyPublication(aPublication, modifiedPublication);
+            Publication fetchedPublication = publicationSaver.FetchPublication(aPublication);
+            Assert.AreEqual(fetchedPublication.Date, modifiedPublication.Date);
+            Assert.AreEqual(fetchedPublication.Phrase, modifiedPublication.Phrase);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void ModifyNonExistingPublicationTest()
+        {
+            DateTime anotherDate = new DateTime(2022, 01, 01);
+            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase3", aDate);
+            publicationSaver.ModifyPublication(aPublication, modifiedPublication);
         }
     }
 }

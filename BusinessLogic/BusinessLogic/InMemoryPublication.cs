@@ -14,77 +14,43 @@ namespace BusinessLogic
         {
             this.Publications = new List<Publication>();
         }
+
         public void AddPublication(Publication aPublication)
         {
-            if (this.PublicationExists(aPublication.Id))
-            {
-                throw new ObjectAlreadyExistsException("Publicacion");
-            }
-            this.Publications.Add(aPublication);
+            if (!PublicationExists(aPublication)) Publications.Add(aPublication);
+            else throw new ObjectAlreadyExistsException("Publicacion");
         }
 
-        public void DeletePublication(int aId)
+        public void DeletePublication(Publication aPublication)
         {
-            if (!this.PublicationExists(aId))
-            {
-                throw new ObjectDoesntExistException("Publicacion");
-            }
-            for (int i = 0; i < this.Publications.Count(); i++)
-            {
-                if (Publications[i].Id == aId)
-                {
-                    Publications.RemoveAt(i);
-                }
-            }
-
+            if (PublicationExists(aPublication)) Publications.Remove(aPublication);
+            else throw new ObjectDoesntExistException("Publicacion");
         }
 
-        public Publication FetchPublication(int aId)
+        public void ModifyPublication(Publication original, Publication modified)
         {
-            if (!this.PublicationExists(aId))
+            if (PublicationExists(original))
             {
-                throw new ObjectDoesntExistException("Publicacion");
+                Publications[GetPublicationListIndex(original)].Date = modified.Date;
+                Publications[GetPublicationListIndex(original)].Phrase = modified.Phrase;
             }
-            else
-            {
-                for (int i = 0; i < this.Publications.Count(); i++)
-                {
-                    if (Publications[i].Id == aId)
-                    {
-                        return Publications[i];
-                    }
-                }
-            }
-            return null;//why?
+            else throw new ObjectDoesntExistException("Publicacion");
         }
 
-        public void ModifyPublication(Publication aPublication)
+        public Publication FetchPublication(Publication aPublication)
         {
-            if (!this.PublicationExists(aPublication.Id))
-            {
-                throw new ObjectDoesntExistException("Publicacion");
-            }
-            else
-            {
-                for (int i = 0; i < this.Publications.Count(); i++)
-                {
-                    if (Publications[i].Id == aPublication.Id)
-                    {
-                        Publications[i] = aPublication;
-                    }
-                }
-            }
+            if (PublicationExists(aPublication)) return Publications[GetPublicationListIndex(aPublication)];
+            else throw new ObjectDoesntExistException("Publicacion");
         }
-        public Boolean PublicationExists(int aId)
+
+        private int GetPublicationListIndex(Publication aPublication)
         {
-            for (int i = 0; i < this.Publications.Count(); i++)
-            {
-                if (Publications[i].Id == aId)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Publications.IndexOf(aPublication);
+        }
+
+        private bool PublicationExists(Publication aPublication)
+        {
+            return Publications.Contains(aPublication);
         }
     }
 }

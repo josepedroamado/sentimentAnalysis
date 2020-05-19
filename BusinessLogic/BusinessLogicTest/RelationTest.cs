@@ -12,13 +12,14 @@ namespace BusinessLogicTest
         Sentiment aSentiment;
         Entity anEntity;
         Relation aRelation;
+        Relation anotherRelation;
 
         [TestInitialize]
         public void TestInitialize()
         {
             aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("Phrase", aDate, 1);
-            aSentiment = new PositiveSentiment(1, "Positive");
+            aPublication = new Publication("Phrase", aDate);
+            aSentiment = new PositiveSentiment("Positive");
             anEntity = new Entity("Entity");
             aRelation = new Relation(aPublication, aSentiment, anEntity);
         }
@@ -45,6 +46,47 @@ namespace BusinessLogicTest
         public void NewRelationEntityTest()
         {
             Assert.AreEqual(aRelation.Entity, anEntity);
+        }
+        
+        [TestMethod]
+        public void NewRelationNextIdTest()
+        {
+            int nextId = aRelation.GetNextId();
+            anotherRelation = new Relation(aPublication, aSentiment, anEntity);
+            Assert.AreEqual(anotherRelation.RelationId, nextId);
+        }
+        [TestMethod]
+        public void EqualsTrueRelationTest()
+        {
+            Assert.AreEqual(aRelation, aRelation);
+        }
+
+        [TestMethod]
+        public void EqualsFalseRelationTest()
+        {
+            anotherRelation = new Relation(aPublication, aSentiment, anEntity);
+            Assert.AreNotEqual(aRelation, anotherRelation);
+        }
+
+        [TestMethod]
+        public void EqualsNullRelationTest()
+        {
+            Assert.IsFalse(aRelation.Equals(null));
+        }
+
+        [TestMethod]
+        public void RelationUnequalHashCodeTest()
+        {
+            anotherRelation = new Relation(aPublication, aSentiment, anEntity);
+            Assert.AreNotEqual(aRelation.GetHashCode(), anotherRelation.GetHashCode());
+        }
+
+        [TestMethod]
+        public void RelationEqualHashCodeTest()
+        {
+            anotherRelation = new Relation(aPublication, aSentiment, anEntity);
+            anotherRelation.RelationId = aRelation.RelationId;
+            Assert.AreEqual(aRelation.GetHashCode(), anotherRelation.GetHashCode());
         }
     }
 }

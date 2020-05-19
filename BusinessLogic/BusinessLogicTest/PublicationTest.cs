@@ -7,36 +7,74 @@ namespace BusinessLogicTest
     [TestClass]
     public class PublicationTest
     {
+        DateTime aDate;
+        Publication aPublication;
+        Publication anotherPublication;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            aDate = new DateTime(2020, 01, 01);
+            aPublication = new Publication("PublicationTest1", aDate);
+        }
         [TestMethod]
         public void NewPublicationTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("APhrase", aDate, 1);
             Assert.IsNotNull(aPublication);
         }
 
         [TestMethod]
         public void NewPublicationPhraseTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("APhrase", aDate, 1);
-            Assert.AreEqual("APhrase", aPublication.Phrase);
+            Assert.AreEqual("PublicationTest1", aPublication.Phrase);
         }
 
         [TestMethod]
         public void NewPublicationDateTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("APhrase", aDate, 1);
             Assert.AreEqual(aDate, aPublication.Date);
         }
 
         [TestMethod]
         public void NewPublicationIdTest()
         {
-            DateTime aDate = new DateTime(2020, 01, 01);
-            Publication aPublication = new Publication("APhrase", aDate, 1);
-            Assert.AreEqual(1, aPublication.Id);
+            int nextId = aPublication.GetNextId();
+            anotherPublication = new Publication("PublicationTest2", aDate);
+            Assert.AreEqual(anotherPublication.PublicationId, nextId);
+        }
+
+        [TestMethod]
+        public void EqualsTruePublicationTest()
+        {
+            Assert.AreEqual(aPublication, aPublication);
+        }
+
+        [TestMethod]
+        public void EqualsFalsePublicationTest()
+        {
+            anotherPublication = new Publication("PublicationTest3", aDate);
+            Assert.AreNotEqual(aPublication, anotherPublication);
+        }
+
+        [TestMethod]
+        public void EqualsNullPublicationTest()
+        {
+            Assert.IsFalse(aPublication.Equals(null));
+        }
+
+        [TestMethod]
+        public void PublicationUnequalHashCodeTest()
+        {
+            anotherPublication = new Publication("PublicationTest4", aDate);
+            Assert.AreNotEqual(aPublication.GetHashCode(), anotherPublication.GetHashCode());
+        }
+
+        [TestMethod]
+        public void PublicationEqualHashCodeTest()
+        {
+            anotherPublication = new Publication("PublicationTest5", aDate);
+            anotherPublication.PublicationId = aPublication.PublicationId;
+            Assert.AreEqual(aPublication.GetHashCode(), anotherPublication.GetHashCode());
         }
     }
 }

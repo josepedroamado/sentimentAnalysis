@@ -10,11 +10,12 @@ namespace BusinessLogicTest
         Entity anEntity;
         TimeSpan aTimeFrame;
         Alarm alarm;
+        Alarm secondAlarm;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            anEntity = new Entity("Entity");
+            anEntity = new Entity("NegativeAlarmEntity1");
             aTimeFrame = new TimeSpan(1, 0, 0);
             alarm = new NegativeAlarm(anEntity, 1, aTimeFrame);
         }
@@ -24,25 +25,70 @@ namespace BusinessLogicTest
         {
             Assert.IsNotNull(alarm);
         }
+
         [TestMethod]
         public void NewNegativeAlarmEntityTest()
         {
             Assert.AreEqual(alarm.Entity, anEntity);
         }
+
         [TestMethod]
         public void NewNegativeAlarmTimeFrameTest()
         {
             Assert.AreEqual(alarm.TimeFrame, aTimeFrame);
         }
+
         [TestMethod]
         public void NewNegativeAlarmRequiredPostQuantityTest()
         {
             Assert.AreEqual(alarm.RequiredPostQuantity, 1);
         }
+
         [TestMethod]
         public void NewNegativeAlarmIsActiveTest()
         {
             Assert.AreEqual(alarm.Active, false);
+        }
+
+        [TestMethod]
+        public void NewPositiveAlarmNextIdTest()
+        {
+            int nextId = alarm.GetNextId();
+            secondAlarm = new NegativeAlarm(anEntity, 2, aTimeFrame);
+            Assert.AreEqual(secondAlarm.AlarmId, nextId);
+        }
+        [TestMethod]
+        public void EqualsTrueNegativeAlarmTest()
+        {
+            Assert.AreEqual(alarm, alarm);
+        }
+
+        [TestMethod]
+        public void EqualsFalseNegativeAlarmTest()
+        {
+            secondAlarm = new NegativeAlarm(anEntity, 2, aTimeFrame);
+            Assert.AreNotEqual(alarm, secondAlarm);
+        }
+
+        [TestMethod]
+        public void EqualsNullNegativeAlarmTest()
+        {
+            Assert.IsFalse(alarm.Equals(null));
+        }
+
+        [TestMethod]
+        public void AlarmUnequalHashCodeTest()
+        {
+            secondAlarm = new NegativeAlarm(anEntity, 1, aTimeFrame);
+            Assert.AreNotEqual(alarm.GetHashCode(), secondAlarm.GetHashCode());
+        }
+
+        [TestMethod]
+        public void AlarmEqualHashCodeTest()
+        {
+            secondAlarm = new NegativeAlarm(anEntity, 1, aTimeFrame);
+            secondAlarm.AlarmId = alarm.AlarmId;
+            Assert.AreEqual(alarm.GetHashCode(), secondAlarm.GetHashCode());
         }
     }
 }

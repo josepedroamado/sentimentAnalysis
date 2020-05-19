@@ -8,17 +8,42 @@ namespace BusinessLogic
 {
     public class Publication
     {
+        public static int NextId = 1;
+
+        public int PublicationId { get; set; }
+
         public string Phrase { get; set; }
 
         public DateTime Date { get; set; }
-    
-        public int Id { get; set; }
 
-        public Publication(string aPhrase, DateTime aDate, int anId)
+        public Publication(string aPhrase, DateTime aDate)
         {
+            AssignId();
             this.Phrase = aPhrase;
             this.Date = aDate;
-            this.Id = anId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Publication publication = obj as Publication;
+            if (publication != null) return this.PublicationId == publication.PublicationId;
+            else return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.PublicationId.GetHashCode();
+        }
+
+        public int GetNextId()
+        {
+            return NextId;
+        }
+
+        private void AssignId()
+        {
+            this.PublicationId = NextId;
+            NextId++;
         }
     }
 }
