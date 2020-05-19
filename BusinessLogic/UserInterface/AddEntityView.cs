@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -23,6 +24,11 @@ namespace UserInterface
         private void BtnCancelAddEntity_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToEntitiesView();
+        }
+
+        private void BtnAddEntity_Click(object sender, EventArgs e)
+        {
+            EntityAdder adder = new EntityAdder(mainWin.Data, textBoxEntityName.ToString());
         }
     }
 }

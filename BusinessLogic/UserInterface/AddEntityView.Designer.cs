@@ -84,6 +84,7 @@
             this.btnAddEntity.TabIndex = 16;
             this.btnAddEntity.Text = "Ingresar";
             this.btnAddEntity.UseVisualStyleBackColor = false;
+            this.btnAddEntity.Click += new System.EventHandler(this.BtnAddEntity_Click);
             // 
             // btnCancelAddEntity
             // 

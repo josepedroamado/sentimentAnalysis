@@ -44,6 +44,7 @@
     <Compile Include="Alarm\Alarm.cs" />
     <Compile Include="Alarm\NegativeAlarm.cs" />
     <Compile Include="Alarm\PositiveAlarm.cs" />
+    <Compile Include="EntityAdder.cs" />
     <Compile Include="IAlarmSaver.cs" />
     <Compile Include="InMemoryAlarm.cs" />
     <Compile Include="InMemoryRelation.cs" />

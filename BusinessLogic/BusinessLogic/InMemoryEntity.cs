@@ -51,5 +51,10 @@ namespace BusinessLogic
         {
             return Entities.Contains(anEntity);
         }
+
+        public List<Entity> FetchAll()
+        {
+            return this.Entities;
+        }
     }
 }

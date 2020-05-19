@@ -18,6 +18,13 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            UpdateEntities();
+        }
+        private void UpdateEntities()
+        {
+            listBoxEntities.Items.Clear();
+            listBoxEntities.DataSource = mainWin.Data.entitySaver.FetchAll();
+            listBoxEntities.DisplayMember = "Name";
         }
 
         private void BtnAddEntity_Click(object sender, EventArgs e)

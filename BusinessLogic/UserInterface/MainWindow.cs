@@ -13,7 +13,7 @@ namespace UserInterface
 {
     public partial class MainWindow : Form
     {
-        SystemData Data;
+        public SystemData Data {get; set;}
         public MainWindow(SystemData aSystem)
         {
             InitializeComponent();
