@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -14,9 +15,22 @@ namespace UserInterface
         [STAThread]
         static void Main()
         {
+            SystemData Data;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            SystemDataStartUp();
+            Application.Run(new MainWindow(Data));
+
+            void SystemDataStartUp()
+            {
+                IEntitySaver entitySaver = new InMemoryEntity();
+                ISentimentSaver sentimentSaver = new InMemorySentiment();
+                IPublicationSaver publicationSaver = new InMemoryPublication();
+                IRelationSaver relationSaver = new InMemoryRelation();
+                IAlarmSaver alarmSaver = new InMemoryAlarm();
+                Data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+            }
         }
+
     }
 }

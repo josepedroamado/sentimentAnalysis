@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
     public partial class MainWindow : Form
     {
-        public MainWindow()
+        SystemData Data;
+        public MainWindow(SystemData aSystem)
         {
             InitializeComponent();
+            this.Data = aSystem;
             HomeView view = new HomeView();
             panelView.Controls.Add(view);
         }
