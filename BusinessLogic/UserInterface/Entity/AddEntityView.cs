@@ -29,6 +29,7 @@ namespace UserInterface
         private void BtnAddEntity_Click(object sender, EventArgs e)
         {
             EntityAdder adder = new EntityAdder(mainWin.Data, textBoxEntityName.ToString());
+            mainWin.SwitchToEntitiesView();
         }
     }
 }
