@@ -9,36 +9,67 @@ namespace BusinessLogicTest
     [TestClass]
     public class EntityTest
     {
+        Entity anEntity;
+        Entity anotherEntity;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            anEntity = new Entity("AName");
+        }
+
         [TestMethod]
         public void NewEntityTest()
         {
-            Entity aEntity = new Entity("AName");
-            Assert.IsNotNull(aEntity);
+            Assert.IsNotNull(anEntity);
         }
 
         [TestMethod]
         public void NewEntityNameTest()
         {
-            Entity aEntity = new Entity("AName");
-            Assert.AreEqual(aEntity.Name, "AName");
+            Assert.AreEqual(anEntity.Name, "AName");
         }
-        //[TestMethod]
-        //public void AddSentimentEntityTest()
-        //{
-        //    Entity aEntity = new Entity("AName");
-        //    Sentiment aSentiment = new PositiveSentiment(1, "Good");
-        //    aEntity.AddSentiment(aSentiment);
-        //    Assert.AreEqual(aSentiment, aEntity.GetSentiments()[0]);
-        //}
-        //[TestMethod]
-        //public void GetSentimentsTest()
-        //{
-        //    Entity aEntity = new Entity("AName");
-        //    Sentiment aSentiment = new PositiveSentiment(1, "Good");
-        //    aEntity.AddSentiment(aSentiment);
-        //    List <Sentiment> aList = new List<Sentiment>();
-        //    aList.Add(aSentiment);
-        //    Assert.IsTrue(aList.SequenceEqual(aEntity.GetSentiments()));
-        //}
+
+        [TestMethod]
+        public void NewEntityIdTest()
+        {
+            int nextId = anEntity.GetNextId();
+            anotherEntity = new Entity("AnotherName");
+            Assert.AreEqual(anotherEntity.EntityId, nextId);
+        }
+
+        [TestMethod]
+        public void EqualsTrueEntityTest()
+        {
+            Assert.AreEqual(anEntity, anEntity);
+        }
+
+        [TestMethod]
+        public void EqualsFalseEntityTest()
+        {
+            anotherEntity = new Entity("AnotherName2");
+            Assert.AreNotEqual(anEntity, anotherEntity);
+        }
+
+        [TestMethod]
+        public void EqualsNullEntityTest()
+        {
+            Assert.IsFalse(anEntity.Equals(null));
+        }
+
+        [TestMethod]
+        public void EntityUnequalHashCodeTest()
+        {
+            anotherEntity = new Entity("AnotherName3");
+            Assert.AreNotEqual(anEntity.GetHashCode(), anotherEntity.GetHashCode());
+        }
+
+        [TestMethod]
+        public void EntityEqualHashCodeTest()
+        {
+            anotherEntity = new Entity("AnotherName4");
+            anotherEntity.EntityId = anEntity.EntityId;
+            Assert.AreEqual(anEntity.GetHashCode(), anotherEntity.GetHashCode());
+        }
     }
 }
