@@ -24,14 +24,14 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
-        public void AddNewInMemorySentiment()
+        public void AddNewInMemorySentimentTest()
         {
             sentimentSaver.AddSentiment(aSentiment);
             sentimentSaver.AddSentiment(aSentiment);
         }
 
         [TestMethod]
-        public void DeleteExistingSentimentInMemorySentiment()
+        public void DeleteExistingSentimentTest()
         {
             sentimentSaver.AddSentiment(aSentiment);
             sentimentSaver.DeleteSentiment(aSentiment);
@@ -39,14 +39,14 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteSentimentInMemorySentiment()
+        public void DeleteNonExistingSentimentTest()
         {
             sentimentSaver.DeleteSentiment(aSentiment);
             Assert.IsNotNull(sentimentSaver);
         }
 
         [TestMethod]
-        public void FetchExistingSentimentInMemorySentiment()
+        public void FetchExistingSentimentTest()
         {
             sentimentSaver.AddSentiment(aSentiment);
             Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(aSentiment);
@@ -55,13 +55,13 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingSentimentInMemorySentiment()
+        public void FetchNonExistingSentimentTest()
         {
             Assert.IsNotNull(sentimentSaver.FetchSentiment(aSentiment));
         }
 
         [TestMethod]
-        public void ModifyExistingSentimentInMemorySentiment()
+        public void ModifyExistingSentimentTest()
         {
             sentimentSaver.AddSentiment(aSentiment);
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedInMemorySentimentTest");
@@ -72,7 +72,7 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void ModifyNonExistingSentimentInMemorySentiment()
+        public void ModifyNonExistingSentimentTest()
         {
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedInMemorySentimentTest");
             sentimentSaver.ModifySentiment(aSentiment, modifiedSentiment);

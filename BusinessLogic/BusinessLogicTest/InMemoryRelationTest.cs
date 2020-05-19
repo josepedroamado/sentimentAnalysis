@@ -40,7 +40,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DeleteExistingRelationInMemoryRelationTest()
+        public void DeleteExistingRelationTest()
         {
             relationSaver.AddRelation(aRelation);
             relationSaver.DeleteRelation(aRelation);
@@ -48,14 +48,14 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteNonExistingRelationInMemoryRelationTest()
+        public void DeleteNonExistingRelationTest()
         {
             relationSaver.DeleteRelation(aRelation);
             Assert.IsNotNull(relationSaver);
         }
 
         [TestMethod]
-        public void FetchExistingRelationInMemoryRelationTest()
+        public void FetchExistingRelationTest()
         {
             relationSaver.AddRelation(aRelation);
             Relation fetchedRelation = relationSaver.FetchRelation(aRelation);
@@ -64,13 +64,13 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingRelationInMemoryRelationTest()
+        public void FetchNonExistingRelationTest()
         {
             Assert.IsNotNull(relationSaver.FetchRelation(aRelation));
         }
 
         [TestMethod]
-        public void ModifyExistingRelationInMemoryRelationTest()
+        public void ModifyExistingRelationTest()
         {
             relationSaver.AddRelation(aRelation);
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
@@ -87,7 +87,7 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void ModifyNonExistingRelationInMemoryRelationTest()
+        public void ModifyNonExistingRelationTest()
         {
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);

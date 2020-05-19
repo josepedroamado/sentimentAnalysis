@@ -36,7 +36,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void DeleteExistingAlarmInMemoryAlarmTest()
+        public void DeleteExistingAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             alarmSaver.DeleteAlarm(anAlarm);
@@ -44,14 +44,14 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteAlarmInMemoryAlarmTest()
+        public void DeleteNonExistingAlarmTest()
         {
             alarmSaver.DeleteAlarm(anAlarm);
             Assert.IsNotNull(alarmSaver);
         }
 
         [TestMethod]
-        public void FetchExistingAlarmInMemoryAlarmTest()
+        public void FetchExistingAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             Alarm fetchedAlarm = alarmSaver.FetchAlarm(anAlarm);
@@ -60,13 +60,13 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingAlarmInMemoryAlarmTest()
+        public void FetchNonExistingAlarmTest()
         {
             Assert.IsNotNull(alarmSaver.FetchAlarm(anAlarm));
         }
 
         [TestMethod]
-        public void ModifyExistingAlarmInMemoryAlarmTest()
+        public void ModifyExistingAlarmTest()
         {
             alarmSaver.AddAlarm(anAlarm);
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 6, timeFrame);
@@ -80,7 +80,7 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void ModifyNonExistingAlarmInMemoryAlarmTest()
+        public void ModifyNonExistingAlarmTest()
         {
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 5, timeFrame);
             alarmSaver.ModifyAlarm(anAlarm, modifiedAlarm);

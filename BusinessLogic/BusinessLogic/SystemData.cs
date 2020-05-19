@@ -8,17 +8,23 @@ namespace BusinessLogic
 {
     public class SystemData
     {
-        public IEntitySaver EntitySaver;
+        public IEntitySaver entitySaver;
 
-        public ISentimentSaver SentimentSaver;
+        public ISentimentSaver sentimentSaver;
 
         public IPublicationSaver publicationSaver;
 
-        public SystemData(IEntitySaver entitySaver, ISentimentSaver sentimentSaver, IPublicationSaver publicationSaver)
+        public IRelationSaver relationSaver;
+
+        public IAlarmSaver alarmSaver;
+
+        public SystemData(IEntitySaver entitySaver, ISentimentSaver sentimentSaver, IPublicationSaver publicationSaver, IRelationSaver relationSaver, IAlarmSaver alarmSaver)
         {
-            this.EntitySaver = entitySaver;
-            this.SentimentSaver = sentimentSaver;
+            this.entitySaver = entitySaver;
+            this.sentimentSaver = sentimentSaver;
             this.publicationSaver = publicationSaver;
+            this.relationSaver = relationSaver;
+            this.alarmSaver = alarmSaver;
         }
     }
 }

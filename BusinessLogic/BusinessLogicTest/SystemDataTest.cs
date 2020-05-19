@@ -10,18 +10,24 @@ namespace BusinessLogicTest
         IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
+        IRelationSaver relationSaver;
+        IAlarmSaver alarmSaver;
+        SystemData systemData;
 
         [TestInitialize]
         public void TestInitialize()
         {
             entitySaver = new InMemoryEntity();
-            //sentimentSaver = new InMemorySentiment();
+            sentimentSaver = new InMemorySentiment();
             publicationSaver = new InMemoryPublication();
+            relationSaver = new InMemoryRelation();
+            alarmSaver = new InMemoryAlarm();
+            systemData = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
         }
+
         [TestMethod]
         public void NewSystemDataTest()
         {
-            SystemData systemData = new SystemData(entitySaver, sentimentSaver, publicationSaver);
             Assert.IsNotNull(systemData);
         }
     }
