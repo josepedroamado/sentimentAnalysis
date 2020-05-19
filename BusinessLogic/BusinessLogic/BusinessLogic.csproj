@@ -46,7 +46,9 @@
     <Compile Include="Alarm\PositiveAlarm.cs" />
     <Compile Include="IAlarmSaver.cs" />
     <Compile Include="InMemoryAlarm.cs" />
+    <Compile Include="InMemoryRelation.cs" />
     <Compile Include="InMemorySentiment.cs" />
+    <Compile Include="IRelationSaver.cs" />
     <Compile Include="Relation.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="InMemoryPublication.cs" />

@@ -53,6 +53,7 @@
     <Compile Include="InMemoryAlarmTest.cs" />
     <Compile Include="InMemoryEntityTest.cs" />
     <Compile Include="InMemoryPublicationTest.cs" />
+    <Compile Include="InMemoryRelationTest.cs" />
     <Compile Include="Sentiment\NegativeSentimentTest.cs" />
     <Compile Include="Sentiment\PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
