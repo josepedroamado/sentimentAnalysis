@@ -28,8 +28,27 @@ namespace UserInterface
 
         private void BtnAddEntity_Click(object sender, EventArgs e)
         {
-            EntityAdder adder = new EntityAdder(mainWin.Data, textBoxEntityName.ToString());
-            mainWin.SwitchToEntitiesView();
+            try
+            {
+                String text = textBoxEntityName.Text;
+                EntityAdder adder = new EntityAdder(mainWin.Data,text);
+                mainWin.SwitchToEntitiesView();
+            }
+            catch(ObjectAlreadyExistsException)
+            {
+                labelEntityNameException.Visible = true;
+                labelEntityNameException.Text = "Error: La entidad que intenta ingresar ya existe";
+            }
+            catch(TextTooLongException)
+            {
+                labelEntityNameException.Visible = true;
+                labelEntityNameException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy largo";
+            }
+            catch (TextTooShortException)
+            {
+                labelEntityNameException.Visible = true;
+                labelEntityNameException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy corto o vacio";
+            }
         }
     }
 }

@@ -71,5 +71,23 @@ namespace BusinessLogicTest
             anotherEntity.EntityId = anEntity.EntityId;
             Assert.AreEqual(anEntity.GetHashCode(), anotherEntity.GetHashCode());
         }
+        [TestMethod]
+        [ExpectedException(typeof(TextTooLongException))]
+        public void EntityTextToLongTest()
+        {
+            String name = "";
+            while (name.Length < 100)
+            {
+                name = name + "assdda";
+            }
+            Entity aEntity = new Entity(name);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(TextTooShortException))]
+        public void EntityTextToShortTest()
+        {
+            String name = "";
+            Entity aEntity = new Entity(name);
+        }
     }
 }

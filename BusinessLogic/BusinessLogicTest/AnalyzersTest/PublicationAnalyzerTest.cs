@@ -7,7 +7,6 @@ namespace BusinessLogicTest
     [TestClass]
     public class PublicationAnalyzerTest
     {
-        IPublicationSaver publicationSaver;
         DateTime firstDateTime;
         Publication firstPublication;
         DateTime secondDateTime;
@@ -25,20 +24,15 @@ namespace BusinessLogicTest
         Entity firstEntity;
         Entity secondEntity;
 
-        IRelationSaver relationSaver;
-
         PublicationAnalyzer publicationAnalyzer;        
 
         [TestInitialize]
         public void TestInitialize()
         {
-            publicationSaver = new InMemoryPublication();
             firstDateTime = new DateTime(2020, 01, 01);
             firstPublication = new Publication("Me gusta Coca-cola", firstDateTime);
-            publicationSaver.AddPublication(firstPublication);
             secondDateTime = new DateTime(2020, 01, 11);
             secondPublication = new Publication("Odio Pepsi", secondDateTime);
-            publicationSaver.AddPublication(secondPublication);
             thirdDateTime = new DateTime(2020, 01, 21);
             thirdPublication = new Publication("No me banco a Claro", thirdDateTime);
 

@@ -81,7 +81,7 @@
             this.radioButtonPositive.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonPositive.ForeColor = System.Drawing.Color.White;
             this.radioButtonPositive.Location = new System.Drawing.Point(182, 190);
-            this.radioButtonPositive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonPositive.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonPositive.Name = "radioButtonPositive";
             this.radioButtonPositive.Size = new System.Drawing.Size(65, 17);
             this.radioButtonPositive.TabIndex = 12;
@@ -94,7 +94,7 @@
             this.radioButtonNegative.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonNegative.ForeColor = System.Drawing.Color.White;
             this.radioButtonNegative.Location = new System.Drawing.Point(251, 189);
-            this.radioButtonNegative.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonNegative.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonNegative.Name = "radioButtonNegative";
             this.radioButtonNegative.Size = new System.Drawing.Size(71, 17);
             this.radioButtonNegative.TabIndex = 13;
@@ -125,6 +125,7 @@
             this.btnAddSentiment.TabIndex = 15;
             this.btnAddSentiment.Text = "Ingresar";
             this.btnAddSentiment.UseVisualStyleBackColor = false;
+            this.btnAddSentiment.Click += new System.EventHandler(this.btnAddSentiment_Click);
             // 
             // btnCancelAddSentiment
             // 
@@ -146,7 +147,7 @@
             this.labelSentimentTextException.AutoSize = true;
             this.labelSentimentTextException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSentimentTextException.ForeColor = System.Drawing.Color.Red;
-            this.labelSentimentTextException.Location = new System.Drawing.Point(498, 78);
+            this.labelSentimentTextException.Location = new System.Drawing.Point(66, 225);
             this.labelSentimentTextException.Name = "labelSentimentTextException";
             this.labelSentimentTextException.Size = new System.Drawing.Size(32, 13);
             this.labelSentimentTextException.TabIndex = 17;
@@ -180,7 +181,7 @@
             this.Controls.Add(this.textBoxSentimentText);
             this.Controls.Add(this.labelSentimentText);
             this.Controls.Add(this.labelAddSentimentTitle);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddSentimentView";
             this.Size = new System.Drawing.Size(674, 452);
             this.ResumeLayout(false);

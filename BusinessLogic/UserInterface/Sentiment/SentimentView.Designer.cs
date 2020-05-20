@@ -43,11 +43,9 @@
             this.listBoxSentiment.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxSentiment.ForeColor = System.Drawing.Color.White;
             this.listBoxSentiment.FormattingEnabled = true;
-            this.listBoxSentiment.ItemHeight = 30;
-            this.listBoxSentiment.Location = new System.Drawing.Point(132, 121);
-            this.listBoxSentiment.Margin = new System.Windows.Forms.Padding(6);
+            this.listBoxSentiment.Location = new System.Drawing.Point(66, 63);
             this.listBoxSentiment.Name = "listBoxSentiment";
-            this.listBoxSentiment.Size = new System.Drawing.Size(1088, 660);
+            this.listBoxSentiment.Size = new System.Drawing.Size(544, 338);
             this.listBoxSentiment.TabIndex = 2;
             // 
             // btnAddSentiment
@@ -57,10 +55,9 @@
             this.btnAddSentiment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddSentiment.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSentiment.ForeColor = System.Drawing.Color.White;
-            this.btnAddSentiment.Location = new System.Drawing.Point(788, 29);
-            this.btnAddSentiment.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddSentiment.Location = new System.Drawing.Point(394, 15);
             this.btnAddSentiment.Name = "btnAddSentiment";
-            this.btnAddSentiment.Size = new System.Drawing.Size(150, 58);
+            this.btnAddSentiment.Size = new System.Drawing.Size(75, 30);
             this.btnAddSentiment.TabIndex = 3;
             this.btnAddSentiment.Text = "Agregar";
             this.btnAddSentiment.UseVisualStyleBackColor = false;
@@ -74,10 +71,9 @@
             this.btnDeleteSentiment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteSentiment.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteSentiment.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteSentiment.Location = new System.Drawing.Point(976, 31);
-            this.btnDeleteSentiment.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDeleteSentiment.Location = new System.Drawing.Point(488, 16);
             this.btnDeleteSentiment.Name = "btnDeleteSentiment";
-            this.btnDeleteSentiment.Size = new System.Drawing.Size(150, 58);
+            this.btnDeleteSentiment.Size = new System.Drawing.Size(75, 30);
             this.btnDeleteSentiment.TabIndex = 4;
             this.btnDeleteSentiment.Text = "Eliminar";
             this.btnDeleteSentiment.UseVisualStyleBackColor = false;
@@ -87,10 +83,9 @@
             this.labelSentimentTitle.AutoSize = true;
             this.labelSentimentTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSentimentTitle.ForeColor = System.Drawing.Color.White;
-            this.labelSentimentTitle.Location = new System.Drawing.Point(130, 42);
-            this.labelSentimentTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelSentimentTitle.Location = new System.Drawing.Point(65, 22);
             this.labelSentimentTitle.Name = "labelSentimentTitle";
-            this.labelSentimentTitle.Size = new System.Drawing.Size(175, 36);
+            this.labelSentimentTitle.Size = new System.Drawing.Size(89, 17);
             this.labelSentimentTitle.TabIndex = 5;
             this.labelSentimentTitle.Text = "Sentimientos";
             // 
@@ -100,29 +95,32 @@
             this.radioButtonPositive.Checked = true;
             this.radioButtonPositive.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonPositive.ForeColor = System.Drawing.Color.White;
-            this.radioButtonPositive.Location = new System.Drawing.Point(436, 45);
+            this.radioButtonPositive.Location = new System.Drawing.Point(218, 23);
+            this.radioButtonPositive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonPositive.Name = "radioButtonPositive";
-            this.radioButtonPositive.Size = new System.Drawing.Size(124, 34);
+            this.radioButtonPositive.Size = new System.Drawing.Size(70, 17);
             this.radioButtonPositive.TabIndex = 6;
             this.radioButtonPositive.TabStop = true;
             this.radioButtonPositive.Text = "Positivos";
             this.radioButtonPositive.UseVisualStyleBackColor = true;
+            this.radioButtonPositive.CheckedChanged += new System.EventHandler(this.radioButtonPositive_CheckedChanged);
             // 
             // radioButtonNegative
             // 
             this.radioButtonNegative.AutoSize = true;
             this.radioButtonNegative.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonNegative.ForeColor = System.Drawing.Color.White;
-            this.radioButtonNegative.Location = new System.Drawing.Point(582, 45);
+            this.radioButtonNegative.Location = new System.Drawing.Point(291, 23);
+            this.radioButtonNegative.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonNegative.Name = "radioButtonNegative";
-            this.radioButtonNegative.Size = new System.Drawing.Size(137, 34);
+            this.radioButtonNegative.Size = new System.Drawing.Size(76, 17);
             this.radioButtonNegative.TabIndex = 7;
             this.radioButtonNegative.Text = "Negativos";
             this.radioButtonNegative.UseVisualStyleBackColor = true;
             // 
             // SentimentView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.Controls.Add(this.radioButtonNegative);
@@ -131,9 +129,8 @@
             this.Controls.Add(this.btnDeleteSentiment);
             this.Controls.Add(this.btnAddSentiment);
             this.Controls.Add(this.listBoxSentiment);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SentimentView";
-            this.Size = new System.Drawing.Size(1348, 869);
+            this.Size = new System.Drawing.Size(674, 452);
             this.ResumeLayout(false);
             this.PerformLayout();
 

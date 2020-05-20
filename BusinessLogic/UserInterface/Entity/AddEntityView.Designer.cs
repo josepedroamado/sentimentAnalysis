@@ -106,7 +106,7 @@
             this.labelEntityNameException.AutoSize = true;
             this.labelEntityNameException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEntityNameException.ForeColor = System.Drawing.Color.Red;
-            this.labelEntityNameException.Location = new System.Drawing.Point(497, 78);
+            this.labelEntityNameException.Location = new System.Drawing.Point(65, 171);
             this.labelEntityNameException.Name = "labelEntityNameException";
             this.labelEntityNameException.Size = new System.Drawing.Size(32, 13);
             this.labelEntityNameException.TabIndex = 18;
