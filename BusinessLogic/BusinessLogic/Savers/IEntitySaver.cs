@@ -16,6 +16,8 @@ namespace BusinessLogic
 
         Entity FetchEntity(Entity aEntity);
 
+        Entity FetchEntity(int entityId);
+
         List<Entity> FetchAll();
     }
 }

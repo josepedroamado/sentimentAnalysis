@@ -50,20 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityAdderTest.cs" />
-    <Compile Include="EntityTest.cs" />
-    <Compile Include="InMemoryAlarmTest.cs" />
-    <Compile Include="InMemoryEntityTest.cs" />
-    <Compile Include="InMemoryPublicationTest.cs" />
-    <Compile Include="InMemoryRelationTest.cs" />
-    <Compile Include="Sentiment\NegativeSentimentTest.cs" />
-    <Compile Include="Sentiment\PositiveSentimentTest.cs" />
+    <Compile Include="ObjectsTest\EntityTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryAlarmTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryEntityTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryPublicationTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryRelationTest.cs" />
+    <Compile Include="ObjectsTest\SentimentTest\NegativeSentimentTest.cs" />
+    <Compile Include="ObjectsTest\SentimentTest\PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicationTest.cs" />
-    <Compile Include="RelationTest.cs" />
-    <Compile Include="Alarm\PositiveAlarmTest.cs" />
-    <Compile Include="Alarm\NegativeAlarmTest.cs" />
+    <Compile Include="ObjectsTest\PublicationTest.cs" />
+    <Compile Include="ObjectsTest\RelationTest.cs" />
+    <Compile Include="ObjectsTest\AlarmTest\PositiveAlarmTest.cs" />
+    <Compile Include="ObjectsTest\AlarmTest\NegativeAlarmTest.cs" />
+    <Compile Include="AnalyzersTest\PublicationAnalyzerTest.cs" />
     <Compile Include="SystemDataTest.cs" />
-    <Compile Include="InMemorySentimentTest.cs" />
+    <Compile Include="InMemoryTest\InMemorySentimentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -74,6 +75,7 @@
       <Name>BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
