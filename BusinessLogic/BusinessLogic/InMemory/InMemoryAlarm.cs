@@ -53,5 +53,10 @@ namespace BusinessLogic
         {
             return Alarms.Contains(anAlarm);
         }
+
+        public List<Alarm> FetchAll()
+        {
+            return this.Alarms;
+        }
     }
 }

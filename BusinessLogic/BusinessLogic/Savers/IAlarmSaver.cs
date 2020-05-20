@@ -15,5 +15,7 @@ namespace BusinessLogic
         void ModifyAlarm(Alarm original, Alarm modified);
 
         Alarm FetchAlarm(Alarm anAlarm);
+
+        List<Alarm> FetchAll();
     }
 }

@@ -52,5 +52,10 @@ namespace BusinessLogic
         {
             return Publications.Contains(aPublication);
         }
+
+        public List<Publication> FetchAll()
+        {
+            return this.Publications;
+        }
     }
 }
