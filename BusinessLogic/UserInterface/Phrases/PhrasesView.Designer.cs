@@ -106,6 +106,7 @@
             this.btnAddPhrase.TabIndex = 14;
             this.btnAddPhrase.Text = "Ingresar";
             this.btnAddPhrase.UseVisualStyleBackColor = false;
+            this.btnAddPhrase.Click += new System.EventHandler(this.BtnAddPhrase_Click);
             // 
             // btnCancelAddPhrase
             // 
@@ -120,13 +121,14 @@
             this.btnCancelAddPhrase.TabIndex = 15;
             this.btnCancelAddPhrase.Text = "Cancelar";
             this.btnCancelAddPhrase.UseVisualStyleBackColor = false;
+            this.btnCancelAddPhrase.Click += new System.EventHandler(this.BtnCancelAddPhrase_Click);
             // 
             // labelPhraseTextException
             // 
             this.labelPhraseTextException.AutoSize = true;
             this.labelPhraseTextException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPhraseTextException.ForeColor = System.Drawing.Color.Red;
-            this.labelPhraseTextException.Location = new System.Drawing.Point(484, 78);
+            this.labelPhraseTextException.Location = new System.Drawing.Point(66, 219);
             this.labelPhraseTextException.Name = "labelPhraseTextException";
             this.labelPhraseTextException.Size = new System.Drawing.Size(32, 13);
             this.labelPhraseTextException.TabIndex = 19;

@@ -77,7 +77,13 @@ namespace UserInterface
         private void BtnPhrasesView_Click(object sender, EventArgs e)
         {
             panelView.Controls.Clear();
-            PhrasesView view = new PhrasesView();
+            PhrasesView view = new PhrasesView(this);
+            panelView.Controls.Add(view);
+        }
+        public void SwitchToPhrasesView()
+        {
+            panelView.Controls.Clear();
+            PhrasesView view = new PhrasesView(this);
             panelView.Controls.Add(view);
         }
 
