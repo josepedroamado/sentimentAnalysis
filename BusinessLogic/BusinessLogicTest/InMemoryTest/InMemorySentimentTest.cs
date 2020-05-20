@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicTest
 {
@@ -46,7 +48,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void FetchExistingSentimentTest()
+        public void FetchExistingSentimentByObjectTest()
         {
             sentimentSaver.AddSentiment(aSentiment);
             Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(aSentiment);
@@ -55,9 +57,24 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingSentimentTest()
+        public void FetchNonExistingSentimentByObjectTest()
         {
             Assert.IsNotNull(sentimentSaver.FetchSentiment(aSentiment));
+        }
+
+        [TestMethod]
+        public void FetchExistingSentimentByIdTest()
+        {
+            sentimentSaver.AddSentiment(aSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(aSentiment.SentimentId);
+            Assert.IsNotNull(fetchedSentiment);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void FetchNonExistingSentimentByIdTest()
+        {
+            Assert.IsNotNull(sentimentSaver.FetchSentiment(aSentiment.SentimentId));
         }
 
         [TestMethod]
@@ -76,6 +93,16 @@ namespace BusinessLogicTest
         {
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedInMemorySentimentTest");
             sentimentSaver.ModifySentiment(aSentiment, modifiedSentiment);
+        }
+
+        [TestMethod]
+        public void FetchAllTest()
+        {
+            sentimentSaver.AddSentiment(aSentiment);
+            List<Sentiment> expectedList = new List<Sentiment>();
+            expectedList.Add(aSentiment);
+            List<Sentiment> actualList = sentimentSaver.FetchAll();
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }

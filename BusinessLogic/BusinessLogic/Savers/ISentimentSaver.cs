@@ -15,5 +15,9 @@ namespace BusinessLogic
         void ModifySentiment(Sentiment original, Sentiment modified);
 
         Sentiment FetchSentiment(Sentiment aSentiment);
+
+        Sentiment FetchSentiment(int sentimentId);
+
+        List<Sentiment> FetchAll();
     }
 }
