@@ -33,9 +33,10 @@ namespace BusinessLogic
         public List<Relation> GetMatchingRelations(Alarm alarm, String sentimentType, DateTime lowerDateBoundary)
         {
             return relationSaver.FetchAll().FindAll(
-                    relation => relation.Entity == alarm.Entity &&
-                    relation.Sentiment.GetType().Name == sentimentType &&
-                    relation.Publication.Date >= lowerDateBoundary
+                    relation => (relation.Entity == alarm.Entity &&
+                                 relation.Sentiment.GetType().Name == sentimentType &&
+                                 relation.Publication.Date >= lowerDateBoundary
+                                )
                 );
         }
     }
