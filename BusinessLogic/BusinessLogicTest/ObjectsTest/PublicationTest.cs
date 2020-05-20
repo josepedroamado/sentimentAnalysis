@@ -76,5 +76,23 @@ namespace BusinessLogicTest
             anotherPublication.PublicationId = aPublication.PublicationId;
             Assert.AreEqual(aPublication.GetHashCode(), anotherPublication.GetHashCode());
         }
+        [TestMethod]
+        [ExpectedException(typeof(TextTooShortException))]
+        public void PublicationTextToShortTest()
+        {
+            String name = "";
+            Publication aPublication = new Publication(name, aDate);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(TextTooLongException))]
+        public void PublicationTextToLongTest()
+        {
+            String name = "";
+            while (name.Length < 100)
+            {
+                name = name + "assdda";
+            }
+            Publication aPublication = new Publication(name,aDate);
+        }
     }
 }

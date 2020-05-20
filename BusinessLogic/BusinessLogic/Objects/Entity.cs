@@ -14,6 +14,10 @@ namespace BusinessLogic
 
         public string Name { get; set; }
 
+        private const int MAX_BODY_TEXT = 100;
+
+        private const int MIN_BODY_TEXT = 2;
+
         public Entity(String aName)
         {
             AssignId();
@@ -54,18 +58,16 @@ namespace BusinessLogic
         }
         private void IsNameTooLong(String aName)
         {
-            int maxBodyName = 100;
-            if (aName.Length > maxBodyName)
+            if (aName.Length > MAX_BODY_TEXT)
             {
-                throw new TextTooLongException(maxBodyName);
+                throw new TextTooLongException(MAX_BODY_TEXT);
             }
         }
         private void IsNameTooShortOrEmpty(String aName)
         {
-            int minBodyName = 2;
-            if (aName.Length <= minBodyName)
+            if (aName.Length <= MIN_BODY_TEXT)
             {
-                throw new TextTooShortException(minBodyName);
+                throw new TextTooShortException(MIN_BODY_TEXT);
             }
         }
     }
