@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicTest
 {
@@ -95,6 +97,16 @@ namespace BusinessLogicTest
             Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.ModifyRelation(aRelation, modifiedRelation);
+        }
+
+        [TestMethod]
+        public void FetchAllTest()
+        {
+            relationSaver.AddRelation(aRelation);
+            List<Relation> expectedList = new List<Relation>();
+            expectedList.Add(aRelation);
+            List<Relation> actualList = relationSaver.FetchAll();
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }
