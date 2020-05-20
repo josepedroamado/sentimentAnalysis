@@ -44,6 +44,11 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Relacion");
         }
 
+        public List<Relation> FetchAll()
+        {
+            return this.Relations;
+        }
+
         private int GetRelationListIndex(Relation aRelation)
         {
             return Relations.IndexOf(aRelation);
@@ -53,6 +58,5 @@ namespace BusinessLogic
         {
             return Relations.Contains(aRelation);
         }
-
     }
 }

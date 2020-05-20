@@ -15,5 +15,7 @@ namespace BusinessLogic
         void ModifyRelation(Relation original, Relation modified);
 
         Relation FetchRelation(Relation aRelation);
+
+        List<Relation> FetchAll();
     }
 }
