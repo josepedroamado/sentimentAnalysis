@@ -17,7 +17,7 @@ namespace BusinessLogic
         public Entity(String aName)
         {
             AssignId();
-            this.Name = aName;
+            SetName(aName);
         }
 
         public override bool Equals(object obj)
@@ -41,6 +41,32 @@ namespace BusinessLogic
         {
             this.EntityId = NextId;
             NextId++;
+        }
+        public void SetName(String aName)
+        {
+            IsNameCorrect(aName);
+            this.Name = aName;
+        }
+        public void IsNameCorrect(String AName)
+        {
+            IsNameTooLong(AName);
+            IsNameTooShortOrEmpty(AName);
+        }
+        private void IsNameTooLong(String aName)
+        {
+            int maxBodyName = 100;
+            if (aName.Length > maxBodyName)
+            {
+                throw new TextTooLongException(maxBodyName);
+            }
+        }
+        private void IsNameTooShortOrEmpty(String aName)
+        {
+            int minBodyName = 2;
+            if (aName.Length <= minBodyName)
+            {
+                throw new TextTooShortException(minBodyName);
+            }
         }
     }
 }
