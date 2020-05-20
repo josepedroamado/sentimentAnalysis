@@ -54,6 +54,16 @@ namespace BusinessLogic
             return this.Sentiments;
         }
 
+        public List<Sentiment> FetchAllPositiveSentiments()
+        {
+            return Sentiments.FindAll(sentiment => sentiment.GetType().Name == "PositiveSentiment");
+        }
+
+        public List<Sentiment> FetchAllNegativeSentiments()
+        {
+            return Sentiments.FindAll(sentiment => sentiment.GetType().Name == "NegativeSentiment");
+        }
+
         private int GetSentimentListIndex(Sentiment aSentiment)
         {
             return Sentiments.IndexOf(aSentiment);
