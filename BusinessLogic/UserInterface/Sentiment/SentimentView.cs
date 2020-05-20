@@ -28,8 +28,9 @@ namespace UserInterface
         }
         private void UpdateSentimentsPositive()
         {
+            listBoxSentiment.DataSource = null;
             listBoxSentiment.Items.Clear();
-            listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAll();
+            listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAllPositiveSentiments();
             listBoxSentiment.DisplayMember = "Text";
         }
 
@@ -40,7 +41,21 @@ namespace UserInterface
 
         private void radioButtonPositive_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(radioButtonPositive.Checked)
+            {
+                UpdateSentimentsPositive();
+            }
+            else
+            {
+                UpdateSentimentsNegative();
+            }
+        }
+        private void UpdateSentimentsNegative()
+        {
+            listBoxSentiment.DataSource = null;
+            listBoxSentiment.Items.Clear();
+            listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAllNegativeSentiments();
+            listBoxSentiment.DisplayMember = "Text";
         }
     }
 }

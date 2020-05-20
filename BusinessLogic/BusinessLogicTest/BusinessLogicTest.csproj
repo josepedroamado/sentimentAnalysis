@@ -63,6 +63,7 @@
     <Compile Include="ObjectsTest\AlarmTest\PositiveAlarmTest.cs" />
     <Compile Include="ObjectsTest\AlarmTest\NegativeAlarmTest.cs" />
     <Compile Include="AnalyzersTest\PublicationAnalyzerTest.cs" />
+    <Compile Include="SentimentAdderTest.cs" />
     <Compile Include="SystemDataTest.cs" />
     <Compile Include="InMemoryTest\InMemorySentimentTest.cs" />
   </ItemGroup>

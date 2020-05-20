@@ -33,7 +33,7 @@ namespace UserInterface
                 Boolean positive = radioButtonPositive.Checked;
                 String text = textBoxSentimentText.Text;
                 SentimentAdder adder = new SentimentAdder(mainWin.Data, text, positive);
-                mainWin.SwitchToEntitiesView();
+                mainWin.SwitchToSentimentView();
             }
             catch (ObjectAlreadyExistsException)
             {
