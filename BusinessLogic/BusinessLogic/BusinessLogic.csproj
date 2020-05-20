@@ -45,6 +45,7 @@
     <Compile Include="Objects\Alarm\NegativeAlarm.cs" />
     <Compile Include="Objects\Alarm\PositiveAlarm.cs" />
     <Compile Include="EntityAdder.cs" />
+    <Compile Include="Analyzers\PublicationAnalyzer.cs" />
     <Compile Include="Savers\IAlarmSaver.cs" />
     <Compile Include="InMemory\InMemoryAlarm.cs" />
     <Compile Include="InMemory\InMemoryRelation.cs" />
@@ -68,5 +69,6 @@
     <Compile Include="Exceptions\TextTooLongException.cs" />
     <Compile Include="Exceptions\TextTooShortException.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
