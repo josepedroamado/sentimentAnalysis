@@ -25,7 +25,9 @@ namespace BusinessLogicTest
         Entity firstEntity;
         Entity secondEntity;
 
-        PublicationAnalyzer publicationAnalyzer;
+        IRelationSaver relationSaver;
+
+        PublicationAnalyzer publicationAnalyzer;        
 
         [TestInitialize]
         public void TestInitialize()
@@ -56,13 +58,85 @@ namespace BusinessLogicTest
             secondEntity = new Entity("Pepsi");
             entitySaver.AddEntity(secondEntity);
 
-            publicationAnalyzer = new PublicationAnalyzer();
+            publicationAnalyzer = new PublicationAnalyzer(sentimentSaver, entitySaver);
         }
 
         [TestMethod]
         public void NewPublicationAnalyzer()
         {
             Assert.IsNotNull(publicationAnalyzer);
+        }
+
+        [TestMethod]
+        public void AnalyzeCorrectFirstEntityTest()
+        {
+            Entity detectedEntity = publicationAnalyzer.AnalyzeEntity(firstPublication);
+            Assert.AreEqual(firstEntity, detectedEntity);
+        }
+
+        [TestMethod]
+        public void AnalyzeCorrectSecondEntityTest()
+        {
+            Entity detectedEntity = publicationAnalyzer.AnalyzeEntity(secondPublication);
+            Assert.AreEqual(secondEntity, detectedEntity);
+        }
+
+        [TestMethod]
+        public void AnalyzeIncorrectEntityTest()
+        {
+            Entity detectedEntity = publicationAnalyzer.AnalyzeEntity(thirdPublication);
+            Assert.IsNull(detectedEntity);
+        }
+
+        [TestMethod]
+        public void AnalyzeCorrectFirstPositiveSentimentTest()
+        {
+            Sentiment detectedSentiment = publicationAnalyzer.AnalyzeSentiment(firstPublication);
+            Assert.AreEqual(firstPositiveSentiment, detectedSentiment);
+        }
+
+        [TestMethod]
+        public void AnalyzeCorrectFirstNegativeSentimentTest()
+        {
+            Sentiment detectedSentiment = publicationAnalyzer.AnalyzeSentiment(secondPublication);
+            Assert.AreEqual(firstNegativeSentiment, detectedSentiment);
+        }
+
+        [TestMethod]
+        public void AnalyzeIncorrectSentimentTest()
+        {
+            Sentiment detectedSentiment = publicationAnalyzer.AnalyzeSentiment(thirdPublication);
+            Assert.IsNull(detectedSentiment);
+        }
+
+        [TestMethod]
+        public void AnalyzeFirstPublicationTest()
+        {
+            Relation detectedRelation = publicationAnalyzer.AnalyzePublication(firstPublication);
+            Relation expectedRelation = new Relation(firstPublication, firstPositiveSentiment, firstEntity);
+            Assert.AreEqual(detectedRelation.Publication, expectedRelation.Publication);
+            Assert.AreEqual(detectedRelation.Sentiment, expectedRelation.Sentiment);
+            Assert.AreEqual(detectedRelation.Entity, expectedRelation.Entity);
+        }
+
+        [TestMethod]
+        public void AnalyzeSecondPublicationTest()
+        {
+            Relation detectedRelation = publicationAnalyzer.AnalyzePublication(secondPublication);
+            Relation expectedRelation = new Relation(secondPublication, firstNegativeSentiment, secondEntity);
+            Assert.AreEqual(detectedRelation.Publication, expectedRelation.Publication);
+            Assert.AreEqual(detectedRelation.Sentiment, expectedRelation.Sentiment);
+            Assert.AreEqual(detectedRelation.Entity, expectedRelation.Entity);
+        }
+
+        [TestMethod]
+        public void AnalyzeNoSentimentNoEntityPublicationTest()
+        {
+            Relation detectedRelation = publicationAnalyzer.AnalyzePublication(thirdPublication);
+            Relation expectedRelation = new Relation(thirdPublication, null, null);
+            Assert.AreEqual(detectedRelation.Publication, expectedRelation.Publication);
+            Assert.AreEqual(detectedRelation.Sentiment, expectedRelation.Sentiment);
+            Assert.AreEqual(detectedRelation.Entity, expectedRelation.Entity);
         }
     }
 }
