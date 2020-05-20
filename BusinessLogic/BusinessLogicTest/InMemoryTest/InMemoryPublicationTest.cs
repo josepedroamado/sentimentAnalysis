@@ -8,11 +8,8 @@ namespace BusinessLogicTest
     public class InMemoryPublicationTest
     {
         IPublicationSaver publicationSaver;
-        Entity anEntity;
         DateTime aDate;
         Publication aPublication;
-        PositiveSentiment aSentiment;
-        Relation aRelation;
 
         [TestInitialize]
         public void TestInitialize()

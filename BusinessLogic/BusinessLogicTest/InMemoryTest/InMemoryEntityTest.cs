@@ -49,7 +49,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void FetchExistingEntityTest()
+        public void FetchExistingEntityByObjectTest()
         {
             entitySaver.AddEntity(anEntity);
             Entity fetchedEntity = entitySaver.FetchEntity(anEntity);
@@ -58,9 +58,24 @@ namespace BusinessLogicTest
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void FetchNonExistingEntityTest()
+        public void FetchNonExistingEntityByObjectTest()
         {
             Assert.IsNotNull(entitySaver.FetchEntity(anEntity));
+        }
+
+        [TestMethod]
+        public void FetchExistingEntityByIdTest()
+        {
+            entitySaver.AddEntity(anEntity);
+            Entity fetchedEntity = entitySaver.FetchEntity(anEntity.EntityId);
+            Assert.IsNotNull(fetchedEntity);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void FetchNonExistingEntityByIdTest()
+        {
+            Assert.IsNotNull(entitySaver.FetchEntity(anEntity.EntityId));
         }
 
         [TestMethod]
@@ -80,6 +95,7 @@ namespace BusinessLogicTest
             Entity modifiedEntity = new Entity("InMemoryEntityTest3");
             entitySaver.ModifyEntity(anEntity, modifiedEntity);
         }
+
         [TestMethod]
         public void FetchAllTest()
         {

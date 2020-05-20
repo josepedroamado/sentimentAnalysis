@@ -42,6 +42,18 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
+        public Sentiment FetchSentiment(int sentimentId)
+        {
+
+            if (SentimentExists(sentimentId)) return Sentiments.Find(aSentiment => aSentiment.SentimentId == sentimentId);
+            else throw new ObjectDoesntExistException("Sentimiento");
+        }
+
+        public List<Sentiment> FetchAll()
+        {
+            return this.Sentiments;
+        }
+
         private int GetSentimentListIndex(Sentiment aSentiment)
         {
             return Sentiments.IndexOf(aSentiment);
@@ -50,6 +62,11 @@ namespace BusinessLogic
         private bool SentimentExists(Sentiment aSentiment)
         {
             return Sentiments.Contains(aSentiment);
+        }
+
+        private bool SentimentExists(int sentimentId)
+        {
+            return Sentiments.Exists(aSentiment => aSentiment.SentimentId == sentimentId);
         }
     }
 }

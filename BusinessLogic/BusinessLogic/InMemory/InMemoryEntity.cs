@@ -42,6 +42,13 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Entidad");
         }
 
+        public Entity FetchEntity(int entityId)
+        {
+            
+            if (EntityExists(entityId)) return Entities.Find(anEntity => anEntity.EntityId == entityId);
+            else throw new ObjectDoesntExistException("Entidad");
+        }
+
         private int GetEntityListIndex(Entity anEntity)
         {
             return Entities.IndexOf(anEntity);
@@ -50,6 +57,11 @@ namespace BusinessLogic
         private bool EntityExists(Entity anEntity)
         {
             return Entities.Contains(anEntity);
+        }
+
+        private bool EntityExists(int entityId)
+        {
+            return Entities.Exists(anEntity => anEntity.EntityId == entityId);
         }
 
         public List<Entity> FetchAll()
