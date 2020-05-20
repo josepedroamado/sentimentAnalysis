@@ -38,17 +38,17 @@ namespace UserInterface
             catch (ObjectAlreadyExistsException)
             {
                 labelSentimentTextException.Visible = true;
-                labelSentimentTextException.Text = "Error: La entidad que intenta ingresar ya existe";
+                labelSentimentTextException.Text = "Error: El sentimiento que intenta ingresar ya existe";
             }
             catch (TextTooLongException)
             {
                 labelSentimentTextException.Visible = true;
-                labelSentimentTextException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy largo";
+                labelSentimentTextException.Text = "Error: El sentimiento que intenta ingresar tiene un texto muy largo";
             }
             catch (TextTooShortException)
             {
                 labelSentimentTextException.Visible = true;
-                labelSentimentTextException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy corto o vacio";
+                labelSentimentTextException.Text = "Error: El sentimiento que intenta ingresar tiene un texto muy corto o vacio";
             }
         }
     }

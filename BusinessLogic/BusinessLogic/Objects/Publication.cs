@@ -16,10 +16,14 @@ namespace BusinessLogic
 
         public DateTime Date { get; set; }
 
+        private const int MAX_BODY_TEXT = 100;
+
+        private const int MIN_BODY_TEXT = 2;
+
         public Publication(string aPhrase, DateTime aDate)
         {
             AssignId();
-            this.Phrase = aPhrase;
+            SetPhrase(aPhrase);
             this.Date = aDate;
         }
 
@@ -44,6 +48,27 @@ namespace BusinessLogic
         {
             this.PublicationId = NextId;
             NextId++;
+        }
+        private void SetPhrase(String aPhrase)
+        {
+            IsPhraseTooShortOrEmpty(aPhrase);
+            IsNameTooLong(aPhrase);
+            this.Phrase = aPhrase;
+
+        }
+        private void IsPhraseTooShortOrEmpty(String aPhrase)
+        {
+            if (aPhrase.Length <= MIN_BODY_TEXT)
+            {
+                throw new TextTooShortException(MIN_BODY_TEXT);
+            }
+        }
+        private void IsNameTooLong(String aPhrase)
+        {
+            if (aPhrase.Length > MAX_BODY_TEXT)
+            {
+                throw new TextTooLongException(MAX_BODY_TEXT);
+            }
         }
     }
 }
