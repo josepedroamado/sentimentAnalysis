@@ -19,5 +19,9 @@ namespace BusinessLogic
         Sentiment FetchSentiment(int sentimentId);
 
         List<Sentiment> FetchAll();
+
+        List<Sentiment> FetchAllPositiveSentiments();
+
+        List<Sentiment> FetchAllNegativeSentiments();
     }
 }
