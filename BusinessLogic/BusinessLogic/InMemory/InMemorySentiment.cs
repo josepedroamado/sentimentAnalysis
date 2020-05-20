@@ -61,12 +61,18 @@ namespace BusinessLogic
 
         private bool SentimentExists(Sentiment aSentiment)
         {
-            return Sentiments.Contains(aSentiment);
+            if (Sentiments.Contains(aSentiment)) return true;
+            else return SentimentExists(aSentiment.Text);
         }
 
         private bool SentimentExists(int sentimentId)
         {
             return Sentiments.Exists(aSentiment => aSentiment.SentimentId == sentimentId);
+        }
+
+        private bool SentimentExists(String sentimentText)
+        {
+            return Sentiments.Exists(aSentiment => aSentiment.Text == sentimentText);
         }
     }
 }

@@ -33,6 +33,15 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ObjectAlreadyExistsException))]
+        public void SentimentWithThatTextAlreadyExistsTest()
+        {
+            sentimentSaver.AddSentiment(aSentiment);
+            Sentiment sentiment = new PositiveSentiment("InMemorySentimentTest1");
+            sentimentSaver.AddSentiment(sentiment);
+        }
+
+        [TestMethod]
         public void DeleteExistingSentimentTest()
         {
             sentimentSaver.AddSentiment(aSentiment);

@@ -34,6 +34,15 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ObjectAlreadyExistsException))]
+        public void EntityAlreadyExistsWithThatNameTest()
+        {
+            entitySaver.AddEntity(anEntity);
+            Entity entity = new Entity("InMemoryEntityTest1");
+            entitySaver.AddEntity(entity);
+        }
+
+        [TestMethod]
         public void DeleteExistingEntityTest()
         {
             entitySaver.AddEntity(anEntity);
