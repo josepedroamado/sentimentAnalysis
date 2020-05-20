@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -18,16 +19,28 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            UpdateSentimentsPositive();
         }
 
         private void ComboBoxSentimentType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+        private void UpdateSentimentsPositive()
+        {
+            listBoxSentiment.Items.Clear();
+            listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAll();
+            listBoxSentiment.DisplayMember = "Text";
+        }
 
         private void BtnAddSentiment_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToAddSentimentView();
+        }
+
+        private void radioButtonPositive_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

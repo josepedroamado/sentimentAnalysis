@@ -65,6 +65,7 @@
     <Compile Include="Objects\Sentiment\PositiveSentiment.cs" />
     <Compile Include="Objects\Sentiment\Sentiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SentimentAdder.cs" />
     <Compile Include="SystemData.cs" />
     <Compile Include="Exceptions\TextTooLongException.cs" />
     <Compile Include="Exceptions\TextTooShortException.cs" />
