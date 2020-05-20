@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicTest
 {
@@ -82,6 +84,16 @@ namespace BusinessLogicTest
             DateTime anotherDate = new DateTime(2022, 01, 01);
             Publication modifiedPublication = new Publication("PublicationInMemoryPhrase3", aDate);
             publicationSaver.ModifyPublication(aPublication, modifiedPublication);
+        }
+
+        [TestMethod]
+        public void FetchAllTest()
+        {
+            publicationSaver.AddPublication(aPublication);
+            List<Publication> expectedList = new List<Publication>();
+            expectedList.Add(aPublication);
+            List<Publication> actualList = publicationSaver.FetchAll();
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }

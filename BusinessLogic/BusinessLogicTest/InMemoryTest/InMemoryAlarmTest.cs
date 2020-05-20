@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicTest
 {
@@ -84,6 +86,16 @@ namespace BusinessLogicTest
         {
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 5, timeFrame);
             alarmSaver.ModifyAlarm(anAlarm, modifiedAlarm);
+        }
+
+        [TestMethod]
+        public void FetchAllTest()
+        {
+            alarmSaver.AddAlarm(anAlarm);
+            List<Alarm> expectedList = new List<Alarm>();
+            expectedList.Add(anAlarm);
+            List<Alarm> actualList = alarmSaver.FetchAll();
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }
