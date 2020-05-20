@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLogicTest
 {
@@ -77,6 +79,15 @@ namespace BusinessLogicTest
         {
             Entity modifiedEntity = new Entity("InMemoryEntityTest3");
             entitySaver.ModifyEntity(anEntity, modifiedEntity);
+        }
+        [TestMethod]
+        public void FetchAllTest()
+        {
+            entitySaver.AddEntity(anEntity);
+            List<Entity> expectedList = new List<Entity>();
+            expectedList.Add(anEntity);
+            List<Entity> actualList = entitySaver.FetchAll();
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }

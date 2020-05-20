@@ -15,5 +15,7 @@ namespace BusinessLogic
         void ModifyEntity(Entity original, Entity modified);
 
         Entity FetchEntity(Entity aEntity);
+
+        List<Entity> FetchAll();
     }
 }
