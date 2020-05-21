@@ -82,7 +82,7 @@ namespace BusinessLogic
 
         private bool SentimentExists(String sentimentText)
         {
-            return Sentiments.Exists(aSentiment => aSentiment.Text == sentimentText);
+            return Sentiments.Exists(aSentiment => aSentiment.Text.ToLower() == sentimentText.ToLower());
         }
     }
 }
