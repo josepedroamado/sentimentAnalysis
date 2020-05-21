@@ -1,0 +1,6 @@
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\bin\Release\BusinessLogic.dll
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\bin\Release\BusinessLogic.pdb
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\obj\Release\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\obj\Release\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\obj\Release\BusinessLogic.dll
+C:\Users\PC\Desktop\OB1 Diseño 1\Lopez-Amado\BusinessLogic\BusinessLogic\obj\Release\BusinessLogic.pdb
