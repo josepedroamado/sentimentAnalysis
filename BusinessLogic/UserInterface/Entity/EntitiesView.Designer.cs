@@ -49,7 +49,6 @@
             // btnDeleteEntity
             // 
             this.btnDeleteEntity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnDeleteEntity.Enabled = false;
             this.btnDeleteEntity.FlatAppearance.BorderSize = 0;
             this.btnDeleteEntity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteEntity.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -60,6 +59,7 @@
             this.btnDeleteEntity.TabIndex = 6;
             this.btnDeleteEntity.Text = "Eliminar";
             this.btnDeleteEntity.UseVisualStyleBackColor = false;
+            this.btnDeleteEntity.Click += new System.EventHandler(this.BtnDeleteEntity_Click);
             // 
             // btnAddEntity
             // 
