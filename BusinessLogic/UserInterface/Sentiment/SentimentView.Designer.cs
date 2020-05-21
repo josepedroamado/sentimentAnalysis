@@ -66,7 +66,6 @@
             // btnDeleteSentiment
             // 
             this.btnDeleteSentiment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnDeleteSentiment.Enabled = false;
             this.btnDeleteSentiment.FlatAppearance.BorderSize = 0;
             this.btnDeleteSentiment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteSentiment.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -77,6 +76,7 @@
             this.btnDeleteSentiment.TabIndex = 4;
             this.btnDeleteSentiment.Text = "Eliminar";
             this.btnDeleteSentiment.UseVisualStyleBackColor = false;
+            this.btnDeleteSentiment.Click += new System.EventHandler(this.BtnDeleteSentiment_Click);
             // 
             // labelSentimentTitle
             // 
@@ -96,14 +96,14 @@
             this.radioButtonPositive.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonPositive.ForeColor = System.Drawing.Color.White;
             this.radioButtonPositive.Location = new System.Drawing.Point(218, 23);
-            this.radioButtonPositive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonPositive.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonPositive.Name = "radioButtonPositive";
             this.radioButtonPositive.Size = new System.Drawing.Size(70, 17);
             this.radioButtonPositive.TabIndex = 6;
             this.radioButtonPositive.TabStop = true;
             this.radioButtonPositive.Text = "Positivos";
             this.radioButtonPositive.UseVisualStyleBackColor = true;
-            this.radioButtonPositive.CheckedChanged += new System.EventHandler(this.radioButtonPositive_CheckedChanged);
+            this.radioButtonPositive.CheckedChanged += new System.EventHandler(this.RadioButtonPositive_CheckedChanged);
             // 
             // radioButtonNegative
             // 
@@ -111,7 +111,7 @@
             this.radioButtonNegative.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonNegative.ForeColor = System.Drawing.Color.White;
             this.radioButtonNegative.Location = new System.Drawing.Point(291, 23);
-            this.radioButtonNegative.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButtonNegative.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonNegative.Name = "radioButtonNegative";
             this.radioButtonNegative.Size = new System.Drawing.Size(76, 17);
             this.radioButtonNegative.TabIndex = 7;
