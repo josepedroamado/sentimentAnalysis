@@ -35,10 +35,7 @@ namespace BusinessLogicTest
         AlarmAnalyzer alarmAnalyzer;
 
         Alarm positiveActiveAlarm;
-        TimeSpan positiveActiveAlarmTimeSpan;
         Alarm negativeActiveAlarm;
-        TimeSpan negativeActiveAlarmTimeSpan;
-        TimeSpan negativeInctiveAlarmTimeSpan;
         Alarm negativeInactiveAlarm;
 
     [TestInitialize]
@@ -50,15 +47,18 @@ namespace BusinessLogicTest
             firstDateTime = DateTime.Now.Subtract(new TimeSpan(10, 0, 0, 0));
             firstPublication = new Publication("Me gusta Coca-cola", firstDateTime);
             publicationSaver.AddPublication(firstPublication);
-            secondDateTime = DateTime.Now.Subtract(new TimeSpan(8, 0, 0, 0));
-            secondPublication = new Publication("Odio Pepsi", secondDateTime);
-            publicationSaver.AddPublication(secondPublication);
-            thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
-            thirdPublication = new Publication("Me desagrada Claro", thirdDateTime);
-            publicationSaver.AddPublication(thirdPublication);
+
             fourthDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0, 0));
             fourthPublication = new Publication("Amo Coca-cola", fourthDateTime);
             publicationSaver.AddPublication(fourthPublication);
+           
+            secondDateTime = DateTime.Now.Subtract(new TimeSpan(8, 0, 0, 0));
+            secondPublication = new Publication("Odio Pepsi", secondDateTime);
+            publicationSaver.AddPublication(secondPublication);
+
+            thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
+            thirdPublication = new Publication("Me desagrada Claro", thirdDateTime);
+            publicationSaver.AddPublication(thirdPublication);       
 
             sentimentSaver = new InMemorySentiment();
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
@@ -86,14 +86,9 @@ namespace BusinessLogicTest
 
             alarmAnalyzer = new AlarmAnalyzer(relationSaver);
 
-            positiveActiveAlarmTimeSpan = new TimeSpan(10, 0, 0, 0);
-            positiveActiveAlarm = new PositiveAlarm(firstEntity, 2, positiveActiveAlarmTimeSpan);
-
-            negativeActiveAlarmTimeSpan = new TimeSpan(9, 0, 0, 0);
-            negativeActiveAlarm = new NegativeAlarm(secondEntity, 1, negativeActiveAlarmTimeSpan);
-
-            negativeInctiveAlarmTimeSpan = new TimeSpan(5, 0, 0, 0);
-            negativeInactiveAlarm = new NegativeAlarm(thirdEntity, 4, negativeInctiveAlarmTimeSpan);
+            positiveActiveAlarm = new PositiveAlarm(firstEntity, 2, new TimeSpan(11, 0, 0, 0));
+            negativeActiveAlarm = new NegativeAlarm(secondEntity, 1, new TimeSpan(9, 0, 0, 0));
+            negativeInactiveAlarm = new NegativeAlarm(thirdEntity, 4, new TimeSpan(5, 0, 0, 0));
         }
 
         [TestMethod]

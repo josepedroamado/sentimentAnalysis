@@ -15,5 +15,7 @@ namespace BusinessLogic
         void ModifyPublication(Publication original, Publication modified);
 
         Publication FetchPublication(Publication aPublication);
+
+        List<Publication> FetchAll();
     }
 }
