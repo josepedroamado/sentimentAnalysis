@@ -78,6 +78,7 @@
             // radioButtonPositive
             // 
             this.radioButtonPositive.AutoSize = true;
+            this.radioButtonPositive.Checked = true;
             this.radioButtonPositive.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonPositive.ForeColor = System.Drawing.Color.White;
             this.radioButtonPositive.Location = new System.Drawing.Point(182, 190);
@@ -85,6 +86,7 @@
             this.radioButtonPositive.Name = "radioButtonPositive";
             this.radioButtonPositive.Size = new System.Drawing.Size(65, 17);
             this.radioButtonPositive.TabIndex = 12;
+            this.radioButtonPositive.TabStop = true;
             this.radioButtonPositive.Text = "Positivo";
             this.radioButtonPositive.UseVisualStyleBackColor = true;
             // 

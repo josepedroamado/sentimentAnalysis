@@ -32,7 +32,6 @@
             this.labelEntity = new System.Windows.Forms.Label();
             this.comboBoxEntity = new System.Windows.Forms.ComboBox();
             this.labelAlarmType = new System.Windows.Forms.Label();
-            this.comboBoxAlarmType = new System.Windows.Forms.ComboBox();
             this.labelPostsQuantity = new System.Windows.Forms.Label();
             this.numericUpDownPosts = new System.Windows.Forms.NumericUpDown();
             this.labelAlarmTime = new System.Windows.Forms.Label();
@@ -42,9 +41,13 @@
             this.radioButtonHours = new System.Windows.Forms.RadioButton();
             this.radioButtonDays = new System.Windows.Forms.RadioButton();
             this.labelAlarmEntityException = new System.Windows.Forms.Label();
-            this.labelAlarmTypeException = new System.Windows.Forms.Label();
+            this.radioButtonPositive = new System.Windows.Forms.RadioButton();
+            this.radioButtonNegative = new System.Windows.Forms.RadioButton();
+            this.groupBoxAlarmType = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAlarmTime)).BeginInit();
+            this.groupBoxAlarmType.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelAddAlarmTitle
@@ -85,29 +88,18 @@
             this.labelAlarmType.AutoSize = true;
             this.labelAlarmType.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAlarmType.ForeColor = System.Drawing.Color.White;
-            this.labelAlarmType.Location = new System.Drawing.Point(66, 116);
+            this.labelAlarmType.Location = new System.Drawing.Point(450, 78);
             this.labelAlarmType.Name = "labelAlarmType";
             this.labelAlarmType.Size = new System.Drawing.Size(84, 13);
             this.labelAlarmType.TabIndex = 11;
             this.labelAlarmType.Text = "Tipo de Alarma";
-            // 
-            // comboBoxAlarmType
-            // 
-            this.comboBoxAlarmType.BackColor = System.Drawing.Color.White;
-            this.comboBoxAlarmType.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxAlarmType.ForeColor = System.Drawing.Color.Black;
-            this.comboBoxAlarmType.FormattingEnabled = true;
-            this.comboBoxAlarmType.Location = new System.Drawing.Point(188, 112);
-            this.comboBoxAlarmType.Name = "comboBoxAlarmType";
-            this.comboBoxAlarmType.Size = new System.Drawing.Size(202, 21);
-            this.comboBoxAlarmType.TabIndex = 12;
             // 
             // labelPostsQuantity
             // 
             this.labelPostsQuantity.AutoSize = true;
             this.labelPostsQuantity.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPostsQuantity.ForeColor = System.Drawing.Color.White;
-            this.labelPostsQuantity.Location = new System.Drawing.Point(66, 148);
+            this.labelPostsQuantity.Location = new System.Drawing.Point(65, 106);
             this.labelPostsQuantity.Name = "labelPostsQuantity";
             this.labelPostsQuantity.Size = new System.Drawing.Size(100, 13);
             this.labelPostsQuantity.TabIndex = 13;
@@ -117,7 +109,7 @@
             // 
             this.numericUpDownPosts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numericUpDownPosts.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownPosts.Location = new System.Drawing.Point(188, 145);
+            this.numericUpDownPosts.Location = new System.Drawing.Point(187, 103);
             this.numericUpDownPosts.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownPosts.Minimum = new decimal(new int[] {
             1,
@@ -139,7 +131,7 @@
             this.labelAlarmTime.AutoSize = true;
             this.labelAlarmTime.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAlarmTime.ForeColor = System.Drawing.Color.White;
-            this.labelAlarmTime.Location = new System.Drawing.Point(66, 179);
+            this.labelAlarmTime.Location = new System.Drawing.Point(65, 137);
             this.labelAlarmTime.Name = "labelAlarmTime";
             this.labelAlarmTime.Size = new System.Drawing.Size(91, 13);
             this.labelAlarmTime.TabIndex = 15;
@@ -149,7 +141,7 @@
             // 
             this.numericUpDownAlarmTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numericUpDownAlarmTime.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownAlarmTime.Location = new System.Drawing.Point(188, 176);
+            this.numericUpDownAlarmTime.Location = new System.Drawing.Point(187, 134);
             this.numericUpDownAlarmTime.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownAlarmTime.Minimum = new decimal(new int[] {
             1,
@@ -202,7 +194,7 @@
             this.radioButtonHours.Checked = true;
             this.radioButtonHours.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonHours.ForeColor = System.Drawing.Color.White;
-            this.radioButtonHours.Location = new System.Drawing.Point(404, 179);
+            this.radioButtonHours.Location = new System.Drawing.Point(403, 137);
             this.radioButtonHours.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonHours.Name = "radioButtonHours";
             this.radioButtonHours.Size = new System.Drawing.Size(54, 17);
@@ -216,7 +208,7 @@
             this.radioButtonDays.AutoSize = true;
             this.radioButtonDays.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonDays.ForeColor = System.Drawing.Color.White;
-            this.radioButtonDays.Location = new System.Drawing.Point(462, 178);
+            this.radioButtonDays.Location = new System.Drawing.Point(461, 136);
             this.radioButtonDays.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonDays.Name = "radioButtonDays";
             this.radioButtonDays.Size = new System.Drawing.Size(46, 17);
@@ -236,24 +228,49 @@
             this.labelAlarmEntityException.Text = "Error";
             this.labelAlarmEntityException.Visible = false;
             // 
-            // labelAlarmTypeException
+            // radioButtonPositive
             // 
-            this.labelAlarmTypeException.AutoSize = true;
-            this.labelAlarmTypeException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAlarmTypeException.ForeColor = System.Drawing.Color.Red;
-            this.labelAlarmTypeException.Location = new System.Drawing.Point(401, 116);
-            this.labelAlarmTypeException.Name = "labelAlarmTypeException";
-            this.labelAlarmTypeException.Size = new System.Drawing.Size(32, 13);
-            this.labelAlarmTypeException.TabIndex = 23;
-            this.labelAlarmTypeException.Text = "Error";
-            this.labelAlarmTypeException.Visible = false;
+            this.radioButtonPositive.AutoSize = true;
+            this.radioButtonPositive.Checked = true;
+            this.radioButtonPositive.ForeColor = System.Drawing.SystemColors.Control;
+            this.radioButtonPositive.Location = new System.Drawing.Point(6, 32);
+            this.radioButtonPositive.Name = "radioButtonPositive";
+            this.radioButtonPositive.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonPositive.TabIndex = 23;
+            this.radioButtonPositive.TabStop = true;
+            this.radioButtonPositive.Text = "Positiva";
+            this.radioButtonPositive.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNegative
+            // 
+            this.radioButtonNegative.AutoSize = true;
+            this.radioButtonNegative.ForeColor = System.Drawing.SystemColors.Control;
+            this.radioButtonNegative.Location = new System.Drawing.Point(6, 55);
+            this.radioButtonNegative.Name = "radioButtonNegative";
+            this.radioButtonNegative.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioButtonNegative.Size = new System.Drawing.Size(68, 17);
+            this.radioButtonNegative.TabIndex = 24;
+            this.radioButtonNegative.TabStop = true;
+            this.radioButtonNegative.Text = "Negativa";
+            this.radioButtonNegative.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxAlarmType
+            // 
+            this.groupBoxAlarmType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBoxAlarmType.Controls.Add(this.radioButtonPositive);
+            this.groupBoxAlarmType.Controls.Add(this.radioButtonNegative);
+            this.groupBoxAlarmType.Location = new System.Drawing.Point(540, 38);
+            this.groupBoxAlarmType.Name = "groupBoxAlarmType";
+            this.groupBoxAlarmType.Size = new System.Drawing.Size(200, 100);
+            this.groupBoxAlarmType.TabIndex = 25;
+            this.groupBoxAlarmType.TabStop = false;
             // 
             // AddAlarmView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.Controls.Add(this.labelAlarmTypeException);
+            this.Controls.Add(this.groupBoxAlarmType);
             this.Controls.Add(this.labelAlarmEntityException);
             this.Controls.Add(this.radioButtonDays);
             this.Controls.Add(this.radioButtonHours);
@@ -263,7 +280,6 @@
             this.Controls.Add(this.labelAlarmTime);
             this.Controls.Add(this.numericUpDownPosts);
             this.Controls.Add(this.labelPostsQuantity);
-            this.Controls.Add(this.comboBoxAlarmType);
             this.Controls.Add(this.labelAlarmType);
             this.Controls.Add(this.comboBoxEntity);
             this.Controls.Add(this.labelEntity);
@@ -272,6 +288,8 @@
             this.Size = new System.Drawing.Size(674, 452);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPosts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAlarmTime)).EndInit();
+            this.groupBoxAlarmType.ResumeLayout(false);
+            this.groupBoxAlarmType.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,7 +301,6 @@
         private System.Windows.Forms.Label labelEntity;
         private System.Windows.Forms.ComboBox comboBoxEntity;
         private System.Windows.Forms.Label labelAlarmType;
-        private System.Windows.Forms.ComboBox comboBoxAlarmType;
         private System.Windows.Forms.Label labelPostsQuantity;
         private System.Windows.Forms.NumericUpDown numericUpDownPosts;
         private System.Windows.Forms.Label labelAlarmTime;
@@ -293,6 +310,9 @@
         private System.Windows.Forms.RadioButton radioButtonHours;
         private System.Windows.Forms.RadioButton radioButtonDays;
         private System.Windows.Forms.Label labelAlarmEntityException;
-        private System.Windows.Forms.Label labelAlarmTypeException;
+        private System.Windows.Forms.RadioButton radioButtonPositive;
+        private System.Windows.Forms.RadioButton radioButtonNegative;
+        private System.Windows.Forms.GroupBox groupBoxAlarmType;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
