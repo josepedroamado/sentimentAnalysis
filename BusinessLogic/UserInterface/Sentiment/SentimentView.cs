@@ -32,6 +32,7 @@ namespace UserInterface
             listBoxSentiment.Items.Clear();
             listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAllPositiveSentiments();
             listBoxSentiment.DisplayMember = "Text";
+            listBoxSentiment.ValueMember = "SentimentId";
         }
 
         private void BtnAddSentiment_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace UserInterface
             mainWin.SwitchToAddSentimentView();
         }
 
-        private void radioButtonPositive_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonPositive_CheckedChanged(object sender, EventArgs e)
         {
             if(radioButtonPositive.Checked)
             {
@@ -56,6 +57,20 @@ namespace UserInterface
             listBoxSentiment.Items.Clear();
             listBoxSentiment.DataSource = mainWin.Data.sentimentSaver.FetchAllNegativeSentiments();
             listBoxSentiment.DisplayMember = "Text";
+            listBoxSentiment.ValueMember = "SentimentId";
+        }
+
+        private void BtnDeleteSentiment_Click(object sender, EventArgs e)
+        {
+            if (listBoxSentiment.SelectedValue != null)
+            {
+                object selectedId = listBoxSentiment.SelectedValue;
+                string selected = selectedId.ToString();
+                int selectedFinal = Int32.Parse(selected);
+                Sentiment SelectedSentiment = mainWin.Data.sentimentSaver.FetchSentiment(selectedFinal);
+                SentimentDeleter deleter = new SentimentDeleter(mainWin.Data, SelectedSentiment);
+                RadioButtonPositive_CheckedChanged(sender, e);
+            }
         }
     }
 }
