@@ -28,7 +28,7 @@ namespace UserInterface
         private void LoadBox()
         {
             listBoxAlarms.Items.Clear();
-            listBoxAlarms.DataSource = mainWin.Data.entitySaver.FetchAll();
+            listBoxAlarms.DataSource = mainWin.Data.alarmSaver.FetchAll();
             listBoxAlarms.DisplayMember.ToString();
         }
     }
