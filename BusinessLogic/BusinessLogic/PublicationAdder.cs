@@ -23,6 +23,8 @@ namespace BusinessLogic
             Data.publicationSaver.AddPublication(PublicationToAdd);
             RelationAdder relationAdder = new RelationAdder(Data);
             relationAdder.AddRelation(PublicationToAdd);
+            AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(Data);
+            alarmAnalyzer.AnalyzeAllAlarms();
         }
     }
 }

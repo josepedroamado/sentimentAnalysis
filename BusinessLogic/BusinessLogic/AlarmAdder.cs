@@ -30,6 +30,8 @@ namespace BusinessLogic
         private void AddAlarm(SystemData data, Alarm alarmToSave)
         {
             data.alarmSaver.AddAlarm(alarmToSave);
+            AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
+            alarmAnalyzer.AnalyzeAlarm(alarmToSave);
         }
         private TimeSpan SetTimeSpan(int alarmTime, bool hours)
         {

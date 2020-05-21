@@ -8,11 +8,20 @@ namespace BusinessLogic
 {
     public class AlarmAnalyzer
     {
-        IRelationSaver relationSaver;
+        SystemData data;
 
-        public AlarmAnalyzer(IRelationSaver relationSaver)
+        public AlarmAnalyzer(SystemData data)
         {
-            this.relationSaver = relationSaver;
+            this.data = data;
+        }
+
+        public void AnalyzeAllAlarms()
+        {
+            List<Alarm> alarms = data.alarmSaver.FetchAll();
+            foreach (Alarm alarm in alarms)
+            {
+                AnalyzeAlarm(alarm);
+            }
         }
 
         public void AnalyzeAlarm(Alarm alarm)
@@ -32,7 +41,7 @@ namespace BusinessLogic
 
         public List<Relation> GetMatchingRelations(Alarm alarm, String sentimentType, DateTime lowerDateBoundary)
         {
-            return relationSaver.FetchAll().FindAll(
+            return data.relationSaver.FetchAll().FindAll(
                     relation => (relation.Entity == alarm.Entity &&
                                  relation.Sentiment.GetType().Name == sentimentType &&
                                  relation.Publication.Date >= lowerDateBoundary
