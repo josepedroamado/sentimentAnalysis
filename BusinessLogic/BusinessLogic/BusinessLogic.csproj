@@ -48,6 +48,7 @@
     <Compile Include="EntityAdder.cs" />
     <Compile Include="Analyzers\PublicationAnalyzer.cs" />
     <Compile Include="PublicationAdder.cs" />
+    <Compile Include="RelationAdder.cs" />
     <Compile Include="Savers\IAlarmSaver.cs" />
     <Compile Include="InMemory\InMemoryAlarm.cs" />
     <Compile Include="InMemory\InMemoryRelation.cs" />

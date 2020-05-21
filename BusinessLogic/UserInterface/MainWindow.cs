@@ -64,6 +64,13 @@ namespace UserInterface
             panelView.Controls.Add(view);
         }
 
+        public void SwitchToReportsView()
+        {
+            panelView.Controls.Clear();
+            ReportsView view = new ReportsView(this);
+            panelView.Controls.Add(view);
+        }
+
         private void BtnSentimentView_Click(object sender, EventArgs e)
         {
             SwitchToSentimentView();
@@ -94,9 +101,7 @@ namespace UserInterface
 
         private void BtnReportsView_Click(object sender, EventArgs e)
         {
-            panelView.Controls.Clear();
-            ReportsView view = new ReportsView();
-            panelView.Controls.Add(view);
+            SwitchToReportsView();
         }
 
         private void PictureBoxLogo_Click(object sender, EventArgs e)

@@ -65,6 +65,7 @@
     <Compile Include="ObjectsTest\AlarmTest\NegativeAlarmTest.cs" />
     <Compile Include="AnalyzersTest\PublicationAnalyzerTest.cs" />
     <Compile Include="PublicationAdderTest.cs" />
+    <Compile Include="RelationAdderTest.cs" />
     <Compile Include="SentimentAdderTest.cs" />
     <Compile Include="SystemDataTest.cs" />
     <Compile Include="InMemoryTest\InMemorySentimentTest.cs" />

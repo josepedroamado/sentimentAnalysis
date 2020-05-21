@@ -12,9 +12,48 @@ namespace UserInterface
 {
     public partial class ReportsView : UserControl
     {
-        public ReportsView()
+        private MainWindow mainWin;
+        public ReportsView(MainWindow main)
         {
             InitializeComponent();
+            mainWin = main;
+            LoadPhrases();
+            LoadEntityAndSentimentType();
+        }
+
+        private void LoadPhrases()
+        {
+            comboBoxPhrase.DataSource = null;
+            comboBoxPhrase.Items.Clear();
+            comboBoxPhrase.DataSource = mainWin.Data.publicationSaver.FetchAll();
+            comboBoxPhrase.ValueMember = "PublicationId";
+            comboBoxPhrase.DisplayMember = "Phrase";
+        }
+
+        private void LoadEntityAndSentimentType()
+        {
+            int publicationId = (int)comboBoxPhrase.SelectedValue;
+            textBoxEntity.Clear();
+            if(mainWin.Data.relationSaver.FetchRelation(publicationId).Entity != null)
+            {
+                String entityName = mainWin.Data.relationSaver.FetchRelation(publicationId).Entity.Name;
+                textBoxEntity.Text = entityName;
+            }
+            else textBoxEntity.Text = "No se ha detectado entidad";
+            textBoxSentimentType.Clear();
+            if(mainWin.Data.relationSaver.FetchRelation(publicationId).Sentiment != null)
+            {
+                String sentimentType = mainWin.Data.relationSaver.FetchRelation(publicationId).Sentiment.GetType().Name;
+                if (sentimentType == "PositiveSentiment") textBoxSentimentType.Text = "Positivo";
+                else if (sentimentType == "NegativeSentiment") textBoxSentimentType.Text = "Negativo";      
+            }
+            else textBoxSentimentType.Text = "Neutro";
+
+        }
+
+        private void ComboBoxPhrase_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LoadEntityAndSentimentType();
         }
     }
 }

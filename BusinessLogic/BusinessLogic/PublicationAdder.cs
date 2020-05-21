@@ -21,6 +21,8 @@ namespace BusinessLogic
         private void AddPublicationToAdd(Publication PublicationToAdd, SystemData Data)
         {
             Data.publicationSaver.AddPublication(PublicationToAdd);
+            RelationAdder relationAdder = new RelationAdder(Data);
+            relationAdder.AddRelation(PublicationToAdd);
         }
     }
 }

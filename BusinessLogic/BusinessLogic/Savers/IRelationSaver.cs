@@ -16,6 +16,10 @@ namespace BusinessLogic
 
         Relation FetchRelation(Relation aRelation);
 
+        Relation FetchRelation(int publicationId);
+
         List<Relation> FetchAll();
+
+        List<Publication> FetchAllPublicationsOfEntity(int entityId);
     }
 }
