@@ -51,10 +51,10 @@ namespace BusinessLogic
             IsNameCorrect(aName);
             this.Name = aName;
         }
-        public void IsNameCorrect(String AName)
+        public void IsNameCorrect(String aName)
         {
-            IsNameTooLong(AName);
-            IsNameTooShortOrEmpty(AName);
+            IsNameTooLong(aName);
+            IsNameTooShortOrEmpty(aName);
         }
         private void IsNameTooLong(String aName)
         {

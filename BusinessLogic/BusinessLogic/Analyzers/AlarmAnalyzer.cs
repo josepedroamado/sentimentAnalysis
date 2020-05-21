@@ -8,7 +8,7 @@ namespace BusinessLogic
 {
     public class AlarmAnalyzer
     {
-        SystemData data;
+        private SystemData data;
 
         public AlarmAnalyzer(SystemData data)
         {

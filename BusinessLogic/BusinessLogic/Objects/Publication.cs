@@ -52,7 +52,7 @@ namespace BusinessLogic
         private void SetPhrase(String aPhrase)
         {
             IsPhraseTooShortOrEmpty(aPhrase);
-            IsNameTooLong(aPhrase);
+            IsPhraseTooLong(aPhrase);
             this.Phrase = aPhrase;
 
         }
@@ -63,7 +63,7 @@ namespace BusinessLogic
                 throw new TextTooShortException(MIN_BODY_TEXT);
             }
         }
-        private void IsNameTooLong(String aPhrase)
+        private void IsPhraseTooLong(String aPhrase)
         {
             if (aPhrase.Length > MAX_BODY_TEXT)
             {

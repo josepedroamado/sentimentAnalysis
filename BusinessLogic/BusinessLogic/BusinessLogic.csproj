@@ -76,6 +76,5 @@
     <Compile Include="Exceptions\TextTooLongException.cs" />
     <Compile Include="Exceptions\TextTooShortException.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

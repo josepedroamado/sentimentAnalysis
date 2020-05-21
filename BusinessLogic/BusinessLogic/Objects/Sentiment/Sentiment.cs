@@ -41,10 +41,10 @@ namespace BusinessLogic
             this.Text = aText;
         }
 
-        public void IsTextCorrect(String AText)
+        public void IsTextCorrect(String aText)
         {
-            IsTextTooLong(AText);
-            IsTextTooShort(AText);
+            IsTextTooLong(aText);
+            IsTextTooShort(aText);
         }
 
         private void IsTextTooLong(String aText)
