@@ -32,5 +32,12 @@ namespace BusinessLogicTest
             Sentiment expectedSentiment = new PositiveSentiment("sometext");
             Assert.AreEqual(expectedSentiment.Text, Data.sentimentSaver.FetchAll()[0].Text);
         }
+        [TestMethod]
+        public void AddSentimentNegativeTest()
+        {
+            SentimentAdder adder = new SentimentAdder(Data, "sometext", false);
+            Sentiment expectedSentiment = new NegativeSentiment("sometext");
+            Assert.AreEqual(expectedSentiment.GetType(), Data.sentimentSaver.FetchAll()[0].GetType());
+        }
     }
 }

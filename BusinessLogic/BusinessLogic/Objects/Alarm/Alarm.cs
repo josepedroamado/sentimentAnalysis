@@ -36,5 +36,23 @@ namespace BusinessLogic
         {
             return this.AlarmId.GetHashCode();
         }
+        public override string ToString()
+        {
+            string status = "Inactiva";
+            if(Active)
+            {
+                status = "Activa";
+            }
+            string tipo = "Positiva";
+            if(this.GetType().Name == "NegativeAlarm")
+            {
+                tipo = "Negativa";
+            }
+            
+            String toReturn = String.Format("Entidad: " + this.Entity.Name + ", Cantidad de posts: " 
+                + this.RequiredPostQuantity + " de tipo " + tipo + " en " + this.TimeFrame.Hours 
+                + " horas, Estado: " + status);
+            return toReturn;
+        }
     }
 }
