@@ -18,11 +18,18 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            LoadBox();
         }
 
         private void BtnAddAlarm_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToAddAlarmView();
+        }
+        private void LoadBox()
+        {
+            listBoxAlarms.Items.Clear();
+            listBoxAlarms.DataSource = mainWin.Data.alarmSaver.FetchAll();
+            listBoxAlarms.DisplayMember.ToString();
         }
     }
 }

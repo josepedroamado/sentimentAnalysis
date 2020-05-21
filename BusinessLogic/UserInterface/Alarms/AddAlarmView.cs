@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -18,16 +19,38 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            LoadObjects();
         }
 
         private void BtnCancelAddAlarm_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToAlarmsView();
         }
+        private void LoadObjects()
+        {
+            comboBoxEntity.DataSource = null;
 
+            comboBoxEntity.Items.Clear();
+
+            comboBoxEntity.DataSource = mainWin.Data.entitySaver.FetchAll();
+
+            comboBoxEntity.DisplayMember = "Name";
+
+            comboBoxEntity.ValueMember = "EntityId";
+        }
         private void BtnAddAlarm_Click(object sender, EventArgs e)
         {
-
+            object selectedId = comboBoxEntity.SelectedValue;
+            string selected = selectedId.ToString();
+            int selectedFinal = Int32.Parse(selected);
+            Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
+            int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
+            int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
+            Boolean positive = radioButtonPositive.Checked;
+            Boolean hours = radioButtonHours.Checked;
+            AlarmAdder addAlarm = new AlarmAdder(mainWin.Data, SelectedEntity, numberOfPosts, alarmTime, positive, hours);
+            mainWin.SwitchToAlarmsView();
         }
+
     }
 }
