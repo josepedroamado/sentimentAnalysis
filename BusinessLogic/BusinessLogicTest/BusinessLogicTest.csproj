@@ -52,6 +52,7 @@
     <Compile Include="AlarmAdderTest.cs" />
     <Compile Include="AnalyzersTest\AlarmAnalyzerTest.cs" />
     <Compile Include="EntityAdderTest.cs" />
+    <Compile Include="EntityDeleterTest.cs" />
     <Compile Include="ObjectsTest\EntityTest.cs" />
     <Compile Include="InMemoryTest\InMemoryAlarmTest.cs" />
     <Compile Include="InMemoryTest\InMemoryEntityTest.cs" />

@@ -66,7 +66,7 @@ namespace BusinessLogic
 
         private bool EntityExists(String entityName)
         {
-            return Entities.Exists(anEntity => anEntity.Name == entityName);
+            return Entities.Exists(anEntity => anEntity.Name.ToLower() == entityName.ToLower());
         }
 
         public List<Entity> FetchAll()
