@@ -8,6 +8,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Project Specific
+SentimentAnalysis/UserInterface/App.config
+SentimentAnalysis/DataAccess/App.config
+SentimentAnalysis/DataAccess/Migrations/
+
 # User-specific files
 *.rsuser
 *.suo
