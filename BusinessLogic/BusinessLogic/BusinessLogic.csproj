@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AlarmAdder.cs" />
     <Compile Include="Analyzers\AlarmAnalyzer.cs" />
+    <Compile Include="Author.cs" />
     <Compile Include="EntityDeleter.cs" />
     <Compile Include="Objects\Alarm\Alarm.cs" />
     <Compile Include="Objects\Alarm\NegativeAlarm.cs" />
