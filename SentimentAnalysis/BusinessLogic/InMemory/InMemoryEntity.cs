@@ -73,5 +73,10 @@ namespace BusinessLogic
         {
             return this.Entities;
         }
+
+        public void Clear()
+        {
+            Entities.Clear();
+        }
     }
 }

@@ -19,5 +19,7 @@ namespace BusinessLogic
         Entity FetchEntity(int entityId);
 
         List<Entity> FetchAll();
+
+        void Clear();
     }
 }

@@ -39,10 +39,10 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                EntityDto entityToDelete = context.Entities.First(entitiy => entitiy.EntityDtoId == anEntity.EntityId);
+                EntityDto entityToDelete = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == anEntity.EntityId);
                 if(entityToDelete == null)
                 {
-                    throw new ObjectDoesntExistException("Entity");
+                    throw new ObjectDoesntExistException("Entidad");
                 }
                 else
                 {
@@ -74,10 +74,10 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                EntityDto fetchedEntity = context.Entities.First(entitiy => entitiy.EntityDtoId == entityId);
+                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == entityId);
                 if (fetchedEntity == null)
                 {
-                    throw new ObjectDoesntExistException("Entity");
+                    throw new ObjectDoesntExistException("Entidad");
                 }
                 else
                 {
@@ -95,7 +95,28 @@ namespace DataAccess
 
         public void ModifyEntity(Entity original, Entity modified)
         {
-            throw new NotImplementedException();
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == original.EntityId);
+                if (fetchedEntity == null)
+                {
+                    throw new ObjectDoesntExistException("Entidad");
+                }
+                else
+                {
+                    fetchedEntity.Name = modified.Name;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void Clear()
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                context.Entities.RemoveRange(context.Entities);
+                context.SaveChanges();
+            }
         }
     }
 }
