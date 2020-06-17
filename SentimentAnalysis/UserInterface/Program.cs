@@ -26,7 +26,7 @@ namespace UserInterface
             {
                 IEntitySaver entitySaver = new EntityDatabaseSaver();
                 ISentimentSaver sentimentSaver = new InMemorySentiment();
-                IPublicationSaver publicationSaver = new InMemoryPublication();
+                IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
                 IRelationSaver relationSaver = new InMemoryRelation();
                 IAlarmSaver alarmSaver = new InMemoryAlarm();
                 Data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
