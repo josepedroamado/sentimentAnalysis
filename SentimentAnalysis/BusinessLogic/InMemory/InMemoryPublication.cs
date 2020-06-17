@@ -57,5 +57,10 @@ namespace BusinessLogic
         {
             return this.Publications;
         }
+
+        public void Clear()
+        {
+            Publications.Clear();
+        }
     }
 }

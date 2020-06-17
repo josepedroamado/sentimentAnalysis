@@ -17,5 +17,7 @@ namespace BusinessLogic
         Publication FetchPublication(Publication aPublication);
 
         List<Publication> FetchAll();
+
+        void Clear();
     }
 }

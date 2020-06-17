@@ -16,6 +16,7 @@ namespace DataAccess
         }
 
         public DbSet<EntityDto> Entities { get; set; }
+        public DbSet<PublicationDto> Publications { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -23,10 +24,14 @@ namespace DataAccess
             //modelBuilder.Entity<PositiveSentiment>().ToTable("PositiveSentiments");
             //modelBuilder.Entity<NegativeSentiment>().ToTable("NegativeSentiment");
 
-            //Configure domain classes using modelBuilder here..
             modelBuilder.Entity<EntityDto>().ToTable("Entities");
             modelBuilder.Entity<EntityDto>().Property(p => p.EntityDtoId).HasColumnName("EntityId");
             modelBuilder.Entity<EntityDto>().Property(p => p.Name).IsRequired();
+
+            modelBuilder.Entity<PublicationDto>().ToTable("Publications");
+            modelBuilder.Entity<PublicationDto>().Property(p => p.PublicationDtoId).HasColumnName("PublicationId");
+            modelBuilder.Entity<PublicationDto>().Property(p => p.Phrase).IsRequired();
+            modelBuilder.Entity<PublicationDto>().Property(p => p.Date).IsRequired();
         }
     }
 }

@@ -65,7 +65,17 @@
     <Compile Include="Migrations\202006062108459_EntityImplementation_v0.1.1.designer.cs">
       <DependentUpon>202006062108459_EntityImplementation_v0.1.1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006171359448_PublicationImplementationv0.1.cs" />
+    <Compile Include="Migrations\202006171359448_PublicationImplementationv0.1.designer.cs">
+      <DependentUpon>202006171359448_PublicationImplementationv0.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006171411094_publicationImplementationv0.1.1.cs" />
+    <Compile Include="Migrations\202006171411094_publicationImplementationv0.1.1.designer.cs">
+      <DependentUpon>202006171411094_publicationImplementationv0.1.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PublicationDatabaseSaver.cs" />
+    <Compile Include="PublicationDto.cs" />
     <Compile Include="SentimentAnalysisContext.cs" />
     <Compile Include="EntityDatabaseSaver.cs" />
     <Compile Include="EntityDto.cs" />
@@ -96,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006062108459_EntityImplementation_v0.1.1.resx">
       <DependentUpon>202006062108459_EntityImplementation_v0.1.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171359448_PublicationImplementationv0.1.resx">
+      <DependentUpon>202006171359448_PublicationImplementationv0.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171411094_publicationImplementationv0.1.1.resx">
+      <DependentUpon>202006171411094_publicationImplementationv0.1.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

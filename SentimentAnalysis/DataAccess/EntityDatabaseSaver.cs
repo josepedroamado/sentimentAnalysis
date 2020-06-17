@@ -29,9 +29,11 @@ namespace DataAccess
 
         private EntityDto ConvertToDto(Entity anEntity)
         {
-            EntityDto convertedEntity = new EntityDto();
-            convertedEntity.EntityDtoId = anEntity.EntityId;
-            convertedEntity.Name = anEntity.Name;
+            EntityDto convertedEntity = new EntityDto
+            {
+                EntityDtoId = anEntity.EntityId,
+                Name = anEntity.Name
+            };
             return convertedEntity;
         }
 
@@ -65,6 +67,15 @@ namespace DataAccess
             }
         }
 
+        private Entity ConvertToObject(EntityDto anEntityDto)
+        {
+            Entity convertedEntity = new Entity(anEntityDto.Name)
+            {
+                EntityId = anEntityDto.EntityDtoId
+            };
+            return convertedEntity;
+        }
+
         public Entity FetchEntity(Entity anEntity)
         {
             return FetchEntity(anEntity.EntityId);
@@ -84,13 +95,6 @@ namespace DataAccess
                     return ConvertToObject(fetchedEntity);
                 }
             }
-        }
-
-        private Entity ConvertToObject(EntityDto anEntityDto)
-        {
-            Entity convertedEntity = new Entity(anEntityDto.Name);
-            convertedEntity.EntityId = anEntityDto.EntityDtoId;
-            return convertedEntity;
         }
 
         public void ModifyEntity(Entity original, Entity modified)
