@@ -60,6 +60,7 @@
     <Compile Include="EntityDatabaseSaverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationDatabaseSaverTest.cs" />
+    <Compile Include="SentimentDatabaseSaverTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config.example" />

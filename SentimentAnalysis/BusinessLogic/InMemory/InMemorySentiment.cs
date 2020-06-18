@@ -84,5 +84,10 @@ namespace BusinessLogic
         {
             return Sentiments.Exists(aSentiment => aSentiment.Text.ToLower() == sentimentText.ToLower());
         }
+
+        public void Clear()
+        {
+            Sentiments.Clear();
+        }
     }
 }
