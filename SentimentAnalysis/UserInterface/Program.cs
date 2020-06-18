@@ -25,7 +25,7 @@ namespace UserInterface
             void SystemDataStartUp()
             {
                 IEntitySaver entitySaver = new EntityDatabaseSaver();
-                ISentimentSaver sentimentSaver = new InMemorySentiment();
+                ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
                 IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
                 IRelationSaver relationSaver = new InMemoryRelation();
                 IAlarmSaver alarmSaver = new InMemoryAlarm();

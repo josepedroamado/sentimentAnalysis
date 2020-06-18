@@ -23,5 +23,7 @@ namespace BusinessLogic
         List<Sentiment> FetchAllPositiveSentiments();
 
         List<Sentiment> FetchAllNegativeSentiments();
+
+        void Clear();
     }
 }
