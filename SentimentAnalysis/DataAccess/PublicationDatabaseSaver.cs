@@ -13,17 +13,10 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                if (context.Publications.Any(publication => publication.PublicationDtoId == aPublication.PublicationId))
-                {
-                    throw new ObjectAlreadyExistsException("Publicacion");
-                }
-                else
-                {
-                    PublicationDto newPublication = ConvertToDto(aPublication);
-                    context.Publications.Add(newPublication);
-                    context.SaveChanges();
-                    aPublication.PublicationId = newPublication.PublicationDtoId;
-                }
+                PublicationDto newPublication = ConvertToDto(aPublication);
+                context.Publications.Add(newPublication);
+                context.SaveChanges();
+                aPublication.PublicationId = newPublication.PublicationDtoId;
             }
         }
 
@@ -81,6 +74,7 @@ namespace DataAccess
         {
             return FetchPublication(aPublication.PublicationId);
         }
+
         public Publication FetchPublication(int publicationId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
