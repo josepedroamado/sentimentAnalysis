@@ -49,12 +49,40 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="AlarmAdderTest.cs" />
+    <Compile Include="AnalyzersTest\AlarmAnalyzerTest.cs" />
+    <Compile Include="EntityAdderTest.cs" />
+    <Compile Include="EntityDeleterTest.cs" />
+    <Compile Include="ObjectsTest\EntityTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryAlarmTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryEntityTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryPublicationTest.cs" />
+    <Compile Include="InMemoryTest\InMemoryRelationTest.cs" />
+    <Compile Include="ObjectsTest\SentimentTest\NegativeSentimentTest.cs" />
+    <Compile Include="ObjectsTest\SentimentTest\PositiveSentimentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ObjectsTest\PublicationTest.cs" />
+    <Compile Include="ObjectsTest\RelationTest.cs" />
+    <Compile Include="ObjectsTest\AlarmTest\PositiveAlarmTest.cs" />
+    <Compile Include="ObjectsTest\AlarmTest\NegativeAlarmTest.cs" />
+    <Compile Include="AnalyzersTest\PublicationAnalyzerTest.cs" />
+    <Compile Include="PublicationAdderTest.cs" />
+    <Compile Include="RelationAdderTest.cs" />
+    <Compile Include="SentimentAdderTest.cs" />
+    <Compile Include="SentimentDeleterTest.cs" />
+    <Compile Include="SystemDataTest.cs" />
+    <Compile Include="InMemoryTest\InMemorySentimentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{c6da8016-89f8-441a-9fba-aaab433cf6c6}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -67,34 +67,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAlarmView.cs">
+    <Compile Include="Alarms\AddAlarmView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddAlarmView.Designer.cs">
+    <Compile Include="Alarms\AddAlarmView.Designer.cs">
       <DependentUpon>AddAlarmView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddEntityView.cs">
+    <Compile Include="Entity\AddEntityView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddEntityView.Designer.cs">
+    <Compile Include="Entity\AddEntityView.Designer.cs">
       <DependentUpon>AddEntityView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSentimentView.cs">
+    <Compile Include="Sentiment\AddSentimentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddSentimentView.Designer.cs">
+    <Compile Include="Sentiment\AddSentimentView.Designer.cs">
       <DependentUpon>AddSentimentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlarmsView.cs">
+    <Compile Include="Alarms\AlarmsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AlarmsView.Designer.cs">
+    <Compile Include="Alarms\AlarmsView.Designer.cs">
       <DependentUpon>AlarmsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="EntitiesView.cs">
+    <Compile Include="Entity\EntitiesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EntitiesView.Designer.cs">
+    <Compile Include="Entity\EntitiesView.Designer.cs">
       <DependentUpon>EntitiesView.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeView.cs">
@@ -109,39 +109,39 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhrasesView.cs">
+    <Compile Include="Phrases\PhrasesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PhrasesView.Designer.cs">
+    <Compile Include="Phrases\PhrasesView.Designer.cs">
       <DependentUpon>PhrasesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportsView.cs">
+    <Compile Include="Reports\ReportsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportsView.Designer.cs">
+    <Compile Include="Reports\ReportsView.Designer.cs">
       <DependentUpon>ReportsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SentimentView.cs">
+    <Compile Include="Sentiment\SentimentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SentimentView.Designer.cs">
+    <Compile Include="Sentiment\SentimentView.Designer.cs">
       <DependentUpon>SentimentView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddAlarmView.resx">
+    <EmbeddedResource Include="Alarms\AddAlarmView.resx">
       <DependentUpon>AddAlarmView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddEntityView.resx">
+    <EmbeddedResource Include="Entity\AddEntityView.resx">
       <DependentUpon>AddEntityView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddSentimentView.resx">
+    <EmbeddedResource Include="Sentiment\AddSentimentView.resx">
       <DependentUpon>AddSentimentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AlarmsView.resx">
+    <EmbeddedResource Include="Alarms\AlarmsView.resx">
       <DependentUpon>AlarmsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EntitiesView.resx">
+    <EmbeddedResource Include="Entity\EntitiesView.resx">
       <DependentUpon>EntitiesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeView.resx">
@@ -150,7 +150,7 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhrasesView.resx">
+    <EmbeddedResource Include="Phrases\PhrasesView.resx">
       <DependentUpon>PhrasesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,10 +163,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ReportsView.resx">
+    <EmbeddedResource Include="Reports\ReportsView.resx">
       <DependentUpon>ReportsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SentimentView.resx">
+    <EmbeddedResource Include="Sentiment\SentimentView.resx">
       <DependentUpon>SentimentView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
@@ -200,6 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SentimentAnalysisLogoIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{c6da8016-89f8-441a-9fba-aaab433cf6c6}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

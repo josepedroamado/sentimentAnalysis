@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
     public partial class MainWindow : Form
     {
-        public MainWindow()
+        public SystemData Data {get; set;}
+        public MainWindow(SystemData aSystem)
         {
             InitializeComponent();
+            this.Data = aSystem;
             HomeView view = new HomeView();
             panelView.Controls.Add(view);
         }
@@ -61,6 +64,13 @@ namespace UserInterface
             panelView.Controls.Add(view);
         }
 
+        public void SwitchToReportsView()
+        {
+            panelView.Controls.Clear();
+            ReportsView view = new ReportsView(this);
+            panelView.Controls.Add(view);
+        }
+
         private void BtnSentimentView_Click(object sender, EventArgs e)
         {
             SwitchToSentimentView();
@@ -74,7 +84,13 @@ namespace UserInterface
         private void BtnPhrasesView_Click(object sender, EventArgs e)
         {
             panelView.Controls.Clear();
-            PhrasesView view = new PhrasesView();
+            PhrasesView view = new PhrasesView(this);
+            panelView.Controls.Add(view);
+        }
+        public void SwitchToPhrasesView()
+        {
+            panelView.Controls.Clear();
+            PhrasesView view = new PhrasesView(this);
             panelView.Controls.Add(view);
         }
 
@@ -85,9 +101,7 @@ namespace UserInterface
 
         private void BtnReportsView_Click(object sender, EventArgs e)
         {
-            panelView.Controls.Clear();
-            ReportsView view = new ReportsView();
-            panelView.Controls.Add(view);
+            SwitchToReportsView();
         }
 
         private void PictureBoxLogo_Click(object sender, EventArgs e)
