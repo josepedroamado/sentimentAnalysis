@@ -78,5 +78,10 @@ namespace BusinessLogic
             }
             return entityPublications;
         }
+
+        public void Clear()
+        {
+            Relations.Clear();
+        }
     }
 }

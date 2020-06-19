@@ -1,9 +1,6 @@
 ﻿using BusinessLogic;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -13,22 +10,12 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                PublicationDto newPublication = ConvertToDto(aPublication);
+                ObjectConversion convert = new ObjectConversion();
+                PublicationDto newPublication = convert.ConvertToDto(aPublication);
                 context.Publications.Add(newPublication);
                 context.SaveChanges();
                 aPublication.PublicationId = newPublication.PublicationDtoId;
             }
-        }
-
-        private PublicationDto ConvertToDto(Publication aPublication)
-        {
-            PublicationDto convertedPublication = new PublicationDto
-            {
-                PublicationDtoId = aPublication.PublicationId,
-                Phrase = aPublication.Phrase,
-                Date = aPublication.Date
-            };
-            return convertedPublication;
         }
 
         public void DeletePublication(Publication aPublication)
@@ -52,22 +39,14 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 List<Publication> allPublications = new List<Publication>();
                 foreach (PublicationDto publication in context.Publications)
                 {
-                    allPublications.Add(ConvertToObject(publication));
+                    allPublications.Add(convert.ConvertToObject(publication));
                 }
                 return allPublications;
             }
-        }
-
-        private Publication ConvertToObject(PublicationDto aPublication)
-        {
-            Publication convertedPublication = new Publication(aPublication.Phrase, aPublication.Date)
-            {
-                PublicationId = aPublication.PublicationDtoId
-            };
-            return convertedPublication;
         }
 
         public Publication FetchPublication(Publication aPublication)
@@ -79,6 +58,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 PublicationDto fetchedPublication = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId == publicationId);
                 if (fetchedPublication == null)
                 {
@@ -86,7 +66,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    return ConvertToObject(fetchedPublication);
+                    return convert.ConvertToObject(fetchedPublication);
                 }
             }
         }

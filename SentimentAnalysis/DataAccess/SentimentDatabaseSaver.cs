@@ -13,34 +13,19 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 if (context.Sentiments.Any(sentiment => sentiment.Text == aSentiment.Text))
                 {
                     throw new ObjectAlreadyExistsException("Sentimiento");
                 }
                 else
                 {
-                    SentimentDto newSentiment = ConvertToDto(aSentiment);
+                    SentimentDto newSentiment = convert.ConvertToDto(aSentiment);
                     context.Sentiments.Add(newSentiment);
                     context.SaveChanges();
                     aSentiment.SentimentId = aSentiment.SentimentId;
                 }
             }
-        }
-
-        private SentimentDto ConvertToDto(Sentiment aSentiment)
-        {
-            SentimentDto convertedSentiment;
-            if (aSentiment.GetType().Name.Equals("PositiveSentiment"))
-            {
-                convertedSentiment = new PositiveSentimentDto();
-            }
-            else
-            {
-                convertedSentiment = new NegativeSentimentDto();
-            }
-            convertedSentiment.SentimentDtoId = aSentiment.SentimentId;
-            convertedSentiment.Text = aSentiment.Text;
-            return convertedSentiment;
         }
 
         public void DeleteSentiment(Sentiment aSentiment)
@@ -64,40 +49,27 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 List<Sentiment> allSentiments = new List<Sentiment>();
                 foreach (SentimentDto sentiment in context.Sentiments)
                 {
-                    allSentiments.Add(ConvertToObject(sentiment));
+                    allSentiments.Add(convert.ConvertToObject(sentiment));
                 }
                 return allSentiments;
             }
-        }
-
-        private Sentiment ConvertToObject(SentimentDto aSentiment)
-        {
-            Sentiment convertedSentiment;
-            if (aSentiment.GetType().Name.Equals("PositiveSentimentDto"))
-            {
-                convertedSentiment = new PositiveSentiment(aSentiment.Text);
-            }
-            else
-            {
-                convertedSentiment = new NegativeSentiment(aSentiment.Text);
-            }
-            convertedSentiment.SentimentId = aSentiment.SentimentDtoId;
-            return convertedSentiment;
         }
 
         public List<Sentiment> FetchAllNegativeSentiments()
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 List<Sentiment> allNegativeSentiments = new List<Sentiment>();
                 foreach (SentimentDto sentiment in context.Sentiments)
                 {
                     if (sentiment.GetType().Name.Equals("NegativeSentimentDto"))
                     {
-                        allNegativeSentiments.Add(ConvertToObject(sentiment));
+                        allNegativeSentiments.Add(convert.ConvertToObject(sentiment));
                     }
                 }
                 return allNegativeSentiments;
@@ -108,12 +80,13 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 List<Sentiment> allPositiveSentiments = new List<Sentiment>();
                 foreach (SentimentDto sentiment in context.Sentiments)
                 {
                     if (sentiment.GetType().Name.Equals("PositiveSentimentDto"))
                     {
-                        allPositiveSentiments.Add(ConvertToObject(sentiment));
+                        allPositiveSentiments.Add(convert.ConvertToObject(sentiment));
                     }
                 }
                 return allPositiveSentiments;
@@ -124,6 +97,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 SentimentDto fetchedSentiment = context.Sentiments.FirstOrDefault(sentiment => sentiment.Text == aSentiment.Text);
                 if (fetchedSentiment == null)
                 {
@@ -131,7 +105,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    return ConvertToObject(fetchedSentiment);
+                    return convert.ConvertToObject(fetchedSentiment);
                 }
             }
         }
@@ -140,6 +114,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 SentimentDto fetchedSentiment = context.Sentiments.FirstOrDefault(sentiment => sentiment.SentimentDtoId == sentimentId);
                 if (fetchedSentiment == null)
                 {
@@ -147,7 +122,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    return ConvertToObject(fetchedSentiment);
+                    return convert.ConvertToObject(fetchedSentiment);
                 }
             }
         }

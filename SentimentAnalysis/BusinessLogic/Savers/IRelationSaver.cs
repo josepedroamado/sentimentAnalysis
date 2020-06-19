@@ -21,5 +21,7 @@ namespace BusinessLogic
         List<Relation> FetchAll();
 
         List<Publication> FetchAllPublicationsOfEntity(int entityId);
+
+        void Clear();
     }
 }

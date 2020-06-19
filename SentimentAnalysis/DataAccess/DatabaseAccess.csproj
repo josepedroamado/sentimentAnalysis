@@ -72,11 +72,18 @@
     <Compile Include="Migrations\202006180246570_sentimentImpv0.2.designer.cs">
       <DependentUpon>202006180246570_sentimentImpv0.2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006190255352_RelationImpv0.1.cs" />
+    <Compile Include="Migrations\202006190255352_RelationImpv0.1.designer.cs">
+      <DependentUpon>202006190255352_RelationImpv0.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NegativeSentimentDto.cs" />
+    <Compile Include="ObjectConversion.cs" />
     <Compile Include="PositiveSentimentDto.cs" />
     <Compile Include="PublicationDatabaseSaver.cs" />
     <Compile Include="PublicationDto.cs" />
+    <Compile Include="RelationDatabaseSaver.cs" />
+    <Compile Include="RelationDto.cs" />
     <Compile Include="SentimentAnalysisContext.cs" />
     <Compile Include="EntityDatabaseSaver.cs" />
     <Compile Include="EntityDto.cs" />
@@ -111,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006180246570_sentimentImpv0.2.resx">
       <DependentUpon>202006180246570_sentimentImpv0.2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006190255352_RelationImpv0.1.resx">
+      <DependentUpon>202006190255352_RelationImpv0.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,28 +13,19 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 if(context.Entities.Any(entity => entity.EntityDtoId == anEntity.EntityId || entity.Name == anEntity.Name))
                 {
                     throw new ObjectAlreadyExistsException("Entidad");
                 }
                 else
                 {
-                    EntityDto newEntity = ConvertToDto(anEntity);
+                    EntityDto newEntity = convert.ConvertToDto(anEntity);
                     context.Entities.Add(newEntity);
                     context.SaveChanges();
                     anEntity.EntityId = newEntity.EntityDtoId;
                 }
             }
-        }
-
-        private EntityDto ConvertToDto(Entity anEntity)
-        {
-            EntityDto convertedEntity = new EntityDto
-            {
-                EntityDtoId = anEntity.EntityId,
-                Name = anEntity.Name
-            };
-            return convertedEntity;
         }
 
         public void DeleteEntity(Entity anEntity)
@@ -58,22 +49,14 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 List<Entity> allEntities = new List<Entity>();
                 foreach (EntityDto entity in context.Entities)
                 {
-                    allEntities.Add(ConvertToObject(entity));
+                    allEntities.Add(convert.ConvertToObject(entity));
                 }
                 return allEntities;
             }
-        }
-
-        private Entity ConvertToObject(EntityDto anEntityDto)
-        {
-            Entity convertedEntity = new Entity(anEntityDto.Name)
-            {
-                EntityId = anEntityDto.EntityDtoId
-            };
-            return convertedEntity;
         }
 
         public Entity FetchEntity(Entity anEntity)
@@ -85,6 +68,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
+                ObjectConversion convert = new ObjectConversion();
                 EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == entityId);
                 if (fetchedEntity == null)
                 {
@@ -92,7 +76,7 @@ namespace DataAccess
                 }
                 else
                 {
-                    return ConvertToObject(fetchedEntity);
+                    return convert.ConvertToObject(fetchedEntity);
                 }
             }
         }

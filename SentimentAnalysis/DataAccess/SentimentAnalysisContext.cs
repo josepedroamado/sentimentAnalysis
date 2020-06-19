@@ -18,6 +18,7 @@ namespace DataAccess
         public DbSet<EntityDto> Entities { get; set; }
         public DbSet<PublicationDto> Publications { get; set; }
         public DbSet<SentimentDto> Sentiments { get; set; }
+        public DbSet<RelationDto> Relations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +44,9 @@ namespace DataAccess
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.SentimentDtoId).HasColumnName("SentimentId");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).HasColumnName("Text");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).IsRequired();
+
+            modelBuilder.Entity<RelationDto>().ToTable("Relations");
+            modelBuilder.Entity<RelationDto>().Property(p => p.RelationDtoId).HasColumnName("RelationId");
         }
     }
 }
