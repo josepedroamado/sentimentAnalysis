@@ -10,15 +10,28 @@ namespace DatabaseAccessTest
     [TestClass]
     public class EntityDatabaseSaverTest
     {
-        IEntitySaver entitySaver;
         Entity anEntity;
+        IAlarmSaver alarmSaver;
+        IRelationSaver relationSaver;
+        IEntitySaver entitySaver;
+        ISentimentSaver sentimentSaver;
+        IPublicationSaver publicationSaver;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            anEntity = new Entity("InMemoryEntityTest1");
+
+            alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
             entitySaver = new EntityDatabaseSaver();
             entitySaver.Clear();
-            anEntity = new Entity("InMemoryEntityTest1");
+            sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
         }
 
         [TestMethod]

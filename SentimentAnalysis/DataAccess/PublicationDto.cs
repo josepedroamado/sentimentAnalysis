@@ -4,7 +4,7 @@ namespace DataAccess
 {
     public class PublicationDto
     {
-        public int PublicationDtoId { get; set; }
+        public Guid PublicationDtoId { get; set; }
 
         public string Phrase { get; set; }
 

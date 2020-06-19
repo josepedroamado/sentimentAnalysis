@@ -10,6 +10,10 @@ namespace DatabaseAccessTest
     [TestClass]
     public class PublicationDatabaseSaverTest
     {
+        IAlarmSaver alarmSaver;
+        IRelationSaver relationSaver;
+        IEntitySaver entitySaver;
+        ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
         DateTime aDate;
         Publication aPublication;
@@ -17,8 +21,17 @@ namespace DatabaseAccessTest
         [TestInitialize]
         public void TestInitialize()
         {
+            alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
             publicationSaver = new PublicationDatabaseSaver();
             publicationSaver.Clear();
+            entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
             aDate = new DateTime(2020, 01, 01);
             aPublication = new Publication("PublicationPhrase", aDate);
 

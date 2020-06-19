@@ -29,47 +29,33 @@ namespace BusinessLogicTest
             positive = true;
             hours = true;
         }
+
         [TestMethod]
         public void NewAlarmAdderTest()
         {
             AlarmAdder addAlarm = new AlarmAdder(Data, entity, numberOfPosts, alarmTime, positive, hours);
             Assert.IsNotNull(addAlarm);
         }
+
         [TestMethod]
         public void AddAlarmEntityTest()
         {
             AlarmAdder addAlarm = new AlarmAdder(Data, entity, numberOfPosts, alarmTime, positive, hours);
-            TimeSpan timeSpan = new TimeSpan(alarmTime, 0, 0);
-            Alarm expectedAlarm = new PositiveAlarm(entity, numberOfPosts, timeSpan);
-            expectedAlarm.AlarmId = expectedAlarm.AlarmId - 1;
-            Assert.AreEqual(expectedAlarm.Entity, Data.alarmSaver.FetchAlarm(expectedAlarm).Entity);
+            Assert.AreEqual(1, Data.alarmSaver.FetchAll().Count);
         }
+
         [TestMethod]
-        public void AddAlarmRequiredPostQuantityTest()
-        {
-            AlarmAdder addAlarm = new AlarmAdder(Data, entity, numberOfPosts, alarmTime, positive, hours);
-            TimeSpan timeSpan = new TimeSpan(alarmTime, 0, 0);
-            Alarm expectedAlarm = new PositiveAlarm(entity, numberOfPosts, timeSpan);
-            expectedAlarm.AlarmId = expectedAlarm.AlarmId - 1;
-            Assert.AreEqual(expectedAlarm.RequiredPostQuantity, Data.alarmSaver.FetchAlarm(expectedAlarm).RequiredPostQuantity);
-        }
-        [TestMethod]
-        public void AddAlarmTimeSpanQuantityTest()
+        public void AddAlarmInDaysTest()
         {
             AlarmAdder addAlarm = new AlarmAdder(Data, entity, numberOfPosts, alarmTime, positive, false);
-            TimeSpan timeSpan = new TimeSpan(alarmTime*24, 0, 0);
-            Alarm expectedAlarm = new PositiveAlarm(entity, numberOfPosts, timeSpan);
-            expectedAlarm.AlarmId = expectedAlarm.AlarmId - 1;
-            Assert.AreEqual(expectedAlarm.TimeFrame, Data.alarmSaver.FetchAlarm(expectedAlarm).TimeFrame);
+            Assert.AreEqual(1, Data.alarmSaver.FetchAll().Count);
         }
+
         [TestMethod]
-        public void AddAlarmTypeTest()
+        public void AddNegativeAlarmTest()
         {
             AlarmAdder addAlarm = new AlarmAdder(Data, entity, numberOfPosts, alarmTime, false, hours);
-            TimeSpan timeSpan = new TimeSpan(alarmTime, 0, 0);
-            Alarm expectedAlarm = new NegativeAlarm(entity, numberOfPosts, timeSpan);
-            expectedAlarm.AlarmId = expectedAlarm.AlarmId - 1;
-            Assert.AreEqual(expectedAlarm.GetType(), Data.alarmSaver.FetchAlarm(expectedAlarm).GetType());
+            Assert.AreEqual(1, Data.alarmSaver.FetchAll().Count);
         }
     }
 }

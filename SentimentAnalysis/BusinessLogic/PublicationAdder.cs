@@ -10,20 +10,18 @@ namespace BusinessLogic
     {
         public PublicationAdder(SystemData Data, String Phrase, DateTime Date)
         {
-            Publication PublicationToAdd = CreatePublication(Phrase, Date);
-            AddPublicationToAdd(PublicationToAdd, Data);
+            Publication publicationToAdd = new Publication(Phrase, Date);
+            AddPublicationToAdd(publicationToAdd, Data);
         }
-        private Publication CreatePublication(String Phrase, DateTime Date)
+
+        private void AddPublicationToAdd(Publication publicationToAdd, SystemData data)
         {
-            Publication publication = new Publication(Phrase, Date);
-            return publication;
-        }
-        private void AddPublicationToAdd(Publication PublicationToAdd, SystemData Data)
-        {
-            Data.publicationSaver.AddPublication(PublicationToAdd);
-            RelationAdder relationAdder = new RelationAdder(Data);
-            relationAdder.AddRelation(PublicationToAdd);
-            AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(Data);
+            data.publicationSaver.AddPublication(publicationToAdd);
+
+            RelationAdder relationAdder = new RelationAdder(data);
+            relationAdder.AddRelation(publicationToAdd);
+
+            AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
             alarmAnalyzer.AnalyzeAllAlarms();
         }
     }

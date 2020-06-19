@@ -58,5 +58,10 @@ namespace BusinessLogic
         {
             return this.Alarms;
         }
+
+        public void Clear()
+        {
+            Alarms.Clear();
+        }
     }
 }

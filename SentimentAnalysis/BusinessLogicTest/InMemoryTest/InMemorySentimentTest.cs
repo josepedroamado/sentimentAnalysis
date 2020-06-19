@@ -17,6 +17,7 @@ namespace BusinessLogicTest
         public void TestInitialize()
         {
             sentimentSaver = new InMemorySentiment();
+            sentimentSaver.Clear();
             positiveSentiment = new PositiveSentiment("InMemorySentimentTest1" );
             negativeSentiment = new NegativeSentiment("InMemorySentimentTest2");
         }

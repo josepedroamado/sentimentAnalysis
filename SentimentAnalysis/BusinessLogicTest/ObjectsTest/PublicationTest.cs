@@ -36,14 +36,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void NewPublicationIdTest()
-        {
-            int nextId = aPublication.GetNextId();
-            anotherPublication = new Publication("PublicationTest2", aDate);
-            Assert.AreEqual(anotherPublication.PublicationId, nextId);
-        }
-
-        [TestMethod]
         public void EqualsTruePublicationTest()
         {
             Assert.AreEqual(aPublication, aPublication);

@@ -49,13 +49,6 @@ namespace BusinessLogicTest
         }
         
         [TestMethod]
-        public void NewRelationNextIdTest()
-        {
-            int nextId = aRelation.GetNextId();
-            anotherRelation = new Relation(aPublication, aSentiment, anEntity);
-            Assert.AreEqual(anotherRelation.RelationId, nextId);
-        }
-        [TestMethod]
         public void EqualsTrueRelationTest()
         {
             Assert.AreEqual(aRelation, aRelation);

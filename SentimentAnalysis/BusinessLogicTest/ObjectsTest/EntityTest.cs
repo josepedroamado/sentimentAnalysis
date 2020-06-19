@@ -31,14 +31,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void NewEntityIdTest()
-        {
-            int nextId = anEntity.GetNextId();
-            anotherEntity = new Entity("AnotherName");
-            Assert.AreEqual(anotherEntity.EntityId, nextId);
-        }
-
-        [TestMethod]
         public void EqualsTrueEntityTest()
         {
             Assert.AreEqual(anEntity, anEntity);

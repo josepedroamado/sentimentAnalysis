@@ -57,9 +57,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmDatabaseSaverTest.cs" />
     <Compile Include="EntityDatabaseSaverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicationDatabaseSaverTest.cs" />
+    <Compile Include="RelationDatabaseSaverTest.cs" />
     <Compile Include="SentimentDatabaseSaverTest.cs" />
   </ItemGroup>
   <ItemGroup>

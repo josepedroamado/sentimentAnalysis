@@ -41,7 +41,7 @@ namespace UserInterface
             {
                 object selectedId = listBoxEntities.SelectedValue;
                 string selected = selectedId.ToString();
-                int selectedFinal = Int32.Parse(selected);
+                Guid selectedFinal = Guid.Parse(selected);
                 Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
                 EntityDeleter deleter = new EntityDeleter(mainWin.Data , SelectedEntity);
                 UpdateEntities();

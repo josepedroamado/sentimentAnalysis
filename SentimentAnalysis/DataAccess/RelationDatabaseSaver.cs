@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +14,23 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                if (context.Relations.Any(relation => relation.Entity.EntityDtoId == aRelation.Entity.EntityId
-                                                   && relation.Publication.PublicationDtoId == aRelation.Publication.PublicationId
-                                                   && relation.Sentiment.SentimentDtoId == aRelation.Sentiment.SentimentId))
+                ObjectConversion convert = new ObjectConversion();
+                RelationDto newRelation = convert.ConvertToDto(aRelation);
+                if (context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
+                        .Any(relation => relation.Entity.Name == newRelation.Entity.Name
+                                      && relation.Publication.Phrase == newRelation.Publication.Phrase
+                                      && relation.Sentiment.Text == newRelation.Sentiment.Text))
                 {
                     throw new ObjectAlreadyExistsException("Relacion");
                 }
                 else
                 {
-                    ObjectConversion convert = new ObjectConversion();
-                    RelationDto newRelation = convert.ConvertToDto(aRelation);
                     context.Relations.Add(newRelation);
+                    context.Entry(newRelation.Entity).State = EntityState.Unchanged;
+                    context.Entry(newRelation.Publication).State = EntityState.Unchanged;
+                    context.Entry(newRelation.Sentiment).State = EntityState.Unchanged;
                     context.SaveChanges();
-                    aRelation.RelationId = newRelation.RelationDtoId;
-                }
+                }                    
             }
         }
 
@@ -34,7 +38,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto relationToDelete = context.Relations.FirstOrDefault(relation => relation.RelationDtoId == aRelation.RelationId);
+                RelationDto relationToDelete = context.Relations.Include("Entity").Include("Publication").Include("Sentiment").FirstOrDefault(relation => relation.RelationDtoId.Equals(aRelation.RelationId));
                 if (relationToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");
@@ -52,23 +56,23 @@ namespace DataAccess
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
                 List<Relation> allRelations = new List<Relation>();
-                foreach (RelationDto relation in context.Relations)
+                ObjectConversion convert = new ObjectConversion();
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Sentiment"))
                 {
-                    ObjectConversion convert = new ObjectConversion();
                     allRelations.Add(convert.ConvertToObject(relation));
                 }
                 return allRelations;
             }
         }
 
-        public List<Publication> FetchAllPublicationsOfEntity(int entityId)
+        public List<Publication> FetchAllPublicationsOfEntity(Guid entityId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
                 List<Publication> allPublications = new List<Publication>();
-                foreach (RelationDto relation in context.Relations)
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Sentiment"))
                 {
-                    if (relation.Entity.EntityDtoId == entityId)
+                    if (relation.Entity.EntityDtoId.Equals(entityId))
                     {
                         ObjectConversion convert = new ObjectConversion();
                         allPublications.Add(convert.ConvertToObject(relation.Publication));
@@ -80,14 +84,28 @@ namespace DataAccess
 
         public Relation FetchRelation(Relation aRelation)
         {
-            return FetchRelation(aRelation.RelationId);
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
+                    .FirstOrDefault(relation => relation.RelationDtoId.Equals(aRelation.RelationId));
+                if (fetchedRelation == null)
+                {
+                    throw new ObjectDoesntExistException("Relacion");
+                }
+                else
+                {
+                    ObjectConversion convert = new ObjectConversion();
+                    return convert.ConvertToObject(fetchedRelation);
+                }
+            }
         }
 
-        public Relation FetchRelation(int publicationId)
+        public Relation FetchRelation(Guid publicationId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto fetchedRelation = context.Relations.FirstOrDefault(relation => relation.RelationDtoId == publicationId);
+                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
+                                                               .FirstOrDefault(relation => relation.Publication.PublicationDtoId.Equals(publicationId));
                 if (fetchedRelation == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");
@@ -104,7 +122,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto fetchedRelation = context.Relations.FirstOrDefault(relation => relation.RelationDtoId == original.RelationId);
+                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment").FirstOrDefault(relation => relation.RelationDtoId.Equals(original.RelationId));
                 if (fetchedRelation == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");

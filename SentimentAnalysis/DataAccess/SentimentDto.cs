@@ -4,7 +4,7 @@ namespace DataAccess
 {
     public abstract class SentimentDto
     {
-        public int SentimentDtoId { get; set; }
+        public Guid SentimentDtoId { get; set; }
 
         public String Text { get; set; }
     }

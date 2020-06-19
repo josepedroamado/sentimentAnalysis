@@ -51,13 +51,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void NewPositiveAlarmNextIdTest()
-        {
-            int nextId = alarm.GetNextId();
-            secondAlarm = new NegativeAlarm(anEntity, 2, aTimeFrame);
-            Assert.AreEqual(secondAlarm.AlarmId, nextId);
-        }
-        [TestMethod]
         public void EqualsTrueNegativeAlarmTest()
         {
             Assert.AreEqual(alarm, alarm);

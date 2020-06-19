@@ -1,10 +1,11 @@
 ﻿using BusinessLogic;
+using System;
 
 namespace DataAccess
 {
     public class RelationDto
     {
-        public int RelationDtoId { get; set; }
+        public Guid RelationDtoId { get; set; }
 
         public PublicationDto Publication { get; set; }
 

@@ -8,9 +8,7 @@ namespace BusinessLogic
 {
     public class Relation
     {
-        public static int NextId = 1;
-
-        public int RelationId { get; set; }
+        public Guid RelationId { get; set; }
 
         public Publication Publication { get; set; }
 
@@ -20,7 +18,7 @@ namespace BusinessLogic
         
         public Relation(Publication aPublication, Sentiment aSentiment, Entity anEntity)
         {
-            AssignId();
+            this.RelationId = Guid.NewGuid();
             this.Publication = aPublication;
             this.Sentiment = aSentiment;
             this.Entity = anEntity;
@@ -36,17 +34,6 @@ namespace BusinessLogic
         public override int GetHashCode()
         {
             return this.RelationId.GetHashCode();
-        }
-
-        public int GetNextId()
-        {
-            return NextId;
-        }
-
-        private void AssignId()
-        {
-            this.RelationId = NextId;
-            NextId++;
         }
     }
 }

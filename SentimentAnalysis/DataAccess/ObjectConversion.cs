@@ -105,5 +105,39 @@ namespace DataAccess
             };
             return convertedRelation;
         }
+
+        public AlarmDto ConvertToDto(Alarm anAlarm)
+        {
+            AlarmDto convertedAlarm;
+            if (anAlarm.GetType().Name.Equals("PositiveAlarm"))
+            {
+                convertedAlarm = new PositiveAlarmDto();
+            }
+            else
+            {
+                convertedAlarm = new NegativeAlarmDto();
+            }
+            convertedAlarm.AlarmDtoId = anAlarm.AlarmId;
+            convertedAlarm.Active = anAlarm.Active;
+            convertedAlarm.Entity = ConvertToDto(anAlarm.Entity);
+            convertedAlarm.RequiredPostQuantity = anAlarm.RequiredPostQuantity;
+            convertedAlarm.TimeFrame = anAlarm.TimeFrame;
+            return convertedAlarm;
+        }
+
+        public Alarm ConvertToObject(AlarmDto anAlarm)
+        {
+            Alarm convertedAlarm;
+            if (anAlarm.GetType().Name.Equals("PositiveAlarmDto"))
+            {
+                convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, anAlarm.TimeFrame);
+            }
+            else
+            {
+                convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, anAlarm.TimeFrame);
+            }
+            convertedAlarm.AlarmId = anAlarm.AlarmDtoId;
+            return convertedAlarm;
+        }
     }
 }

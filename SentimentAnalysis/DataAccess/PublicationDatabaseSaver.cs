@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,11 +11,17 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                ObjectConversion convert = new ObjectConversion();
-                PublicationDto newPublication = convert.ConvertToDto(aPublication);
-                context.Publications.Add(newPublication);
-                context.SaveChanges();
-                aPublication.PublicationId = newPublication.PublicationDtoId;
+                if (context.Publications.Any(publication => publication.Phrase == aPublication.Phrase))
+                {
+                    throw new ObjectAlreadyExistsException("Publicacion");
+                }
+                else
+                {
+                    ObjectConversion convert = new ObjectConversion();
+                    PublicationDto newPublication = convert.ConvertToDto(aPublication);
+                    context.Publications.Add(newPublication);
+                    context.SaveChanges();
+                }              
             }
         }
 
@@ -22,7 +29,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                PublicationDto publicationToDelete = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId == aPublication.PublicationId);
+                PublicationDto publicationToDelete = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId.Equals(aPublication.PublicationId));
                 if (publicationToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Publicacion");
@@ -54,12 +61,12 @@ namespace DataAccess
             return FetchPublication(aPublication.PublicationId);
         }
 
-        public Publication FetchPublication(int publicationId)
+        public Publication FetchPublication(Guid publicationId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
                 ObjectConversion convert = new ObjectConversion();
-                PublicationDto fetchedPublication = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId == publicationId);
+                PublicationDto fetchedPublication = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId.Equals(publicationId));
                 if (fetchedPublication == null)
                 {
                     throw new ObjectDoesntExistException("Publicacion");
@@ -75,7 +82,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                PublicationDto fetchedPublication = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId == original.PublicationId);
+                PublicationDto fetchedPublication = context.Publications.FirstOrDefault(publication => publication.PublicationDtoId.Equals(original.PublicationId));
                 if (fetchedPublication == null)
                 {
                     throw new ObjectDoesntExistException("Publicacion");

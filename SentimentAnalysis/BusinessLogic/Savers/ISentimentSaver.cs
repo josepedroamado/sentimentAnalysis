@@ -16,7 +16,7 @@ namespace BusinessLogic
 
         Sentiment FetchSentiment(Sentiment aSentiment);
 
-        Sentiment FetchSentiment(int sentimentId);
+        Sentiment FetchSentiment(Guid sentimentId);
 
         List<Sentiment> FetchAll();
 

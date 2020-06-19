@@ -56,29 +56,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202006172255461_Initial.cs" />
-    <Compile Include="Migrations\202006172255461_Initial.designer.cs">
-      <DependentUpon>202006172255461_Initial.cs</DependentUpon>
+    <Compile Include="AlarmDatabaseSaver.cs" />
+    <Compile Include="AlarmDto.cs" />
+    <Compile Include="Migrations\202006192033563_Intial.cs" />
+    <Compile Include="Migrations\202006192033563_Intial.designer.cs">
+      <DependentUpon>202006192033563_Intial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006180208234_sentimentImpv0.1.cs" />
-    <Compile Include="Migrations\202006180208234_sentimentImpv0.1.designer.cs">
-      <DependentUpon>202006180208234_sentimentImpv0.1.cs</DependentUpon>
+    <Compile Include="Migrations\202006192153441_fix.cs" />
+    <Compile Include="Migrations\202006192153441_fix.designer.cs">
+      <DependentUpon>202006192153441_fix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006180222169_sentimentImpv0.1.1.cs" />
-    <Compile Include="Migrations\202006180222169_sentimentImpv0.1.1.designer.cs">
-      <DependentUpon>202006180222169_sentimentImpv0.1.1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006180246570_sentimentImpv0.2.cs" />
-    <Compile Include="Migrations\202006180246570_sentimentImpv0.2.designer.cs">
-      <DependentUpon>202006180246570_sentimentImpv0.2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006190255352_RelationImpv0.1.cs" />
-    <Compile Include="Migrations\202006190255352_RelationImpv0.1.designer.cs">
-      <DependentUpon>202006190255352_RelationImpv0.1.cs</DependentUpon>
+    <Compile Include="Migrations\202006192309135_alarm.cs" />
+    <Compile Include="Migrations\202006192309135_alarm.designer.cs">
+      <DependentUpon>202006192309135_alarm.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NegativeAlarmDto.cs" />
     <Compile Include="NegativeSentimentDto.cs" />
     <Compile Include="ObjectConversion.cs" />
+    <Compile Include="PositiveAlarmDto.cs" />
     <Compile Include="PositiveSentimentDto.cs" />
     <Compile Include="PublicationDatabaseSaver.cs" />
     <Compile Include="PublicationDto.cs" />
@@ -107,20 +103,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006172255461_Initial.resx">
-      <DependentUpon>202006172255461_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006192033563_Intial.resx">
+      <DependentUpon>202006192033563_Intial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006180208234_sentimentImpv0.1.resx">
-      <DependentUpon>202006180208234_sentimentImpv0.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006192153441_fix.resx">
+      <DependentUpon>202006192153441_fix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006180222169_sentimentImpv0.1.1.resx">
-      <DependentUpon>202006180222169_sentimentImpv0.1.1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006180246570_sentimentImpv0.2.resx">
-      <DependentUpon>202006180246570_sentimentImpv0.2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006190255352_RelationImpv0.1.resx">
-      <DependentUpon>202006190255352_RelationImpv0.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006192309135_alarm.resx">
+      <DependentUpon>202006192309135_alarm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

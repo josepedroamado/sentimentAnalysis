@@ -19,6 +19,7 @@ namespace DataAccess
         public DbSet<PublicationDto> Publications { get; set; }
         public DbSet<SentimentDto> Sentiments { get; set; }
         public DbSet<RelationDto> Relations { get; set; }
+        public DbSet<AlarmDto> Alarms { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,7 +32,6 @@ namespace DataAccess
             modelBuilder.Entity<PublicationDto>().Property(p => p.Phrase).IsRequired();
             modelBuilder.Entity<PublicationDto>().Property(p => p.Date).IsRequired();
 
-
             modelBuilder.Entity<SentimentDto>().ToTable("Sentiments");
             modelBuilder.Entity<SentimentDto>().Property(p => p.SentimentDtoId).HasColumnName("SentimentId");
 
@@ -40,13 +40,26 @@ namespace DataAccess
             modelBuilder.Entity<PositiveSentimentDto>().Property(p => p.Text).HasColumnName("Text");
             modelBuilder.Entity<PositiveSentimentDto>().Property(p => p.Text).IsRequired();
 
-            modelBuilder.Entity<NegativeSentimentDto>().ToTable("NegativeSentiment");
+            modelBuilder.Entity<NegativeSentimentDto>().ToTable("NegativeSentiments");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.SentimentDtoId).HasColumnName("SentimentId");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).HasColumnName("Text");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).IsRequired();
 
             modelBuilder.Entity<RelationDto>().ToTable("Relations");
             modelBuilder.Entity<RelationDto>().Property(p => p.RelationDtoId).HasColumnName("RelationId");
+
+            modelBuilder.Entity<AlarmDto>().ToTable("Alarms");
+            modelBuilder.Entity<AlarmDto>().Property(p => p.AlarmDtoId).HasColumnName("AlarmId");
+
+            modelBuilder.Entity<PositiveAlarmDto>().ToTable("PositiveAlarms");
+            modelBuilder.Entity<PositiveAlarmDto>().Property(p => p.AlarmDtoId).HasColumnName("AlarmId");
+            modelBuilder.Entity<PositiveAlarmDto>().Property(p => p.RequiredPostQuantity).IsRequired();
+            modelBuilder.Entity<PositiveAlarmDto>().Property(p => p.TimeFrame).IsRequired();
+
+            modelBuilder.Entity<NegativeAlarmDto>().ToTable("NegativeAlarms");
+            modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.AlarmDtoId).HasColumnName("AlarmId");
+            modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.RequiredPostQuantity).IsRequired();
+            modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.TimeFrame).IsRequired();
         }
     }
 }

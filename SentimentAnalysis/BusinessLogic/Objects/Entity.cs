@@ -10,25 +10,14 @@ namespace BusinessLogic
     {
         private const int MAX_BODY_TEXT = 100;
         private const int MIN_BODY_TEXT = 2;
-        public static int NextId = 1;
-        public int EntityId { get; set; }
+
+        public Guid EntityId { get; set; }
         public string Name { get; set; }       
 
         public Entity(String aName)
         {
-            AssignId();
+            EntityId = Guid.NewGuid();
             SetName(aName);
-        }
-
-        public int GetNextId()
-        {
-            return NextId;
-        }
-
-        private void AssignId()
-        {
-            this.EntityId = NextId;
-            NextId++;
         }
 
         public void SetName(String aName)

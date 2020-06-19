@@ -56,14 +56,6 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void NewNegativeSentimentNextIdTest()
-        {
-            int nextId = aSentiment.GetNextId();
-            anotherSentiment = new NegativeSentiment("SentimentText");
-            Assert.AreEqual(anotherSentiment.SentimentId, nextId);
-        }
-
-        [TestMethod]
         public void EqualsTrueNegativeSentimentTest()
         {
             Assert.AreEqual(aSentiment, aSentiment);

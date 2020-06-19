@@ -1,8 +1,10 @@
-﻿namespace DataAccess
+﻿using System;
+
+namespace DataAccess
 {
     public class EntityDto
     {
-        public int EntityDtoId { get; set;}
+        public Guid EntityDtoId { get; set;}
         public string Name { get;set;}
     }
 }

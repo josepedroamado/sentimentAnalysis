@@ -17,5 +17,7 @@ namespace BusinessLogic
         Alarm FetchAlarm(Alarm anAlarm);
 
         List<Alarm> FetchAll();
+
+        void Clear();
     }
 }

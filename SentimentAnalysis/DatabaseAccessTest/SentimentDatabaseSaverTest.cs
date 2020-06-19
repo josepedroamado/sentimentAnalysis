@@ -10,13 +10,25 @@ namespace DatabaseAccessTest
     [TestClass]
     public class SentimentDatabaseSaverTest
     {
+        IAlarmSaver alarmSaver;
+        IRelationSaver relationSaver;
+        IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
+        IPublicationSaver publicationSaver;
         Sentiment positiveSentiment;
         Sentiment negativeSentiment;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
             sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
             positiveSentiment = new PositiveSentiment("PositiveSentimentTest1");
@@ -75,20 +87,21 @@ namespace DatabaseAccessTest
             Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment));
         }
 
-        //[TestMethod]
-        //public void FetchExistingSentimentByIdTest()
-        //{
-        //    sentimentSaver.AddSentiment(positiveSentiment);
-        //    Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment.SentimentId);
-        //    Assert.IsNotNull(fetchedSentiment);
-        //}
+        [TestMethod]
+        public void FetchExistingSentimentByIdTest()
+        {
+            sentimentSaver.AddSentiment(positiveSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment);
+            Sentiment fetchedSentimentById = sentimentSaver.FetchSentiment(fetchedSentiment.SentimentId);
+            Assert.IsNotNull(fetchedSentimentById);
+        }
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ObjectDoesntExistException))]
-        //public void FetchNonExistingSentimentByIdTest()
-        //{
-        //    Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment.SentimentId));
-        //}
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void FetchNonExistingSentimentByIdTest()
+        {
+            Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment.SentimentId));
+        }
 
         [TestMethod]
         public void ModifyExistingSentimentTest()
@@ -113,11 +126,7 @@ namespace DatabaseAccessTest
         {
             sentimentSaver.AddSentiment(positiveSentiment);
             sentimentSaver.AddSentiment(negativeSentiment);
-            List<Sentiment> expectedList = new List<Sentiment>();
-            expectedList.Add(negativeSentiment);
-            expectedList.Add(positiveSentiment);
-            List<Sentiment> actualList = sentimentSaver.FetchAll();
-            Assert.IsTrue(expectedList.SequenceEqual(actualList));
+            Assert.AreEqual(2, sentimentSaver.FetchAll().Count());
         }
 
         [TestMethod]
@@ -125,10 +134,7 @@ namespace DatabaseAccessTest
         {
             sentimentSaver.AddSentiment(positiveSentiment);
             sentimentSaver.AddSentiment(negativeSentiment);
-            List<Sentiment> expectedList = new List<Sentiment>();
-            expectedList.Add(positiveSentiment);
-            List<Sentiment> actualList = sentimentSaver.FetchAllPositiveSentiments();
-            Assert.IsTrue(expectedList.SequenceEqual(actualList));
+            Assert.AreEqual(1, sentimentSaver.FetchAllPositiveSentiments().Count());
         }
 
         [TestMethod]
@@ -136,10 +142,7 @@ namespace DatabaseAccessTest
         {
             sentimentSaver.AddSentiment(positiveSentiment);
             sentimentSaver.AddSentiment(negativeSentiment);
-            List<Sentiment> expectedList = new List<Sentiment>();
-            expectedList.Add(sentimentSaver.FetchSentiment(negativeSentiment));
-            List<Sentiment> actualList = sentimentSaver.FetchAllNegativeSentiments();
-            Assert.IsTrue(expectedList.SequenceEqual(actualList));
+            Assert.AreEqual(1, sentimentSaver.FetchAllNegativeSentiments().Count());
         }
     }
 }

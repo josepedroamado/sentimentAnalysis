@@ -13,17 +13,16 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                ObjectConversion convert = new ObjectConversion();
-                if(context.Entities.Any(entity => entity.EntityDtoId == anEntity.EntityId || entity.Name == anEntity.Name))
+                if(context.Entities.Any(entity => entity.EntityDtoId.Equals(anEntity.EntityId) || entity.Name == anEntity.Name))
                 {
                     throw new ObjectAlreadyExistsException("Entidad");
                 }
                 else
                 {
+                    ObjectConversion convert = new ObjectConversion();
                     EntityDto newEntity = convert.ConvertToDto(anEntity);
                     context.Entities.Add(newEntity);
                     context.SaveChanges();
-                    anEntity.EntityId = newEntity.EntityDtoId;
                 }
             }
         }
@@ -32,7 +31,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                EntityDto entityToDelete = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == anEntity.EntityId);
+                EntityDto entityToDelete = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId.Equals(anEntity.EntityId));
                 if(entityToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Entidad");
@@ -49,10 +48,10 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                ObjectConversion convert = new ObjectConversion();
                 List<Entity> allEntities = new List<Entity>();
                 foreach (EntityDto entity in context.Entities)
                 {
+                    ObjectConversion convert = new ObjectConversion();
                     allEntities.Add(convert.ConvertToObject(entity));
                 }
                 return allEntities;
@@ -64,18 +63,18 @@ namespace DataAccess
             return FetchEntity(anEntity.EntityId);
         }
 
-        public Entity FetchEntity(int entityId)
+        public Entity FetchEntity(Guid entityId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                ObjectConversion convert = new ObjectConversion();
-                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == entityId);
+                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId.Equals(entityId));
                 if (fetchedEntity == null)
                 {
                     throw new ObjectDoesntExistException("Entidad");
                 }
                 else
                 {
+                    ObjectConversion convert = new ObjectConversion();
                     return convert.ConvertToObject(fetchedEntity);
                 }
             }
@@ -85,7 +84,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId == original.EntityId);
+                EntityDto fetchedEntity = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId.Equals(original.EntityId));
                 if (fetchedEntity == null)
                 {
                     throw new ObjectDoesntExistException("Entidad");

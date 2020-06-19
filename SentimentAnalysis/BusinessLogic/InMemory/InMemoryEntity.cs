@@ -42,9 +42,9 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public Entity FetchEntity(int entityId)
+        public Entity FetchEntity(Guid entityId)
         {            
-            if (EntityExists(entityId)) return Entities.Find(anEntity => anEntity.EntityId == entityId);
+            if (EntityExists(entityId)) return Entities.Find(anEntity => anEntity.EntityId.Equals(entityId));
             else throw new ObjectDoesntExistException("Entidad");
         }
 
@@ -59,7 +59,7 @@ namespace BusinessLogic
             else return EntityExists(anEntity.Name);
         }
 
-        private bool EntityExists(int entityId)
+        private bool EntityExists(Guid entityId)
         {
             return Entities.Exists(anEntity => anEntity.EntityId == entityId);
         }

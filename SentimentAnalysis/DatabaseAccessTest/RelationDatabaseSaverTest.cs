@@ -1,15 +1,20 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessLogic;
 using System.Collections.Generic;
 using System.Linq;
+using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BusinessLogicTest
+namespace DatabaseAccessTest
 {
     [TestClass]
-    public class InMemoryRelationTest
+    public class RelationDatabaseSaverTest
     {
+        IAlarmSaver alarmSaver;
         IRelationSaver relationSaver;
+        IEntitySaver entitySaver;
+        ISentimentSaver sentimentSaver;
+        IPublicationSaver publicationSaver;
         Entity firstEntity;
         Entity secondEntity;
         DateTime aDate;
@@ -24,29 +29,47 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
-            relationSaver = new InMemoryRelation();
+            alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            relationSaver = new RelationDatabaseSaver();
             relationSaver.Clear();
-            firstEntity = new Entity("RelatonInMemoryTest");
+            publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
+            aSentiment = new PositiveSentiment("RelationText");
+            sentimentSaver.AddSentiment(aSentiment);
+
+            firstEntity = new Entity("RelatonTest");
+            entitySaver.AddEntity(firstEntity);
             secondEntity = new Entity("Entity2");
+            entitySaver.AddEntity(secondEntity);
+
             aDate = new DateTime(2020, 01, 01);
-            firstPublication = new Publication("RelationInMemoryPhrase", aDate);
+            firstPublication = new Publication("RelationPhrase", aDate);
+            publicationSaver.AddPublication(firstPublication);
             secondPublication = new Publication("Second Publication", aDate);
+            publicationSaver.AddPublication(secondPublication);
             thirdPublication = new Publication("Third Publication", aDate);
-            aSentiment = new PositiveSentiment("RelationInMemoryText");
+            publicationSaver.AddPublication(thirdPublication);
+
             firstRelation = new Relation(firstPublication, aSentiment, firstEntity);
             secondRelation = new Relation(secondPublication, aSentiment, secondEntity);
-            thirdRelation = new Relation(thirdPublication, aSentiment, firstEntity);
+            thirdRelation = new Relation(thirdPublication, aSentiment, firstEntity);        
         }
 
         [TestMethod]
-        public void NewInMemoryRelationTest()
+        public void NewRelationDatabaseSaverTest()
         {
             Assert.IsNotNull(relationSaver);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
-        public void AddNewInMemoryRelationTest()
+        public void AddExistingRelationTest()
         {
             relationSaver.AddRelation(firstRelation);
             relationSaver.AddRelation(firstRelation);
@@ -101,10 +124,10 @@ namespace BusinessLogicTest
         public void ModifyExistingRelationTest()
         {
             relationSaver.AddRelation(firstRelation);
-            Entity anotherEntity = new Entity("RelatonInMemoryTest2");
+            Entity anotherEntity = new Entity("RelatonTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
-            Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
+            Publication anotherPublication = new Publication("RelationPhrase2", aDate);
+            Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.ModifyRelation(firstRelation, modifiedRelation);
             Relation fetchedRelation = relationSaver.FetchRelation(firstRelation);
@@ -117,10 +140,10 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void ModifyNonExistingRelationTest()
         {
-            Entity anotherEntity = new Entity("RelatonInMemoryTest2");
+            Entity anotherEntity = new Entity("RelatonTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
-            Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
+            Publication anotherPublication = new Publication("RelationPhrase2", aDate);
+            Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.ModifyRelation(firstRelation, modifiedRelation);
         }
@@ -129,10 +152,7 @@ namespace BusinessLogicTest
         public void FetchAllTest()
         {
             relationSaver.AddRelation(firstRelation);
-            List<Relation> expectedList = new List<Relation>();
-            expectedList.Add(firstRelation);
-            List<Relation> actualList = relationSaver.FetchAll();
-            Assert.IsTrue(expectedList.SequenceEqual(actualList));
+            Assert.AreEqual(1, relationSaver.FetchAll().Count());
         }
 
         [TestMethod]
@@ -141,11 +161,8 @@ namespace BusinessLogicTest
             relationSaver.AddRelation(firstRelation);
             relationSaver.AddRelation(secondRelation);
             relationSaver.AddRelation(thirdRelation);
-            List<Publication> expectedList = new List<Publication>();
-            expectedList.Add(firstPublication);
-            expectedList.Add(thirdPublication);
-            List<Publication> actualList = relationSaver.FetchAllPublicationsOfEntity(firstEntity.EntityId);
-            Assert.IsTrue(expectedList.SequenceEqual(actualList));
+            Relation fetched = relationSaver.FetchRelation(firstRelation);
+            Assert.AreEqual(2, relationSaver.FetchAllPublicationsOfEntity(fetched.Entity.EntityId).Count());
         }
 
         [TestMethod]

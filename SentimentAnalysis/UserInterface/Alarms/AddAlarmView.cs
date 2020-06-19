@@ -42,7 +42,7 @@ namespace UserInterface
         {
             object selectedId = comboBoxEntity.SelectedValue;
             string selected = selectedId.ToString();
-            int selectedFinal = Int32.Parse(selected);
+            Guid selectedFinal = Guid.Parse(selected);
             Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
             int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
             int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);

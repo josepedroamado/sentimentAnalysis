@@ -42,10 +42,10 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
-        public Sentiment FetchSentiment(int sentimentId)
+        public Sentiment FetchSentiment(Guid sentimentId)
         {
 
-            if (SentimentExists(sentimentId)) return Sentiments.Find(aSentiment => aSentiment.SentimentId == sentimentId);
+            if (SentimentExists(sentimentId)) return Sentiments.Find(aSentiment => aSentiment.SentimentId.Equals(sentimentId));
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
@@ -75,9 +75,9 @@ namespace BusinessLogic
             else return SentimentExists(aSentiment.Text);
         }
 
-        private bool SentimentExists(int sentimentId)
+        private bool SentimentExists(Guid sentimentId)
         {
-            return Sentiments.Exists(aSentiment => aSentiment.SentimentId == sentimentId);
+            return Sentiments.Exists(aSentiment => aSentiment.SentimentId.Equals(sentimentId));
         }
 
         private bool SentimentExists(String sentimentText)

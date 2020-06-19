@@ -8,20 +8,13 @@ namespace BusinessLogic
 {
     public abstract class Sentiment
     {
-        public static int NextId = 1;
-        
-        public int SentimentId { get; set; }
+        public Guid SentimentId { get; set; }
 
         public String Text { get; set; }
 
         private const int MAX_BODY_TEXT = 100;
 
         private const int MIN_BODY_TEXT = 1;
-
-        public int GetNextId()
-        {
-            return NextId;
-        }
 
         public override bool Equals(Object obj)
         {

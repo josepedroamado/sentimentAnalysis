@@ -19,6 +19,7 @@ namespace BusinessLogicTest
             IAlarmSaver alarmSaver = new InMemoryAlarm();
             Data = new SystemData(EntitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
         }
+
         [TestMethod]
         public void NewPublicationAdderTest()
         {
@@ -26,14 +27,13 @@ namespace BusinessLogicTest
             PublicationAdder adder = new PublicationAdder(Data, "text", date);
             Assert.IsNotNull(adder);
         }
+
         [TestMethod]
         public void AddPublicationTest()
         {
             DateTime date = new DateTime();
             PublicationAdder adder = new PublicationAdder(Data, "sometext", date);
-            Publication expectedPublication = new Publication("sometext", date);
-            expectedPublication.PublicationId = expectedPublication.PublicationId - 1;
-            Assert.AreEqual(expectedPublication.Phrase, Data.publicationSaver.FetchPublication(expectedPublication).Phrase);
+            Assert.AreEqual(1, Data.publicationSaver.FetchAll().Count);
         }
     }
 }

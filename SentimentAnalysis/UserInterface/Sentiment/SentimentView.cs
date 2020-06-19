@@ -66,7 +66,7 @@ namespace UserInterface
             {
                 object selectedId = listBoxSentiment.SelectedValue;
                 string selected = selectedId.ToString();
-                int selectedFinal = Int32.Parse(selected);
+                Guid selectedFinal = Guid.Parse(selected);
                 Sentiment SelectedSentiment = mainWin.Data.sentimentSaver.FetchSentiment(selectedFinal);
                 SentimentDeleter deleter = new SentimentDeleter(mainWin.Data, SelectedSentiment);
                 RadioButtonPositive_CheckedChanged(sender, e);

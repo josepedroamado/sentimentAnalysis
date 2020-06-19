@@ -25,8 +25,6 @@ namespace BusinessLogicTest
         public void NewEntityDeleterTest()
         {
             Sentiment sentiment = new PositiveSentiment("name");
-            int idFix = 2;
-            sentiment.SentimentId = sentiment.SentimentId - idFix;
             SentimentDeleter deleter = new SentimentDeleter(Data, sentiment);
             Assert.IsNotNull(deleter);
         }
@@ -35,8 +33,6 @@ namespace BusinessLogicTest
         public void DeleteEntityTest()
         {
             Sentiment sentiment = new PositiveSentiment("aname1");
-            int idFix = 2;
-            sentiment.SentimentId = sentiment.SentimentId - idFix;
             SentimentDeleter deleter = new SentimentDeleter(Data, sentiment);
             Data.sentimentSaver.FetchSentiment(sentiment);
         }

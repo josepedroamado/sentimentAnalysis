@@ -16,6 +16,7 @@ namespace BusinessLogicTest
         public void TestInitialize()
         {
             entitySaver = new InMemoryEntity();
+            entitySaver.Clear();
             anEntity = new Entity("InMemoryEntityTest1");
         }
 

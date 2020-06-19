@@ -8,9 +8,7 @@ namespace BusinessLogic
 {
     public abstract class Alarm
     {
-        public static int NextId = 1;
-
-        public int AlarmId { get; set; }
+        public Guid AlarmId { get; set; }
 
         public Entity Entity { get; set; }
 
@@ -19,11 +17,6 @@ namespace BusinessLogic
         public TimeSpan TimeFrame { get; set; }
 
         public bool Active { get; set; }
-
-        public int GetNextId()
-        {
-            return NextId;
-        }
 
         public override bool Equals(object obj)
         {

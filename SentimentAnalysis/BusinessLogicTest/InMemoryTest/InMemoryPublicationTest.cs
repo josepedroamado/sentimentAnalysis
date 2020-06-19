@@ -17,6 +17,7 @@ namespace BusinessLogicTest
         public void TestInitialize()
         {
             publicationSaver = new InMemoryPublication();
+            publicationSaver.Clear();
             aDate = new DateTime(2020, 01, 01);
             aPublication = new Publication("PublicationInMemoryPhrase", aDate);
         }

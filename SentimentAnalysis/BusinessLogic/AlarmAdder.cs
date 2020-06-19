@@ -13,6 +13,7 @@ namespace BusinessLogic
             Alarm alarmToAdd = CreateAlarm(selectedEntity, numberOfPosts, alarmTime, positive, hours);
             AddAlarm(data, alarmToAdd);
         }
+
         private Alarm CreateAlarm(Entity selectedEntity, int numberOfPosts, int alarmTime, bool positive, bool hours)
         {
             TimeSpan timeSpan = SetTimeSpan(alarmTime, hours);
@@ -27,12 +28,14 @@ namespace BusinessLogic
             }
             return alarmToAdd;
         }
+
         private void AddAlarm(SystemData data, Alarm alarmToSave)
         {
             data.alarmSaver.AddAlarm(alarmToSave);
             AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
             alarmAnalyzer.AnalyzeAlarm(alarmToSave);
         }
+
         private TimeSpan SetTimeSpan(int alarmTime, bool hours)
         {
             TimeSpan timeSpan;

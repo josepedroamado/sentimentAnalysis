@@ -25,8 +25,6 @@ namespace BusinessLogicTest
         public void NewEntityDeleterTest()
         {
             Entity entity = new Entity("name");
-            int idFix = 2;
-            entity.EntityId = entity.EntityId - idFix;
             EntityDeleter deleter = new EntityDeleter(Data, entity);
             Assert.IsNotNull(deleter);
         }
@@ -35,8 +33,6 @@ namespace BusinessLogicTest
         public void DeleteEntityTest()
         {
             Entity entity = new Entity("aname1");
-            int idFix = 2;
-            entity.EntityId = entity.EntityId - idFix;
             EntityDeleter deleter = new EntityDeleter(Data, entity);
             Data.entitySaver.FetchEntity(entity);
         }

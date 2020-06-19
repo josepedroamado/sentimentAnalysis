@@ -8,9 +8,7 @@ namespace BusinessLogic
 {
     public class Publication
     {
-        public static int NextId = 1;
-
-        public int PublicationId { get; set; }
+        public Guid PublicationId { get; set; }
 
         public string Phrase { get; set; }
 
@@ -22,9 +20,9 @@ namespace BusinessLogic
 
         public Publication(string aPhrase, DateTime aDate)
         {
-            AssignId();
+            PublicationId = Guid.NewGuid();
             SetPhrase(aPhrase);
-            this.Date = aDate;
+            Date = aDate;
         }
 
         public override bool Equals(object obj)
@@ -39,16 +37,6 @@ namespace BusinessLogic
             return this.PublicationId.GetHashCode();
         }
 
-        public int GetNextId()
-        {
-            return NextId;
-        }
-
-        private void AssignId()
-        {
-            this.PublicationId = NextId;
-            NextId++;
-        }
         private void SetPhrase(String aPhrase)
         {
             IsPhraseTooShortOrEmpty(aPhrase);

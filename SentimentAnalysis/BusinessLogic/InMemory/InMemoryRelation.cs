@@ -44,11 +44,11 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Relacion");
         }
 
-        public Relation FetchRelation(int publicationId)
+        public Relation FetchRelation(Guid publicationId)
         {
-            if(this.Relations.Exists(relation => relation.Publication.PublicationId == publicationId))
+            if(this.Relations.Exists(relation => relation.Publication.PublicationId.Equals(publicationId)))
             {
-                return this.Relations.Find(relation => relation.Publication.PublicationId == publicationId);
+                return this.Relations.Find(relation => relation.Publication.PublicationId.Equals(publicationId));
             }
             else throw new ObjectDoesntExistException("Relacion");
         }
@@ -68,9 +68,9 @@ namespace BusinessLogic
             return Relations.Contains(aRelation);
         }
 
-        public List<Publication> FetchAllPublicationsOfEntity(int entityId)
+        public List<Publication> FetchAllPublicationsOfEntity(Guid entityId)
         {
-            List<Relation> entityRelations = this.Relations.FindAll(relation => relation.Entity.EntityId == entityId);
+            List<Relation> entityRelations = this.Relations.FindAll(relation => relation.Entity.EntityId.Equals(entityId));
             List<Publication> entityPublications = new List<Publication>();
             foreach (Relation relation in entityRelations)
             {

@@ -10,7 +10,7 @@ namespace BusinessLogicTest
     public class InMemoryAlarmTest
     {
         IAlarmSaver alarmSaver;
-        Entity anEntity = new Entity("AlarmInMemoryTest");
+        Entity anEntity;
         TimeSpan timeFrame;
         Alarm anAlarm;
 
@@ -18,6 +18,7 @@ namespace BusinessLogicTest
         public void TestInitialize()
         {
             alarmSaver = new InMemoryAlarm();
+            alarmSaver.Clear();
             anEntity = new Entity("AlarmInMemoryTest");
             timeFrame = new TimeSpan(1, 0, 0);
             anAlarm = new PositiveAlarm(anEntity, 1, timeFrame);
