@@ -48,7 +48,8 @@ namespace UserInterface
             int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
             Boolean positive = radioButtonPositive.Checked;
             Boolean hours = radioButtonHours.Checked;
-            AlarmAdder addAlarm = new AlarmAdder(mainWin.Data, SelectedEntity, numberOfPosts, alarmTime, positive, hours);
+            AlarmAdder adder = new AlarmAdder(mainWin.Data);
+            adder.Add(SelectedEntity, numberOfPosts, alarmTime, positive, hours);
             mainWin.SwitchToAlarmsView();
         }
 

@@ -44,7 +44,6 @@ namespace BusinessLogic
 
         public Sentiment Fetch(Guid sentimentId)
         {
-
             if (SentimentExists(sentimentId)) return Sentiments.Find(aSentiment => aSentiment.SentimentId.Equals(sentimentId));
             else throw new ObjectDoesntExistException("Sentimiento");
         }

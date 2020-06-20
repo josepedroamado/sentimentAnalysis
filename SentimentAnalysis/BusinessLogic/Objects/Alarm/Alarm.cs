@@ -14,7 +14,7 @@ namespace BusinessLogic
 
         public int RequiredPostQuantity { get; set; }
 
-        public TimeSpan TimeFrame { get; set; }
+        public long TimeFrame { get; set; }
 
         public bool Active { get; set; }
 
@@ -42,8 +42,8 @@ namespace BusinessLogic
                 tipo = "Negativa";
             }
             
-            String toReturn = String.Format("Entidad: " + this.Entity.Name + ", Cantidad de posts: " 
-                + this.RequiredPostQuantity + " de tipo " + tipo + " en " + this.TimeFrame.Hours 
+            String toReturn = String.Format("Entidad: " + Entity.Name + ", Cantidad de posts: " 
+                + RequiredPostQuantity + " de tipo " + tipo + " en " + new TimeSpan(TimeFrame).Hours 
                 + " horas, Estado: " + status);
             return toReturn;
         }

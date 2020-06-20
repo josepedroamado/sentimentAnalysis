@@ -4,11 +4,11 @@ using System.Runtime.Serialization;
 namespace BusinessLogic
 {
     [Serializable]
-    public class AgeTooShortException : Exception
+    public class TooYoungException : Exception
     {
 
 
-        public AgeTooShortException(int age)
+        public TooYoungException(int age)
             : base(String.Format("La Edad no puede ser menor a : " + age))
         {
 

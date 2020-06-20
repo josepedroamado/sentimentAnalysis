@@ -11,7 +11,7 @@ namespace DataAccess
 
         public int RequiredPostQuantity { get; set; }
 
-        public TimeSpan TimeFrame { get; set; }
+        public long TimeFrame { get; set; }
 
         public bool Active { get; set; }
     }

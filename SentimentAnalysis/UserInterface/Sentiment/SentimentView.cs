@@ -68,7 +68,8 @@ namespace UserInterface
                 string selected = selectedId.ToString();
                 Guid selectedFinal = Guid.Parse(selected);
                 Sentiment SelectedSentiment = mainWin.Data.sentimentSaver.Fetch(selectedFinal);
-                SentimentDeleter deleter = new SentimentDeleter(mainWin.Data, SelectedSentiment);
+                SentimentDeleter deleter = new SentimentDeleter(mainWin.Data);
+                deleter.Delete(SelectedSentiment);
                 RadioButtonPositive_CheckedChanged(sender, e);
             }
         }

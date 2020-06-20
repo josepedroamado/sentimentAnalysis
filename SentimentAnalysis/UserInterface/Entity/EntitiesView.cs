@@ -43,7 +43,8 @@ namespace UserInterface
                 string selected = selectedId.ToString();
                 Guid selectedFinal = Guid.Parse(selected);
                 Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selectedFinal);
-                EntityDeleter deleter = new EntityDeleter(mainWin.Data , SelectedEntity);
+                EntityDeleter deleter = new EntityDeleter(mainWin.Data);
+                deleter.Delete(SelectedEntity);
                 UpdateEntities();
             }
 

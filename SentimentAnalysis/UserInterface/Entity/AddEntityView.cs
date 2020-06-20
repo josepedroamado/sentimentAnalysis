@@ -31,7 +31,8 @@ namespace UserInterface
             try
             {
                 String text = textBoxEntityName.Text;
-                EntityAdder adder = new EntityAdder(mainWin.Data,text);
+                EntityAdder adder = new EntityAdder(mainWin.Data);
+                adder.Add(text);
                 mainWin.SwitchToEntitiesView();
             }
             catch(ObjectAlreadyExistsException)

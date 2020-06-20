@@ -9,5 +9,7 @@ namespace DataAccess
         public string Phrase { get; set; }
 
         public DateTime Date { get; set; }
+
+        public AuthorDto Author { get; set; }
     }
 }

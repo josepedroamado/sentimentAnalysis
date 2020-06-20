@@ -1,7 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BusinessLogicTest
+namespace DatabaseAccessTest
 {
     [TestClass]
     public class AlarmAdderTest
@@ -17,13 +19,21 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
-            IEntitySaver entitySaver = new InMemoryEntity();
-            ISentimentSaver sentimentSaver = new InMemorySentiment();
-            IPublicationSaver publicationSaver = new InMemoryPublication();
-            IRelationSaver relationSaver = new InMemoryRelation();
-            IAlarmSaver alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
-            entity = new Entity ("aText");
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
+            entity = new Entity("aText");
+            data.entitySaver.Add(entity);
             numberOfPosts = 2;
             alarmTime = 3;
             positive = true;
@@ -38,7 +48,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void AddAlarmTest()
+        public void AddAlarmEntityTest()
         {
             adder.Add(entity, numberOfPosts, alarmTime, positive, hours);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);

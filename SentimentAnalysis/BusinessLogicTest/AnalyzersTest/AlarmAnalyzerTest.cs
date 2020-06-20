@@ -49,7 +49,7 @@ namespace BusinessLogicTest
             sentimentSaver = new InMemorySentiment();
             entitySaver = new InMemoryEntity();
             alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
 
             DateTime ofAgeDate = new DateTime(2002, 01, 01);
             Author anAuthor = new Author("James45", "James", "Doe", ofAgeDate);

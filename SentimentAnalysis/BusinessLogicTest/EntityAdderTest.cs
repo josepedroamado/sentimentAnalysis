@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
 
 namespace BusinessLogicTest
@@ -7,7 +6,8 @@ namespace BusinessLogicTest
     [TestClass]
     public class EntityAdderTest
     {
-        SystemData Data;
+        SystemData data;
+        EntityAdder adder;
 
         [TestInitialize]
         public void TestInitialize()
@@ -17,20 +17,23 @@ namespace BusinessLogicTest
             IPublicationSaver publicationSaver = new InMemoryPublication();
             IRelationSaver relationSaver = new InMemoryRelation();
             IAlarmSaver alarmSaver = new InMemoryAlarm();
-            Data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            adder = new EntityAdder(data);
         }
+
         [TestMethod]
         public void NewEntityAdderTest()
         {
-            EntityAdder adder = new EntityAdder(Data, "text");
+            adder.Add("text");
             Assert.IsNotNull(adder);
         }
+
         [TestMethod]
-        public void AddEntityTest()
+        public void AddTest()
         {
-            EntityAdder adder = new EntityAdder(Data, "sometext");
+            adder.Add("sometext");
             Entity expectedEntity = new Entity("sometext");
-            Assert.AreEqual(expectedEntity.Name , Data.entitySaver.FetchAll()[0].Name);
+            Assert.AreEqual(expectedEntity.Name , data.entitySaver.FetchAll()[0].Name);
         }
     }
 }

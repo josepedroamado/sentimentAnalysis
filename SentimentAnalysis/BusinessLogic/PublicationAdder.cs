@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public class PublicationAdder
     {
-        public PublicationAdder(SystemData Data, String Phrase, DateTime Date, Author author)
+        private SystemData data;
+
+        public PublicationAdder(SystemData data)
         {
-            Publication publicationToAdd = new Publication(Phrase, Date, author);
-            AddPublicationToAdd(publicationToAdd, Data);
+            this.data = data;
         }
 
-        private void AddPublicationToAdd(Publication publicationToAdd, SystemData data)
+        public void Add(String phrase, DateTime date, Author author)
         {
-            data.publicationSaver.Add(publicationToAdd);
+            Publication newPublication = new Publication(phrase, date, author);
+            data.publicationSaver.Add(newPublication);
 
             RelationAdder relationAdder = new RelationAdder(data);
-            relationAdder.AddRelation(publicationToAdd);
+            relationAdder.Add(newPublication);
 
             AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
             alarmAnalyzer.AnalyzeAllAlarms();

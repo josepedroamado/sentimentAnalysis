@@ -16,11 +16,11 @@ namespace UserInterface
         [STAThread]
         static void Main()
         {
-            SystemData Data;
+            SystemData data;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SystemDataStartUp();
-            Application.Run(new MainWindow(Data));
+            Application.Run(new MainWindow(data));
 
             void SystemDataStartUp()
             {
@@ -28,8 +28,9 @@ namespace UserInterface
                 ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
                 IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
                 IRelationSaver relationSaver = new RelationDatabaseSaver();
-                IAlarmSaver alarmSaver = new InMemoryAlarm();
-                Data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+                IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+                IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+                data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
             }
         }
 

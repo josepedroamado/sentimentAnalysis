@@ -1,35 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public class SentimentAdder
     {
-        public SentimentAdder(SystemData Data, String Name, Boolean positive)
+        private SystemData data;
+
+        public SentimentAdder(SystemData data)
         {
-            Sentiment SentimentToAdd = CreateSentiment(Name , positive);
-            AddSentiment(SentimentToAdd, Data);
+            this.data = data;
         }
-        private Sentiment CreateSentiment(String Name , Boolean Positive)
+
+        public void Add(String name, Boolean positive)
         {
-            Sentiment sentiment;
-            if (Positive)
+            Sentiment newSentiment;
+            if (positive)
             {
-                sentiment = new PositiveSentiment(Name);
+                newSentiment = new PositiveSentiment(name);
             }
             else
             {
-                sentiment = new NegativeSentiment(Name);
+                newSentiment = new NegativeSentiment(name);
             }
-
-            return sentiment;
-        }
-        private void AddSentiment(Sentiment SentimentToAdd, SystemData Data)
-        {
-            Data.sentimentSaver.Add(SentimentToAdd);
+            data.sentimentSaver.Add(newSentiment);
         }
     }
 }

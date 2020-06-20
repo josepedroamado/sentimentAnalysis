@@ -1,39 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public class AlarmAdder
     {
-        public AlarmAdder(SystemData data, Entity selectedEntity, int numberOfPosts, int alarmTime, bool positive, bool hours)
+        private SystemData data;
+
+        public AlarmAdder(SystemData data)
         {
-            Alarm alarmToAdd = CreateAlarm(selectedEntity, numberOfPosts, alarmTime, positive, hours);
-            AddAlarm(data, alarmToAdd);
+            this.data = data;
         }
 
-        private Alarm CreateAlarm(Entity selectedEntity, int numberOfPosts, int alarmTime, bool positive, bool hours)
+        public void Add(Entity selectedEntity, int numberOfPosts, int alarmTime, bool positive, bool hours)
         {
             TimeSpan timeSpan = SetTimeSpan(alarmTime, hours);
-            Alarm alarmToAdd;
-            if(positive)
+            Alarm newAlarm;
+            if (positive)
             {
-                alarmToAdd = new PositiveAlarm(selectedEntity, numberOfPosts, timeSpan);
+                newAlarm = new PositiveAlarm(selectedEntity, numberOfPosts, timeSpan);
             }
             else
             {
-                alarmToAdd = new NegativeAlarm(selectedEntity, numberOfPosts, timeSpan);
+                newAlarm = new NegativeAlarm(selectedEntity, numberOfPosts, timeSpan);
             }
-            return alarmToAdd;
-        }
 
-        private void AddAlarm(SystemData data, Alarm alarmToSave)
-        {
-            data.alarmSaver.Add(alarmToSave);
+            data.alarmSaver.Add(newAlarm);
             AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
-            alarmAnalyzer.AnalyzeAlarm(alarmToSave);
+            alarmAnalyzer.AnalyzeAlarm(newAlarm);
         }
 
         private TimeSpan SetTimeSpan(int alarmTime, bool hours)
@@ -45,7 +38,7 @@ namespace BusinessLogic
             }
             else
             {
-                timeSpan = new TimeSpan(alarmTime*24, 0, 0);
+                timeSpan = new TimeSpan(alarmTime, 0, 0, 0);
             }
             return timeSpan;
         }

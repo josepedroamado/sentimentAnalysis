@@ -19,7 +19,7 @@ namespace BusinessLogic
         public override bool Equals(Object obj)
         {
             Sentiment sentiment = obj as Sentiment;
-            if (sentiment != null) return this.SentimentId == sentiment.SentimentId;
+            if (sentiment != null) return this.SentimentId == sentiment.SentimentId || this.Text.ToLower() == sentiment.Text.ToLower();
             else return false;
         }
 

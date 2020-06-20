@@ -1,10 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessLogic;
+﻿using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BusinessLogicTest
+namespace DatabaseAccessTest
 {
     [TestClass]
-    public class EntityDeleterTest
+    public class EntitiyDeleterTest
     {
         SystemData data;
         EntityDeleter deleter;
@@ -12,12 +13,19 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
-            IEntitySaver entitySaver = new InMemoryEntity();
-            ISentimentSaver sentimentSaver = new InMemorySentiment();
-            IPublicationSaver publicationSaver = new InMemoryPublication();
-            IRelationSaver relationSaver = new InMemoryRelation();
-            IAlarmSaver alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
             EntityAdder adder = new EntityAdder(data);
             adder.Add("name");
             adder.Add("aname");

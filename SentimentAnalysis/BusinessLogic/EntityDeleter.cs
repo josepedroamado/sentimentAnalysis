@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic
+﻿namespace BusinessLogic
 {
     public class EntityDeleter
     {
-        public EntityDeleter(SystemData Data, Entity entityToDelete)
+        private SystemData data;
+
+        public EntityDeleter(SystemData data)
         {
-            
-            DeleteEntity(entityToDelete, Data);
+            this.data = data;
         }
 
-        private void DeleteEntity(Entity entityToDelete, SystemData data)
+        public void Delete(Entity entityToDelete)
         {
             data.entitySaver.Delete(entityToDelete);
         }

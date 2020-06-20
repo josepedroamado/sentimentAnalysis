@@ -18,7 +18,8 @@ namespace DatabaseAccessTest
         IAuthorSaver authorSaver;
         Entity firstEntity;
         Entity secondEntity;
-        DateTime aDate;
+        Author firstAuthor;
+        Author secondAuthor;
         Publication firstPublication;
         Publication secondPublication;
         Publication thirdPublication;
@@ -47,16 +48,20 @@ namespace DatabaseAccessTest
             sentimentSaver.Add(aSentiment);
 
             firstEntity = new Entity("RelatonTest");
-            entitySaver.Add(firstEntity);
             secondEntity = new Entity("Entity2");
+            entitySaver.Add(firstEntity);
             entitySaver.Add(secondEntity);
 
-            aDate = new DateTime(2020, 01, 01);
-            firstPublication = new Publication("RelationPhrase", aDate);
+            firstAuthor = new Author("author1", "FirstName1", "LastName1", new DateTime(1965, 5, 5));
+            secondAuthor = new Author("author2", "FirstName2", "LastName2", new DateTime(1985, 5, 5));
+            authorSaver.Add(firstAuthor);
+            authorSaver.Add(secondAuthor);
+
+            firstPublication = new Publication("First Publication", new DateTime(2020, 01, 01), firstAuthor);
+            secondPublication = new Publication("Second Publication", new DateTime(2020, 02, 01), secondAuthor);
+            thirdPublication = new Publication("Third Publication", new DateTime(2020, 03, 01), firstAuthor);
             publicationSaver.Add(firstPublication);
-            secondPublication = new Publication("Second Publication", aDate);
             publicationSaver.Add(secondPublication);
-            thirdPublication = new Publication("Third Publication", aDate);
             publicationSaver.Add(thirdPublication);
 
             firstRelation = new Relation(firstPublication, aSentiment, firstEntity);
@@ -127,10 +132,12 @@ namespace DatabaseAccessTest
         public void ModifyExistingRelationTest()
         {
             relationSaver.Add(firstRelation);
-            Entity anotherEntity = new Entity("RelatonTest2");
-            DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationPhrase2", aDate);
+            Entity anotherEntity = new Entity("RelationTest2");
+            entitySaver.Add(anotherEntity);
+            Publication anotherPublication = new Publication("RelationPhrase2", new DateTime(2022, 01, 01), secondAuthor);
+            publicationSaver.Add(anotherPublication);
             Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
+            sentimentSaver.Add(anotherSentiment);
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.Modify(firstRelation, modifiedRelation);
             Relation fetchedRelation = relationSaver.Fetch(firstRelation);
@@ -143,9 +150,9 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void ModifyNonExistingRelationTest()
         {
-            Entity anotherEntity = new Entity("RelatonTest2");
+            Entity anotherEntity = new Entity("RelationTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationPhrase2", aDate);
+            Publication anotherPublication = new Publication("RelationPhrase2", new DateTime(2020, 04, 01), secondAuthor);
             Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.Modify(firstRelation, modifiedRelation);

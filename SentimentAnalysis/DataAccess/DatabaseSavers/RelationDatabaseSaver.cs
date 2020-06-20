@@ -14,9 +14,10 @@ namespace DataAccess
             {
                 ObjectConversion convert = new ObjectConversion();
                 RelationDto newRelation = convert.ConvertToDto(aRelation);
-                if (context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
+                if (context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
                         .Any(relation => relation.Entity.Name == newRelation.Entity.Name
                                       && relation.Publication.Phrase == newRelation.Publication.Phrase
+                                      && relation.Publication.Author.AuthorDtoId == newRelation.Publication.Author.AuthorDtoId
                                       && relation.Sentiment.Text == newRelation.Sentiment.Text))
                 {
                     throw new ObjectAlreadyExistsException("Relacion");
@@ -24,6 +25,7 @@ namespace DataAccess
                 else
                 {
                     context.Relations.Add(newRelation);
+                    context.Entry(newRelation.Publication.Author).State = EntityState.Detached;
                     context.Entry(newRelation.Entity).State = EntityState.Unchanged;
                     context.Entry(newRelation.Publication).State = EntityState.Unchanged;
                     context.Entry(newRelation.Sentiment).State = EntityState.Unchanged;
@@ -36,7 +38,9 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto relationToDelete = context.Relations.Include("Entity").Include("Publication").Include("Sentiment").FirstOrDefault(relation => relation.RelationDtoId.Equals(aRelation.RelationId));
+                RelationDto relationToDelete = context.Relations
+                    .Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
+                    .FirstOrDefault(relation => relation.RelationDtoId.Equals(aRelation.RelationId));
                 if (relationToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");
@@ -55,7 +59,7 @@ namespace DataAccess
             {
                 List<Relation> allRelations = new List<Relation>();
                 ObjectConversion convert = new ObjectConversion();
-                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Sentiment"))
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment"))
                 {
                     allRelations.Add(convert.ConvertToObject(relation));
                 }
@@ -68,7 +72,7 @@ namespace DataAccess
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
                 List<Publication> allPublications = new List<Publication>();
-                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Sentiment"))
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment"))
                 {
                     if (relation.Entity.EntityDtoId.Equals(entityId))
                     {
@@ -84,7 +88,8 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
+                RelationDto fetchedRelation = context.Relations
+                    .Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
                     .FirstOrDefault(relation => relation.RelationDtoId.Equals(aRelation.RelationId));
                 if (fetchedRelation == null)
                 {
@@ -102,8 +107,9 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment")
-                                                               .FirstOrDefault(relation => relation.Publication.PublicationDtoId.Equals(publicationId));
+                RelationDto fetchedRelation = context.Relations
+                    .Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
+                    .FirstOrDefault(relation => relation.Publication.PublicationDtoId.Equals(publicationId));
                 if (fetchedRelation == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");
@@ -120,7 +126,9 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                RelationDto fetchedRelation = context.Relations.Include("Entity").Include("Publication").Include("Sentiment").FirstOrDefault(relation => relation.RelationDtoId.Equals(original.RelationId));
+                RelationDto fetchedRelation = context.Relations
+                    .Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
+                    .FirstOrDefault(relation => relation.RelationDtoId.Equals(original.RelationId));
                 if (fetchedRelation == null)
                 {
                     throw new ObjectDoesntExistException("Relacion");
@@ -131,6 +139,10 @@ namespace DataAccess
                     fetchedRelation.Entity = convert.ConvertToDto(modified.Entity);
                     fetchedRelation.Publication = convert.ConvertToDto(modified.Publication);
                     fetchedRelation.Sentiment = convert.ConvertToDto(modified.Sentiment);
+                    context.Entry(fetchedRelation.Publication.Author).State = EntityState.Detached;
+                    context.Entry(fetchedRelation.Entity).State = EntityState.Unchanged;
+                    context.Entry(fetchedRelation.Publication).State = EntityState.Unchanged;
+                    context.Entry(fetchedRelation.Sentiment).State = EntityState.Unchanged;
                     context.SaveChanges();
                 }
             }

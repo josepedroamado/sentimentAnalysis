@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using System;
 
 namespace DataAccess
 {
@@ -28,20 +29,43 @@ namespace DataAccess
             return convertedEntity;
         }
 
+        public AuthorDto ConvertToDto(Author anAuthor)
+        {
+            AuthorDto convertedAuthor = new AuthorDto
+            {
+                AuthorDtoId = anAuthor.AuthorId,
+                UserName = anAuthor.UserName,
+                FirstName = anAuthor.FirstName,
+                LastName = anAuthor.LastName,
+                BirthDate = anAuthor.BirthDate
+            };
+            return convertedAuthor;
+        }
+
+        public Author ConvertToObject(AuthorDto anAuthor)
+        {
+            Author convertedAuthor = new Author(anAuthor.UserName, anAuthor.FirstName, anAuthor.LastName, anAuthor.BirthDate)
+            {
+                AuthorId = anAuthor.AuthorDtoId
+            };
+            return convertedAuthor;
+        }
+
         public PublicationDto ConvertToDto(Publication aPublication)
         {
             PublicationDto convertedPublication = new PublicationDto
             {
                 PublicationDtoId = aPublication.PublicationId,
                 Phrase = aPublication.Phrase,
-                Date = aPublication.Date
+                Date = aPublication.Date,
+                Author = ConvertToDto(aPublication.Author)
             };
             return convertedPublication;
         }
 
         public Publication ConvertToObject(PublicationDto aPublication)
         {
-            Publication convertedPublication = new Publication(aPublication.Phrase, aPublication.Date)
+            Publication convertedPublication = new Publication(aPublication.Phrase, aPublication.Date, ConvertToObject(aPublication.Author))
             {
                 PublicationId = aPublication.PublicationDtoId
             };
@@ -125,36 +149,14 @@ namespace DataAccess
             Alarm convertedAlarm;
             if (anAlarm.GetType().Name.Equals("PositiveAlarmDto"))
             {
-                convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, anAlarm.TimeFrame);
+                convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, new TimeSpan(anAlarm.TimeFrame));
             }
             else
             {
-                convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, anAlarm.TimeFrame);
+                convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, new TimeSpan(anAlarm.TimeFrame));
             }
             convertedAlarm.AlarmId = anAlarm.AlarmDtoId;
             return convertedAlarm;
-        }
-
-        public AuthorDto ConvertToDto(Author anAuthor)
-        {
-            AuthorDto convertedAuthor = new AuthorDto
-            {
-                AuthorDtoId = anAuthor.AuthorId,
-                UserName = anAuthor.UserName,
-                FirstName = anAuthor.FirstName,
-                LastName = anAuthor.LastName,
-                BirthDate = anAuthor.BirthDate
-            };
-            return convertedAuthor;
-        }
-
-        public Author ConvertToObject(AuthorDto anAuthor)
-        {
-            Author convertedAuthor = new Author(anAuthor.UserName, anAuthor.FirstName, anAuthor.LastName, anAuthor.BirthDate)
-            {
-                AuthorId = anAuthor.AuthorDtoId
-            };
-            return convertedAuthor;
         }
     }
 }

@@ -30,7 +30,8 @@ namespace BusinessLogic
             String sentimentType = "NeutralSentiment";
             if (alarmType == "PositiveAlarm") sentimentType = "PositiveSentiment";
             if (alarmType == "NegativeAlarm") sentimentType = "NegativeSentiment";
-            DateTime lowerDateBoundary = DateTime.Now - alarm.TimeFrame;
+            TimeSpan timeframe = new TimeSpan(alarm.TimeFrame);
+            DateTime lowerDateBoundary = DateTime.Now - timeframe;
             List<Relation> relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
             if (relations.Count() >= alarm.RequiredPostQuantity)
             {

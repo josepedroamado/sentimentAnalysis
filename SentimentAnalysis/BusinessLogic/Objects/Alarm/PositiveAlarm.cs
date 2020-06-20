@@ -13,7 +13,7 @@ namespace BusinessLogic
             AlarmId = Guid.NewGuid();
             Entity = aEntity;
             RequiredPostQuantity = aRequiredPostQuantity;
-            TimeFrame = aTimeSpan;
+            TimeFrame = aTimeSpan.Ticks;
             Active = false;
         }
     }

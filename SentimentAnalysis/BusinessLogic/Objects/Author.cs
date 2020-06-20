@@ -26,14 +26,14 @@ namespace BusinessLogic
         public Author(String aUserName, String aFirstName, String aLastName, DateTime aBirthDate)
         {
             AuthorId = Guid.NewGuid();
-            UserName = SetText(aUserName, MAX_USERNAME_TEXT, MIN_USERNAME_TEXT);
-            FirstName = SetText(aFirstName, MAX_FIRSTNAME_TEXT, MIN_FIRSTNAME_TEXT);
-            LastName = SetText(aLastName, MAX_LASTNAME_TEXT, MIN_LASTNAME_TEXT);
+            UserName = VerifyText(aUserName, MAX_USERNAME_TEXT, MIN_USERNAME_TEXT);
+            FirstName = VerifyText(aFirstName, MAX_FIRSTNAME_TEXT, MIN_FIRSTNAME_TEXT);
+            LastName = VerifyText(aLastName, MAX_LASTNAME_TEXT, MIN_LASTNAME_TEXT);
             VerifyAge(aBirthDate);
             BirthDate = aBirthDate;
         }
 
-        private String SetText(String text, int max, int min)
+        private String VerifyText(String text, int max, int min)
         {
             VerifyTextLength(text, max, min);
             return text;
@@ -63,22 +63,23 @@ namespace BusinessLogic
 
         private void VerifyAge(DateTime birthdate)
         {
-            int age = GetAge(birthdate);
+            int age = CalculateAge(birthdate);
             if(age < MIN_AGE)
             {
-                throw new AgeTooShortException(MIN_AGE);
+                throw new TooYoungException(MIN_AGE);
             }
             if (age > MAX_AGE)
             {
-                throw new AgeTooLongException(MAX_AGE);
+                throw new TooOldException(MAX_AGE);
             }
         }
 
-        private int GetAge (DateTime birthdate)
+        public int CalculateAge (DateTime birthdate)
         {
-            var today = DateTime.Today;
-            var age = today.Year - birthdate.Year;
-            if (birthdate.Date > today.AddYears(-age))
+            DateTime today = DateTime.Today;
+            int age = today.Year - birthdate.Year;
+            int dateComparison = birthdate.CompareTo(today);
+            if (dateComparison < 1)
             {
                 age--;
             }
@@ -88,7 +89,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Author author = obj as Author;
-            if (author != null) return this.UserName == author.UserName;
+            if (author != null) return AuthorId == author.AuthorId;
             else return false;
         }
 

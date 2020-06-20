@@ -29,7 +29,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                EntityDto entityToDelete = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId.Equals(anEntity.EntityId));
+                EntityDto entityToDelete = context.Entities.FirstOrDefault(entitiy => entitiy.EntityDtoId.Equals(anEntity.EntityId) || entitiy.Name == anEntity.Name);
                 if(entityToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Entidad");

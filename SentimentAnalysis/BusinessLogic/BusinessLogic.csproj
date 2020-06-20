@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\AgeTooLongException.cs" />
-    <Compile Include="Exceptions\AgeTooShortException.cs" />
+    <Compile Include="Exceptions\TooOldException.cs" />
+    <Compile Include="Exceptions\TooYoungException.cs" />
     <Compile Include="AlarmAdder.cs" />
     <Compile Include="Analyzers\AlarmAnalyzer.cs" />
     <Compile Include="Savers\IAuthorSaver.cs" />

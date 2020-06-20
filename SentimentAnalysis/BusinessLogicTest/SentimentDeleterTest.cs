@@ -7,7 +7,8 @@ namespace BusinessLogicTest
     [TestClass]
     public class SentimentDeleterTest
     {
-        SystemData Data;
+        SystemData data;
+        SentimentDeleter deleter;
 
         [TestInitialize]
         public void TestInitialize()
@@ -17,24 +18,25 @@ namespace BusinessLogicTest
             IPublicationSaver publicationSaver = new InMemoryPublication();
             IRelationSaver relationSaver = new InMemoryRelation();
             IAlarmSaver alarmSaver = new InMemoryAlarm();
-            Data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
-            SentimentAdder adder = new SentimentAdder(Data, "name", true);
-            SentimentAdder adder2 = new SentimentAdder(Data, "aname", true);
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            SentimentAdder adder = new SentimentAdder(data);
+            adder.Add("name", true);
+            adder.Add("aname", true);
+            deleter = new SentimentDeleter(data);
         }
+
         [TestMethod]
-        public void NewEntityDeleterTest()
+        public void NewSentimentDeleterTest()
         {
-            Sentiment sentiment = new PositiveSentiment("name");
-            SentimentDeleter deleter = new SentimentDeleter(Data, sentiment);
             Assert.IsNotNull(deleter);
         }
+
         [TestMethod]
-        [ExpectedException(typeof(ObjectDoesntExistException))]
-        public void DeleteEntityTest()
+        public void DeleteSentimentTest()
         {
-            Sentiment sentiment = new PositiveSentiment("aname1");
-            SentimentDeleter deleter = new SentimentDeleter(Data, sentiment);
-            Data.sentimentSaver.Fetch(sentiment);
+            Sentiment sentiment = new PositiveSentiment("aname");
+            deleter.Delete(sentiment);
+            Assert.AreEqual(1, data.sentimentSaver.FetchAll().Count);
         }
         
     }

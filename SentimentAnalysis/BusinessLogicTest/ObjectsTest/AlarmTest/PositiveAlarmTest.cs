@@ -35,7 +35,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void NewPositiveAlarmTimeFrameTest()
         {
-            Assert.AreEqual(alarm.TimeFrame, aTimeFrame);
+            Assert.AreEqual(alarm.TimeFrame, aTimeFrame.Ticks);
         }
 
         [TestMethod]

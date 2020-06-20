@@ -17,6 +17,8 @@ namespace DatabaseAccessTest
         IPublicationSaver publicationSaver;
         IAuthorSaver authorSaver;
         DateTime aDate;
+        Author firstAuthor;
+        Author secondAuthor;
         Publication aPublication;
 
         [TestInitialize]
@@ -35,9 +37,13 @@ namespace DatabaseAccessTest
             authorSaver = new AuthorDatabaseSaver();
             authorSaver.Clear();
 
-            aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("PublicationPhrase", aDate);
+            firstAuthor = new Author("author1", "FirstName1", "LastName1", new DateTime(1965, 5, 5));
+            secondAuthor = new Author("author2", "FirstName2", "LastName2", new DateTime(1985, 5, 5));
+            authorSaver.Add(firstAuthor);
+            authorSaver.Add(secondAuthor);
 
+            aDate = new DateTime(2020, 01, 01);
+            aPublication = new Publication("PublicationPhrase", aDate, firstAuthor);
         }
 
         [TestMethod]
@@ -89,7 +95,7 @@ namespace DatabaseAccessTest
         {
             publicationSaver.Add(aPublication);
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication modifiedPublication = new Publication("PublicationPhrase2", aDate);
+            Publication modifiedPublication = new Publication("PublicationPhrase2", aDate, secondAuthor);
             publicationSaver.Modify(aPublication, modifiedPublication);
             Publication fetchedPublication = publicationSaver.Fetch(aPublication);
             Assert.AreEqual(fetchedPublication.Date, modifiedPublication.Date);
@@ -101,7 +107,7 @@ namespace DatabaseAccessTest
         public void ModifyNonExistingPublicationTest()
         {
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication modifiedPublication = new Publication("PublicationPhrase3", aDate);
+            Publication modifiedPublication = new Publication("PublicationPhrase3", aDate, secondAuthor);
             publicationSaver.Modify(aPublication, modifiedPublication);
         }
 

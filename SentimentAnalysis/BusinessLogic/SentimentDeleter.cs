@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic
+﻿namespace BusinessLogic
 {
     public class SentimentDeleter
     {
-        public SentimentDeleter(SystemData data, Sentiment sentimentToDelete)
+        private SystemData data;
+
+        public SentimentDeleter(SystemData data)
         {
-            DeleteEntity(sentimentToDelete, data);
+            this.data = data;
         }
-        private void DeleteEntity(Sentiment sentimentToDelete, SystemData data)
+
+        public void Delete(Sentiment sentimentToDelete)
         {
             data.sentimentSaver.Delete(sentimentToDelete);
         }

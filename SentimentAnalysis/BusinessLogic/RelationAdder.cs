@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLogic
+﻿namespace BusinessLogic
 {
     public class RelationAdder
     {
@@ -17,7 +11,7 @@ namespace BusinessLogic
             this.publicationAnalyzer = new PublicationAnalyzer(data.sentimentSaver, data.entitySaver);
         }
         
-        public void AddRelation(Publication publication)
+        public void Add(Publication publication)
         {
             Relation relation = publicationAnalyzer.AnalyzePublication(publication);
             data.relationSaver.Add(relation);

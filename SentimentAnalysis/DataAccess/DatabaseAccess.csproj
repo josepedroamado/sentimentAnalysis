@@ -60,25 +60,9 @@
     <Compile Include="DatabaseSavers\AlarmDatabaseSaver.cs" />
     <Compile Include="DTOs\Alarm\AlarmDto.cs" />
     <Compile Include="DatabaseSavers\AuthorDatabaseSaver.cs" />
-    <Compile Include="Migrations\202006192033563_Intial.cs" />
-    <Compile Include="Migrations\202006192033563_Intial.designer.cs">
-      <DependentUpon>202006192033563_Intial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006192153441_fix.cs" />
-    <Compile Include="Migrations\202006192153441_fix.designer.cs">
-      <DependentUpon>202006192153441_fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006192309135_alarm.cs" />
-    <Compile Include="Migrations\202006192309135_alarm.designer.cs">
-      <DependentUpon>202006192309135_alarm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006201641197_author.cs" />
-    <Compile Include="Migrations\202006201641197_author.designer.cs">
-      <DependentUpon>202006201641197_author.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006201653096_authorv.1.cs" />
-    <Compile Include="Migrations\202006201653096_authorv.1.designer.cs">
-      <DependentUpon>202006201653096_authorv.1.cs</DependentUpon>
+    <Compile Include="Migrations\202006202310005_Initial.cs" />
+    <Compile Include="Migrations\202006202310005_Initial.designer.cs">
+      <DependentUpon>202006202310005_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DTOs\Alarm\NegativeAlarmDto.cs" />
@@ -113,20 +97,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006192033563_Intial.resx">
-      <DependentUpon>202006192033563_Intial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006192153441_fix.resx">
-      <DependentUpon>202006192153441_fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006192309135_alarm.resx">
-      <DependentUpon>202006192309135_alarm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006201641197_author.resx">
-      <DependentUpon>202006201641197_author.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006201653096_authorv.1.resx">
-      <DependentUpon>202006201653096_authorv.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006202310005_Initial.resx">
+      <DependentUpon>202006202310005_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

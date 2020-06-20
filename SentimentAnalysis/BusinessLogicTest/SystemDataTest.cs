@@ -22,7 +22,7 @@ namespace BusinessLogicTest
             publicationSaver = new InMemoryPublication();
             relationSaver = new InMemoryRelation();
             alarmSaver = new InMemoryAlarm();
-            systemData = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+            systemData = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
         }
 
         [TestMethod]
