@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace BusinessLogic
 {
     [Serializable]
-    internal class AgeTooLongException : Exception
+    public class AgeTooLongException : Exception
     {
 
 
