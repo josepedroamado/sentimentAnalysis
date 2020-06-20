@@ -15,6 +15,7 @@ namespace DatabaseAccessTest
         IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
+        IAuthorSaver authorSaver;
         Entity firstEntity;
         Entity secondEntity;
         DateTime aDate;
@@ -39,22 +40,24 @@ namespace DatabaseAccessTest
             entitySaver.Clear();
             sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
+            authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
 
             aSentiment = new PositiveSentiment("RelationText");
-            sentimentSaver.AddSentiment(aSentiment);
+            sentimentSaver.Add(aSentiment);
 
             firstEntity = new Entity("RelatonTest");
-            entitySaver.AddEntity(firstEntity);
+            entitySaver.Add(firstEntity);
             secondEntity = new Entity("Entity2");
-            entitySaver.AddEntity(secondEntity);
+            entitySaver.Add(secondEntity);
 
             aDate = new DateTime(2020, 01, 01);
             firstPublication = new Publication("RelationPhrase", aDate);
-            publicationSaver.AddPublication(firstPublication);
+            publicationSaver.Add(firstPublication);
             secondPublication = new Publication("Second Publication", aDate);
-            publicationSaver.AddPublication(secondPublication);
+            publicationSaver.Add(secondPublication);
             thirdPublication = new Publication("Third Publication", aDate);
-            publicationSaver.AddPublication(thirdPublication);
+            publicationSaver.Add(thirdPublication);
 
             firstRelation = new Relation(firstPublication, aSentiment, firstEntity);
             secondRelation = new Relation(secondPublication, aSentiment, secondEntity);
@@ -71,30 +74,30 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddExistingRelationTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            relationSaver.AddRelation(firstRelation);
+            relationSaver.Add(firstRelation);
+            relationSaver.Add(firstRelation);
         }
 
         [TestMethod]
         public void DeleteExistingRelationTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            relationSaver.DeleteRelation(firstRelation);
+            relationSaver.Add(firstRelation);
+            relationSaver.Delete(firstRelation);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingRelationTest()
         {
-            relationSaver.DeleteRelation(firstRelation);
+            relationSaver.Delete(firstRelation);
             Assert.IsNotNull(relationSaver);
         }
 
         [TestMethod]
         public void FetchExistingRelationTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            Relation fetchedRelation = relationSaver.FetchRelation(firstRelation);
+            relationSaver.Add(firstRelation);
+            Relation fetchedRelation = relationSaver.Fetch(firstRelation);
             Assert.IsNotNull(fetchedRelation);
         }
 
@@ -102,14 +105,14 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingRelationTest()
         {
-            Assert.IsNotNull(relationSaver.FetchRelation(firstRelation));
+            Assert.IsNotNull(relationSaver.Fetch(firstRelation));
         }
 
         [TestMethod]
         public void FetchExistingRelationByPublicationIdTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            Relation fetchedRelation = relationSaver.FetchRelation(firstPublication.PublicationId);
+            relationSaver.Add(firstRelation);
+            Relation fetchedRelation = relationSaver.Fetch(firstPublication.PublicationId);
             Assert.AreEqual(firstRelation, fetchedRelation);
         }
 
@@ -117,20 +120,20 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingRelationByPublicationIdTest()
         {
-            Assert.IsNotNull(relationSaver.FetchRelation(firstRelation.Publication.PublicationId));
+            Assert.IsNotNull(relationSaver.Fetch(firstRelation.Publication.PublicationId));
         }
 
         [TestMethod]
         public void ModifyExistingRelationTest()
         {
-            relationSaver.AddRelation(firstRelation);
+            relationSaver.Add(firstRelation);
             Entity anotherEntity = new Entity("RelatonTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
             Publication anotherPublication = new Publication("RelationPhrase2", aDate);
             Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
-            relationSaver.ModifyRelation(firstRelation, modifiedRelation);
-            Relation fetchedRelation = relationSaver.FetchRelation(firstRelation);
+            relationSaver.Modify(firstRelation, modifiedRelation);
+            Relation fetchedRelation = relationSaver.Fetch(firstRelation);
             Assert.AreEqual(fetchedRelation.Publication, modifiedRelation.Publication);
             Assert.AreEqual(fetchedRelation.Sentiment, modifiedRelation.Sentiment);
             Assert.AreEqual(fetchedRelation.Entity, modifiedRelation.Entity);
@@ -145,32 +148,32 @@ namespace DatabaseAccessTest
             Publication anotherPublication = new Publication("RelationPhrase2", aDate);
             Sentiment anotherSentiment = new PositiveSentiment("RelationText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
-            relationSaver.ModifyRelation(firstRelation, modifiedRelation);
+            relationSaver.Modify(firstRelation, modifiedRelation);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            relationSaver.AddRelation(firstRelation);
+            relationSaver.Add(firstRelation);
             Assert.AreEqual(1, relationSaver.FetchAll().Count());
         }
 
         [TestMethod]
         public void FetchAllPublicationsOfFirstEntityTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            relationSaver.AddRelation(secondRelation);
-            relationSaver.AddRelation(thirdRelation);
-            Relation fetched = relationSaver.FetchRelation(firstRelation);
+            relationSaver.Add(firstRelation);
+            relationSaver.Add(secondRelation);
+            relationSaver.Add(thirdRelation);
+            Relation fetched = relationSaver.Fetch(firstRelation);
             Assert.AreEqual(2, relationSaver.FetchAllPublicationsOfEntity(fetched.Entity.EntityId).Count());
         }
 
         [TestMethod]
         public void FetchAllPublicationsOfSecondEntityTest()
         {
-            relationSaver.AddRelation(firstRelation);
-            relationSaver.AddRelation(secondRelation);
-            relationSaver.AddRelation(thirdRelation);
+            relationSaver.Add(firstRelation);
+            relationSaver.Add(secondRelation);
+            relationSaver.Add(thirdRelation);
             List<Publication> expectedList = new List<Publication>();
             expectedList.Add(secondPublication);
             List<Publication> actualList = relationSaver.FetchAllPublicationsOfEntity(secondEntity.EntityId);

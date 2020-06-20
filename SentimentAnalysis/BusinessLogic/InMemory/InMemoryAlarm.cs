@@ -14,19 +14,19 @@ namespace BusinessLogic
         {
             this.Alarms = new List<Alarm>();
         }
-        public void AddAlarm(Alarm anAlarm)
+        public void Add(Alarm anAlarm)
         {
             if (!AlarmExists(anAlarm)) Alarms.Add(anAlarm);
             else throw new ObjectAlreadyExistsException("Alarma");
         }
 
-        public void DeleteAlarm(Alarm anAlarm)
+        public void Delete(Alarm anAlarm)
         {
             if (AlarmExists(anAlarm)) Alarms.Remove(anAlarm);
             else throw new ObjectDoesntExistException("Alarma");
         }
 
-        public void ModifyAlarm(Alarm original, Alarm modified)
+        public void Modify(Alarm original, Alarm modified)
         {
             if (AlarmExists(original))
             {
@@ -38,7 +38,7 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Alarma");
         }
 
-        public Alarm FetchAlarm(Alarm anAlarm)
+        public Alarm Fetch(Alarm anAlarm)
         {
             if (AlarmExists(anAlarm)) return Alarms[GetAlarmListIndex(anAlarm)];
             else throw new ObjectDoesntExistException("Alarma");

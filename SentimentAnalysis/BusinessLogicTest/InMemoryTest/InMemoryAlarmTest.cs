@@ -34,30 +34,30 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddNewInMemoryAlarmTest()
         {
-            alarmSaver.AddAlarm(anAlarm);
-            alarmSaver.AddAlarm(anAlarm);
+            alarmSaver.Add(anAlarm);
+            alarmSaver.Add(anAlarm);
         }
 
         [TestMethod]
         public void DeleteExistingAlarmTest()
         {
-            alarmSaver.AddAlarm(anAlarm);
-            alarmSaver.DeleteAlarm(anAlarm);
+            alarmSaver.Add(anAlarm);
+            alarmSaver.Delete(anAlarm);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingAlarmTest()
         {
-            alarmSaver.DeleteAlarm(anAlarm);
+            alarmSaver.Delete(anAlarm);
             Assert.IsNotNull(alarmSaver);
         }
 
         [TestMethod]
         public void FetchExistingAlarmTest()
         {
-            alarmSaver.AddAlarm(anAlarm);
-            Alarm fetchedAlarm = alarmSaver.FetchAlarm(anAlarm);
+            alarmSaver.Add(anAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(anAlarm);
             Assert.IsNotNull(fetchedAlarm);
         }
 
@@ -65,16 +65,16 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingAlarmTest()
         {
-            Assert.IsNotNull(alarmSaver.FetchAlarm(anAlarm));
+            Assert.IsNotNull(alarmSaver.Fetch(anAlarm));
         }
 
         [TestMethod]
         public void ModifyExistingAlarmTest()
         {
-            alarmSaver.AddAlarm(anAlarm);
+            alarmSaver.Add(anAlarm);
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 6, timeFrame);
-            alarmSaver.ModifyAlarm(anAlarm, modifiedAlarm);
-            Alarm fetchedAlarm = alarmSaver.FetchAlarm(anAlarm);
+            alarmSaver.Modify(anAlarm, modifiedAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(anAlarm);
             Assert.AreEqual(fetchedAlarm.Active, modifiedAlarm.Active);
             Assert.AreEqual(fetchedAlarm.Entity, modifiedAlarm.Entity);
             Assert.AreEqual(fetchedAlarm.RequiredPostQuantity, modifiedAlarm.RequiredPostQuantity);
@@ -86,13 +86,13 @@ namespace BusinessLogicTest
         public void ModifyNonExistingAlarmTest()
         {
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 5, timeFrame);
-            alarmSaver.ModifyAlarm(anAlarm, modifiedAlarm);
+            alarmSaver.Modify(anAlarm, modifiedAlarm);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            alarmSaver.AddAlarm(anAlarm);
+            alarmSaver.Add(anAlarm);
             List<Alarm> expectedList = new List<Alarm>();
             expectedList.Add(anAlarm);
             List<Alarm> actualList = alarmSaver.FetchAll();

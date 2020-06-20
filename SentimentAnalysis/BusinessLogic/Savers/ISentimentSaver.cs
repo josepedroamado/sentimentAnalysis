@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public interface ISentimentSaver
     {
-        void AddSentiment(Sentiment aSentiment);
+        void Add(Sentiment aSentiment);
 
-        void DeleteSentiment(Sentiment aSentiment);
+        void Delete(Sentiment aSentiment);
 
-        void ModifySentiment(Sentiment original, Sentiment modified);
+        void Modify(Sentiment original, Sentiment modified);
 
-        Sentiment FetchSentiment(Sentiment aSentiment);
+        Sentiment Fetch(Sentiment aSentiment);
 
-        Sentiment FetchSentiment(Guid sentimentId);
+        Sentiment Fetch(Guid sentimentId);
 
         List<Sentiment> FetchAll();
 
-        List<Sentiment> FetchAllPositiveSentiments();
+        List<Sentiment> FetchAllPositive();
 
-        List<Sentiment> FetchAllNegativeSentiments();
+        List<Sentiment> FetchAllNegative();
 
         void Clear();
     }

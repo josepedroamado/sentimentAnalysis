@@ -1,5 +1,4 @@
 ﻿using BusinessLogic;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,7 +7,7 @@ namespace DataAccess
 {
     public class AlarmDatabaseSaver: IAlarmSaver
     {
-        public void AddAlarm(Alarm anAlarm)
+        public void Add(Alarm anAlarm)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -27,7 +26,7 @@ namespace DataAccess
             }
         }
 
-        public void DeleteAlarm(Alarm anAlarm)
+        public void Delete(Alarm anAlarm)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -58,7 +57,7 @@ namespace DataAccess
             }
         }
 
-        public Alarm FetchAlarm(Alarm anAlarm)
+        public Alarm Fetch(Alarm anAlarm)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -75,7 +74,7 @@ namespace DataAccess
             }
         }
 
-        public void ModifyAlarm(Alarm original, Alarm modified)
+        public void Modify(Alarm original, Alarm modified)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {

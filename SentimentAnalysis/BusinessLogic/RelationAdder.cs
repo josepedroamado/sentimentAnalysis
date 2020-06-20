@@ -20,7 +20,7 @@ namespace BusinessLogic
         public void AddRelation(Publication publication)
         {
             Relation relation = publicationAnalyzer.AnalyzePublication(publication);
-            data.relationSaver.AddRelation(relation);
+            data.relationSaver.Add(relation);
         }
     }
 }

@@ -37,16 +37,16 @@ namespace UserInterface
             {
                 Guid publicationId = (Guid)selectedValue;
                 textBoxEntity.Clear();
-                if (mainWin.Data.relationSaver.FetchRelation(publicationId).Entity != null)
+                if (mainWin.Data.relationSaver.Fetch(publicationId).Entity != null)
                 {
-                    String entityName = mainWin.Data.relationSaver.FetchRelation(publicationId).Entity.Name;
+                    String entityName = mainWin.Data.relationSaver.Fetch(publicationId).Entity.Name;
                     textBoxEntity.Text = entityName;
                 }
                 else textBoxEntity.Text = "No se ha detectado entidad";
                 textBoxSentimentType.Clear();
-                if (mainWin.Data.relationSaver.FetchRelation(publicationId).Sentiment != null)
+                if (mainWin.Data.relationSaver.Fetch(publicationId).Sentiment != null)
                 {
-                    String sentimentType = mainWin.Data.relationSaver.FetchRelation(publicationId).Sentiment.GetType().Name;
+                    String sentimentType = mainWin.Data.relationSaver.Fetch(publicationId).Sentiment.GetType().Name;
                     if (sentimentType == "PositiveSentiment") textBoxSentimentType.Text = "Positivo";
                     else if (sentimentType == "NegativeSentiment") textBoxSentimentType.Text = "Negativo";
                 }

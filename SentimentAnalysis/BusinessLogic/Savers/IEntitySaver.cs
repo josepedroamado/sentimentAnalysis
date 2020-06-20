@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public interface IEntitySaver
     {
-        void AddEntity(Entity anEntity);
+        void Add(Entity anEntity);
 
-        void DeleteEntity(Entity anEntity);
+        void Delete(Entity anEntity);
 
-        void ModifyEntity(Entity original, Entity modified);
+        void Modify(Entity original, Entity modified);
 
-        Entity FetchEntity(Entity anEntity);
+        Entity Fetch(Entity anEntity);
 
-        Entity FetchEntity(Guid entityId);
+        Entity Fetch(Guid entityId);
 
         List<Entity> FetchAll();
 

@@ -7,7 +7,7 @@ namespace DataAccess
 {
     public class PublicationDatabaseSaver : IPublicationSaver
     {
-        public void AddPublication(Publication aPublication)
+        public void Add(Publication aPublication)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -25,7 +25,7 @@ namespace DataAccess
             }
         }
 
-        public void DeletePublication(Publication aPublication)
+        public void Delete(Publication aPublication)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -56,7 +56,7 @@ namespace DataAccess
             }
         }
 
-        public Publication FetchPublication(Publication aPublication)
+        public Publication Fetch(Publication aPublication)
         {
             return FetchPublication(aPublication.PublicationId);
         }
@@ -78,7 +78,7 @@ namespace DataAccess
             }
         }
 
-        public void ModifyPublication(Publication original, Publication modified)
+        public void Modify(Publication original, Publication modified)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {

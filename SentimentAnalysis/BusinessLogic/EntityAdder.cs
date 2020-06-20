@@ -20,7 +20,7 @@ namespace BusinessLogic
         }
         private void AddEntity(Entity entityToAdd, SystemData Data)
         {
-            Data.entitySaver.AddEntity(entityToAdd);
+            Data.entitySaver.Add(entityToAdd);
         }
     }
 }

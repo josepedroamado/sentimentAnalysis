@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
     public interface IAlarmSaver
     {
-        void AddAlarm(Alarm anAlarm);
+        void Add(Alarm anAlarm);
 
-        void DeleteAlarm(Alarm anAlarm);
+        void Delete(Alarm anAlarm);
 
-        void ModifyAlarm(Alarm original, Alarm modified);
+        void Modify(Alarm original, Alarm modified);
 
-        Alarm FetchAlarm(Alarm anAlarm);
+        Alarm Fetch(Alarm anAlarm);
 
         List<Alarm> FetchAll();
 

@@ -15,19 +15,19 @@ namespace BusinessLogic
             this.Entities = new List<Entity>();
         }
 
-        public void AddEntity(Entity anEntity)
+        public void Add(Entity anEntity)
         {
             if (!EntityExists(anEntity)) Entities.Add(anEntity);
             else throw new ObjectAlreadyExistsException("Entidad");
         }
 
-        public void DeleteEntity(Entity anEntity)
+        public void Delete(Entity anEntity)
         {
             if (EntityExists(anEntity)) Entities.Remove(anEntity);
             else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public void ModifyEntity(Entity original, Entity modified)
+        public void Modify(Entity original, Entity modified)
         {
             if (EntityExists(original))
             {
@@ -36,13 +36,13 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public Entity FetchEntity(Entity anEntity)
+        public Entity Fetch(Entity anEntity)
         {
             if (EntityExists(anEntity)) return Entities[GetEntityListIndex(anEntity)];
             else throw new ObjectDoesntExistException("Entidad");
         }
 
-        public Entity FetchEntity(Guid entityId)
+        public Entity Fetch(Guid entityId)
         {            
             if (EntityExists(entityId)) return Entities.Find(anEntity => anEntity.EntityId.Equals(entityId));
             else throw new ObjectDoesntExistException("Entidad");

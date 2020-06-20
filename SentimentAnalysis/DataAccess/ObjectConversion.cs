@@ -1,9 +1,4 @@
 ﻿using BusinessLogic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -138,6 +133,28 @@ namespace DataAccess
             }
             convertedAlarm.AlarmId = anAlarm.AlarmDtoId;
             return convertedAlarm;
+        }
+
+        public AuthorDto ConvertToDto(Author anAuthor)
+        {
+            AuthorDto convertedAuthor = new AuthorDto
+            {
+                AuthorDtoId = anAuthor.AuthorId,
+                UserName = anAuthor.UserName,
+                FirstName = anAuthor.FirstName,
+                LastName = anAuthor.LastName,
+                BirthDate = anAuthor.BirthDate
+            };
+            return convertedAuthor;
+        }
+
+        public Author ConvertToObject(AuthorDto anAuthor)
+        {
+            Author convertedAuthor = new Author(anAuthor.UserName, anAuthor.FirstName, anAuthor.LastName, anAuthor.BirthDate)
+            {
+                AuthorId = anAuthor.AuthorDtoId
+            };
+            return convertedAuthor;
         }
     }
 }

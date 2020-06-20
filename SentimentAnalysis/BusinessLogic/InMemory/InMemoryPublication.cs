@@ -15,19 +15,19 @@ namespace BusinessLogic
             this.Publications = new List<Publication>();
         }
 
-        public void AddPublication(Publication aPublication)
+        public void Add(Publication aPublication)
         {
             if (!PublicationExists(aPublication)) Publications.Add(aPublication);
             else throw new ObjectAlreadyExistsException("Publicacion");
         }
 
-        public void DeletePublication(Publication aPublication)
+        public void Delete(Publication aPublication)
         {
             if (PublicationExists(aPublication)) Publications.Remove(aPublication);
             else throw new ObjectDoesntExistException("Publicacion");
         }
 
-        public void ModifyPublication(Publication original, Publication modified)
+        public void Modify(Publication original, Publication modified)
         {
             if (PublicationExists(original))
             {
@@ -37,7 +37,7 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Publicacion");
         }
 
-        public Publication FetchPublication(Publication aPublication)
+        public Publication Fetch(Publication aPublication)
         {
             if (PublicationExists(aPublication)) return Publications[GetPublicationListIndex(aPublication)];
             else throw new ObjectDoesntExistException("Publicacion");

@@ -16,7 +16,7 @@ namespace BusinessLogic
 
         private void DeleteEntity(Entity entityToDelete, SystemData data)
         {
-            data.entitySaver.DeleteEntity(entityToDelete);
+            data.entitySaver.Delete(entityToDelete);
         }
     }
 }

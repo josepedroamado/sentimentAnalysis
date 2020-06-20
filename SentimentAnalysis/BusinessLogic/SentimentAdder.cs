@@ -29,7 +29,7 @@ namespace BusinessLogic
         }
         private void AddSentiment(Sentiment SentimentToAdd, SystemData Data)
         {
-            Data.sentimentSaver.AddSentiment(SentimentToAdd);
+            Data.sentimentSaver.Add(SentimentToAdd);
         }
     }
 }

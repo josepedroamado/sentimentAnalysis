@@ -43,7 +43,7 @@ namespace UserInterface
             object selectedId = comboBoxEntity.SelectedValue;
             string selected = selectedId.ToString();
             Guid selectedFinal = Guid.Parse(selected);
-            Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
+            Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selectedFinal);
             int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
             int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
             Boolean positive = radioButtonPositive.Checked;

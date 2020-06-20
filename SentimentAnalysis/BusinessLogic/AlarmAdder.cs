@@ -31,7 +31,7 @@ namespace BusinessLogic
 
         private void AddAlarm(SystemData data, Alarm alarmToSave)
         {
-            data.alarmSaver.AddAlarm(alarmToSave);
+            data.alarmSaver.Add(alarmToSave);
             AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(data);
             alarmAnalyzer.AnalyzeAlarm(alarmToSave);
         }

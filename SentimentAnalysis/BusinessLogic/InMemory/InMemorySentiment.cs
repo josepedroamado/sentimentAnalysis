@@ -15,19 +15,19 @@ namespace BusinessLogic
             this.Sentiments = new List<Sentiment>();
         }
 
-        public void AddSentiment(Sentiment aSentiment)
+        public void Add(Sentiment aSentiment)
         {
             if (!SentimentExists(aSentiment)) Sentiments.Add(aSentiment);
             else throw new ObjectAlreadyExistsException("Sentimiento");
         }
 
-        public void DeleteSentiment(Sentiment aSentiment)
+        public void Delete(Sentiment aSentiment)
         {
             if (SentimentExists(aSentiment)) Sentiments.Remove(aSentiment);
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
-        public void ModifySentiment(Sentiment original, Sentiment modified)
+        public void Modify(Sentiment original, Sentiment modified)
         {
             if (SentimentExists(original))
             {
@@ -36,13 +36,13 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
-        public Sentiment FetchSentiment(Sentiment aSentiment)
+        public Sentiment Fetch(Sentiment aSentiment)
         {
             if (SentimentExists(aSentiment)) return Sentiments[GetSentimentListIndex(aSentiment)];
             else throw new ObjectDoesntExistException("Sentimiento");
         }
 
-        public Sentiment FetchSentiment(Guid sentimentId)
+        public Sentiment Fetch(Guid sentimentId)
         {
 
             if (SentimentExists(sentimentId)) return Sentiments.Find(aSentiment => aSentiment.SentimentId.Equals(sentimentId));
@@ -54,12 +54,12 @@ namespace BusinessLogic
             return this.Sentiments;
         }
 
-        public List<Sentiment> FetchAllPositiveSentiments()
+        public List<Sentiment> FetchAllPositive()
         {
             return Sentiments.FindAll(sentiment => sentiment.GetType().Name == "PositiveSentiment");
         }
 
-        public List<Sentiment> FetchAllNegativeSentiments()
+        public List<Sentiment> FetchAllNegative()
         {
             return Sentiments.FindAll(sentiment => sentiment.GetType().Name == "NegativeSentiment");
         }

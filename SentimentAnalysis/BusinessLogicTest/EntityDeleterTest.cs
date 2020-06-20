@@ -34,7 +34,7 @@ namespace BusinessLogicTest
         {
             Entity entity = new Entity("aname1");
             EntityDeleter deleter = new EntityDeleter(Data, entity);
-            Data.entitySaver.FetchEntity(entity);
+            Data.entitySaver.Fetch(entity);
         }
     }
 }

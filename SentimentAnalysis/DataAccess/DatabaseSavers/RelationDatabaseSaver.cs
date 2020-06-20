@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public class RelationDatabaseSaver : IRelationSaver
     {
-        public void AddRelation(Relation aRelation)
+        public void Add(Relation aRelation)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -34,7 +32,7 @@ namespace DataAccess
             }
         }
 
-        public void DeleteRelation(Relation aRelation)
+        public void Delete(Relation aRelation)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -82,7 +80,7 @@ namespace DataAccess
             }
         }
 
-        public Relation FetchRelation(Relation aRelation)
+        public Relation Fetch(Relation aRelation)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -100,7 +98,7 @@ namespace DataAccess
             }
         }
 
-        public Relation FetchRelation(Guid publicationId)
+        public Relation Fetch(Guid publicationId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -118,7 +116,7 @@ namespace DataAccess
             }
         }
 
-        public void ModifyRelation(Relation original, Relation modified)
+        public void Modify(Relation original, Relation modified)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {

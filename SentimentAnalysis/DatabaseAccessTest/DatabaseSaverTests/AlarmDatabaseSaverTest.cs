@@ -15,6 +15,7 @@ namespace DatabaseAccessTest
         IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
+        IAuthorSaver authorSaver;
         Entity anEntity;
         Entity anotherEntity;
         TimeSpan timeFrame;
@@ -34,10 +35,12 @@ namespace DatabaseAccessTest
             entitySaver.Clear();
             sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
+            authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
             anEntity = new Entity("AlarmTest");
             anotherEntity = new Entity("AlarmTest2");
-            entitySaver.AddEntity(anEntity);
-            entitySaver.AddEntity(anotherEntity);
+            entitySaver.Add(anEntity);
+            entitySaver.Add(anotherEntity);
             timeFrame = new TimeSpan(1, 0, 0);
             aPositiveAlarm = new PositiveAlarm(anEntity, 1, timeFrame);
             aNegativeAlarm = new NegativeAlarm(anEntity, 1, timeFrame);
@@ -53,46 +56,45 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddNewPositiveAlarmTest()
         {
-            alarmSaver.AddAlarm(aPositiveAlarm);
-            alarmSaver.AddAlarm(aPositiveAlarm);
+            alarmSaver.Add(aPositiveAlarm);
+            alarmSaver.Add(aPositiveAlarm);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddNewNegativeAlarmTest()
         {
-            alarmSaver.AddAlarm(aNegativeAlarm);
-            alarmSaver.AddAlarm(aNegativeAlarm);
+            alarmSaver.Add(aNegativeAlarm);
+            alarmSaver.Add(aNegativeAlarm);
         }
 
         [TestMethod]
         public void DeleteExistingAlarmTest()
         {
-            alarmSaver.AddAlarm(aPositiveAlarm);
-            alarmSaver.DeleteAlarm(aPositiveAlarm);
+            alarmSaver.Add(aPositiveAlarm);
+            alarmSaver.Delete(aPositiveAlarm);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingAlarmTest()
         {
-            alarmSaver.DeleteAlarm(aPositiveAlarm);
-            Assert.IsNotNull(alarmSaver);
+            alarmSaver.Delete(aPositiveAlarm);
         }
 
         [TestMethod]
         public void FetchExistingNegativeAlarmTest()
         {
-            alarmSaver.AddAlarm(aNegativeAlarm);
-            Alarm fetchedAlarm = alarmSaver.FetchAlarm(aNegativeAlarm);
+            alarmSaver.Add(aNegativeAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(aNegativeAlarm);
             Assert.IsNotNull(fetchedAlarm);
         }
 
         [TestMethod]
         public void FetchExistingPositiveAlarmTest()
         {
-            alarmSaver.AddAlarm(aPositiveAlarm);
-            Alarm fetchedAlarm = alarmSaver.FetchAlarm(aPositiveAlarm);
+            alarmSaver.Add(aPositiveAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(aPositiveAlarm);
             Assert.IsNotNull(fetchedAlarm);
         }
 
@@ -100,16 +102,16 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingAlarmTest()
         {
-            Assert.IsNotNull(alarmSaver.FetchAlarm(aPositiveAlarm));
+            Assert.IsNotNull(alarmSaver.Fetch(aPositiveAlarm));
         }
 
         [TestMethod]
         public void ModifyExistingAlarmTest()
         {
-            alarmSaver.AddAlarm(aPositiveAlarm);
+            alarmSaver.Add(aPositiveAlarm);
             Alarm modifiedAlarm = new PositiveAlarm(anotherEntity, 6, timeFrame);
-            alarmSaver.ModifyAlarm(aPositiveAlarm, modifiedAlarm);
-            Alarm fetchedAlarm = alarmSaver.FetchAlarm(aPositiveAlarm);
+            alarmSaver.Modify(aPositiveAlarm, modifiedAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(aPositiveAlarm);
             Assert.AreEqual(fetchedAlarm.Active, modifiedAlarm.Active);
             Assert.AreEqual(fetchedAlarm.Entity, modifiedAlarm.Entity);
             Assert.AreEqual(fetchedAlarm.RequiredPostQuantity, modifiedAlarm.RequiredPostQuantity);
@@ -121,14 +123,14 @@ namespace DatabaseAccessTest
         public void ModifyNonExistingAlarmTest()
         {
             Alarm modifiedAlarm = new PositiveAlarm(anEntity, 5, timeFrame);
-            alarmSaver.ModifyAlarm(aPositiveAlarm, modifiedAlarm);
+            alarmSaver.Modify(aPositiveAlarm, modifiedAlarm);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            alarmSaver.AddAlarm(aPositiveAlarm);
-            alarmSaver.AddAlarm(aNegativeAlarm);
+            alarmSaver.Add(aPositiveAlarm);
+            alarmSaver.Add(aNegativeAlarm);
             Assert.AreEqual(2, alarmSaver.FetchAll().Count);
         }
     }

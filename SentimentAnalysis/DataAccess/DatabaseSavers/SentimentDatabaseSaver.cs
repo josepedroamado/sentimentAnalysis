@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public class SentimentDatabaseSaver : ISentimentSaver
     {
-        public void AddSentiment(Sentiment aSentiment)
+        public void Add(Sentiment aSentiment)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -28,7 +26,7 @@ namespace DataAccess
             }
         }
 
-        public void DeleteSentiment(Sentiment aSentiment)
+        public void Delete(Sentiment aSentiment)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -59,7 +57,7 @@ namespace DataAccess
             }
         }
 
-        public List<Sentiment> FetchAllNegativeSentiments()
+        public List<Sentiment> FetchAllNegative()
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -76,7 +74,7 @@ namespace DataAccess
             }
         }
 
-        public List<Sentiment> FetchAllPositiveSentiments()
+        public List<Sentiment> FetchAllPositive()
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -93,7 +91,7 @@ namespace DataAccess
             }
         }
 
-        public Sentiment FetchSentiment(Sentiment aSentiment)
+        public Sentiment Fetch(Sentiment aSentiment)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -110,7 +108,7 @@ namespace DataAccess
             }
         }
 
-        public Sentiment FetchSentiment(Guid sentimentId)
+        public Sentiment Fetch(Guid sentimentId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -127,7 +125,7 @@ namespace DataAccess
             }
         }
 
-        public void ModifySentiment(Sentiment original, Sentiment modified)
+        public void Modify(Sentiment original, Sentiment modified)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {

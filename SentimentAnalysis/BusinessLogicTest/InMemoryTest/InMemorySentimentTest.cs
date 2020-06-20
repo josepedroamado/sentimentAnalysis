@@ -31,39 +31,39 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddNewInMemorySentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void SentimentWithThatTextAlreadyExistsTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
             Sentiment sentiment = new PositiveSentiment("InMemorySentimentTest1");
-            sentimentSaver.AddSentiment(sentiment);
+            sentimentSaver.Add(sentiment);
         }
 
         [TestMethod]
         public void DeleteExistingSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.DeleteSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Delete(positiveSentiment);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingSentimentTest()
         {
-            sentimentSaver.DeleteSentiment(positiveSentiment);
+            sentimentSaver.Delete(positiveSentiment);
             Assert.IsNotNull(sentimentSaver);
         }
 
         [TestMethod]
         public void FetchExistingSentimentByObjectTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(positiveSentiment);
             Assert.IsNotNull(fetchedSentiment);
         }
 
@@ -71,14 +71,14 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingSentimentByObjectTest()
         {
-            Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment));
+            Assert.IsNotNull(sentimentSaver.Fetch(positiveSentiment));
         }
 
         [TestMethod]
         public void FetchExistingSentimentByIdTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment.SentimentId);
+            sentimentSaver.Add(positiveSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(positiveSentiment.SentimentId);
             Assert.IsNotNull(fetchedSentiment);
         }
 
@@ -86,16 +86,16 @@ namespace BusinessLogicTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingSentimentByIdTest()
         {
-            Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment.SentimentId));
+            Assert.IsNotNull(sentimentSaver.Fetch(positiveSentiment.SentimentId));
         }
 
         [TestMethod]
         public void ModifyExistingSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedInMemorySentimentTest");
-            sentimentSaver.ModifySentiment(positiveSentiment, modifiedSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment);
+            sentimentSaver.Modify(positiveSentiment, modifiedSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(positiveSentiment);
             Assert.AreEqual(fetchedSentiment.Text, modifiedSentiment.Text);
         }
 
@@ -104,14 +104,14 @@ namespace BusinessLogicTest
         public void ModifyNonExistingSentimentTest()
         {
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedInMemorySentimentTest");
-            sentimentSaver.ModifySentiment(positiveSentiment, modifiedSentiment);
+            sentimentSaver.Modify(positiveSentiment, modifiedSentiment);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
             List<Sentiment> expectedList = new List<Sentiment>();
             expectedList.Add(positiveSentiment);
             expectedList.Add(negativeSentiment);
@@ -122,22 +122,22 @@ namespace BusinessLogicTest
         [TestMethod]
         public void FetchAllPositiveSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
             List<Sentiment> expectedList = new List<Sentiment>();
             expectedList.Add(positiveSentiment);
-            List<Sentiment> actualList = sentimentSaver.FetchAllPositiveSentiments();
+            List<Sentiment> actualList = sentimentSaver.FetchAllPositive();
             Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
 
         [TestMethod]
         public void FetchAllNegativeSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
             List<Sentiment> expectedList = new List<Sentiment>();
             expectedList.Add(negativeSentiment);
-            List<Sentiment> actualList = sentimentSaver.FetchAllNegativeSentiments();
+            List<Sentiment> actualList = sentimentSaver.FetchAllNegative();
             Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }

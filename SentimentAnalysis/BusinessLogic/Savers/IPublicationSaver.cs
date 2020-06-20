@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogic
 {
     public interface IPublicationSaver
     {
-        void AddPublication(Publication aPublication);
+        void Add(Publication aPublication);
 
-        void DeletePublication(Publication aPublication);
+        void Delete(Publication aPublication);
 
-        void ModifyPublication(Publication original, Publication modified);
+        void Modify(Publication original, Publication modified);
 
-        Publication FetchPublication(Publication aPublication);
+        Publication Fetch(Publication aPublication);
 
         List<Publication> FetchAll();
 

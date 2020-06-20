@@ -16,6 +16,7 @@ namespace DatabaseAccessTest
         IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
+        IAuthorSaver authorSaver;
 
         [TestInitialize]
         public void TestInitialize()
@@ -32,6 +33,8 @@ namespace DatabaseAccessTest
             entitySaver.Clear();
             sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
+            authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
         }
 
         [TestMethod]
@@ -44,39 +47,39 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void EntityExistsTest()
         {
-            entitySaver.AddEntity(anEntity);
-            entitySaver.AddEntity(anEntity);
+            entitySaver.Add(anEntity);
+            entitySaver.Add(anEntity);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void EntityAlreadyExistsWithThatNameTest()
         {
-            entitySaver.AddEntity(anEntity);
+            entitySaver.Add(anEntity);
             Entity entity = new Entity("InMemoryEntityTest1");
-            entitySaver.AddEntity(entity);
+            entitySaver.Add(entity);
         }
 
         [TestMethod]
         public void DeleteExistingEntityTest()
         {
-            entitySaver.AddEntity(anEntity);
-            entitySaver.DeleteEntity(anEntity);
+            entitySaver.Add(anEntity);
+            entitySaver.Delete(anEntity);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingEntityTest()
         {
-            entitySaver.DeleteEntity(anEntity);
+            entitySaver.Delete(anEntity);
             Assert.IsNotNull(entitySaver);
         }
 
         [TestMethod]
         public void FetchExistingEntityByObjectTest()
         {
-            entitySaver.AddEntity(anEntity);
-            Entity fetchedEntity = entitySaver.FetchEntity(anEntity);
+            entitySaver.Add(anEntity);
+            Entity fetchedEntity = entitySaver.Fetch(anEntity);
             Assert.IsNotNull(fetchedEntity);
         }
 
@@ -84,14 +87,14 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingEntityByObjectTest()
         {
-            Assert.IsNotNull(entitySaver.FetchEntity(anEntity));
+            Assert.IsNotNull(entitySaver.Fetch(anEntity));
         }
 
         [TestMethod]
         public void FetchExistingEntityByIdTest()
         {
-            entitySaver.AddEntity(anEntity);
-            Entity fetchedEntity = entitySaver.FetchEntity(anEntity.EntityId);
+            entitySaver.Add(anEntity);
+            Entity fetchedEntity = entitySaver.Fetch(anEntity.EntityId);
             Assert.IsNotNull(fetchedEntity);
         }
 
@@ -99,16 +102,16 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingEntityByIdTest()
         {
-            Assert.IsNotNull(entitySaver.FetchEntity(anEntity.EntityId));
+            Assert.IsNotNull(entitySaver.Fetch(anEntity.EntityId));
         }
 
         [TestMethod]
         public void ModifyExistingEntityTest()
         {
-            entitySaver.AddEntity(anEntity);
+            entitySaver.Add(anEntity);
             Entity modifiedEntity = new Entity("InMemoryEntityTest2");
-            entitySaver.ModifyEntity(anEntity, modifiedEntity);
-            Entity fetchedEntity = entitySaver.FetchEntity(anEntity);
+            entitySaver.Modify(anEntity, modifiedEntity);
+            Entity fetchedEntity = entitySaver.Fetch(anEntity);
             Assert.AreEqual(fetchedEntity.Name, modifiedEntity.Name);
         }
 
@@ -117,13 +120,13 @@ namespace DatabaseAccessTest
         public void ModifyNonExistingEntityTest()
         {
             Entity modifiedEntity = new Entity("InMemoryEntityTest3");
-            entitySaver.ModifyEntity(anEntity, modifiedEntity);
+            entitySaver.Modify(anEntity, modifiedEntity);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            entitySaver.AddEntity(anEntity);
+            entitySaver.Add(anEntity);
             List<Entity> expectedList = new List<Entity>();
             expectedList.Add(anEntity);
             List<Entity> actualList = entitySaver.FetchAll();

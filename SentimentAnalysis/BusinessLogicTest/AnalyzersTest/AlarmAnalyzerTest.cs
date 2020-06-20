@@ -53,50 +53,50 @@ namespace BusinessLogicTest
 
             firstDateTime = DateTime.Now.Subtract(new TimeSpan(10, 0, 0, 0));
             firstPublication = new Publication("Me gusta Coca-cola", firstDateTime);
-            publicationSaver.AddPublication(firstPublication);
+            publicationSaver.Add(firstPublication);
 
             fourthDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0, 0));
             fourthPublication = new Publication("Amo Coca-cola", fourthDateTime);
-            publicationSaver.AddPublication(fourthPublication);
+            publicationSaver.Add(fourthPublication);
            
             secondDateTime = DateTime.Now.Subtract(new TimeSpan(8, 0, 0, 0));
             secondPublication = new Publication("Odio Pepsi", secondDateTime);
-            publicationSaver.AddPublication(secondPublication);
+            publicationSaver.Add(secondPublication);
 
             thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
             thirdPublication = new Publication("Me desagrada Claro", thirdDateTime);
-            publicationSaver.AddPublication(thirdPublication);       
+            publicationSaver.Add(thirdPublication);       
           
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
-            sentimentSaver.AddSentiment(firstPositiveSentiment);
+            sentimentSaver.Add(firstPositiveSentiment);
             secondPositiveSentiment = new PositiveSentiment("Amo");
-            sentimentSaver.AddSentiment(secondPositiveSentiment);
+            sentimentSaver.Add(secondPositiveSentiment);
             firstNegativeSentiment = new NegativeSentiment("Odio");
-            sentimentSaver.AddSentiment(firstNegativeSentiment);
+            sentimentSaver.Add(firstNegativeSentiment);
             secondNegativeSentiment = new NegativeSentiment("Me desagrada");
-            sentimentSaver.AddSentiment(secondNegativeSentiment);
+            sentimentSaver.Add(secondNegativeSentiment);
            
             firstEntity = new Entity("Coca-cola");
-            entitySaver.AddEntity(firstEntity);
+            entitySaver.Add(firstEntity);
             secondEntity = new Entity("Pepsi");
-            entitySaver.AddEntity(secondEntity);
+            entitySaver.Add(secondEntity);
             thirdEntity = new Entity("Claro");
-            entitySaver.AddEntity(thirdEntity);
+            entitySaver.Add(thirdEntity);
 
             publicationAnalyzer = new PublicationAnalyzer(sentimentSaver, entitySaver);
-            relationSaver.AddRelation(publicationAnalyzer.AnalyzePublication(firstPublication));
-            relationSaver.AddRelation(publicationAnalyzer.AnalyzePublication(secondPublication));
-            relationSaver.AddRelation(publicationAnalyzer.AnalyzePublication(thirdPublication));
-            relationSaver.AddRelation(publicationAnalyzer.AnalyzePublication(fourthPublication));
+            relationSaver.Add(publicationAnalyzer.AnalyzePublication(firstPublication));
+            relationSaver.Add(publicationAnalyzer.AnalyzePublication(secondPublication));
+            relationSaver.Add(publicationAnalyzer.AnalyzePublication(thirdPublication));
+            relationSaver.Add(publicationAnalyzer.AnalyzePublication(fourthPublication));
 
             alarmAnalyzer = new AlarmAnalyzer(data);
 
             positiveActiveAlarm = new PositiveAlarm(firstEntity, 2, new TimeSpan(11, 0, 0, 0));
             negativeActiveAlarm = new NegativeAlarm(secondEntity, 1, new TimeSpan(9, 0, 0, 0));
             negativeInactiveAlarm = new NegativeAlarm(thirdEntity, 4, new TimeSpan(5, 0, 0, 0));
-            alarmSaver.AddAlarm(positiveActiveAlarm);
-            alarmSaver.AddAlarm(negativeActiveAlarm);
-            alarmSaver.AddAlarm(negativeInactiveAlarm);
+            alarmSaver.Add(positiveActiveAlarm);
+            alarmSaver.Add(negativeActiveAlarm);
+            alarmSaver.Add(negativeInactiveAlarm);
         }
 
         [TestMethod]
@@ -130,9 +130,9 @@ namespace BusinessLogicTest
         public void AnalyzeAllAlarmsTest()
         {
             alarmAnalyzer.AnalyzeAllAlarms();
-            Assert.IsTrue(alarmSaver.FetchAlarm(positiveActiveAlarm).Active);
-            Assert.IsTrue(alarmSaver.FetchAlarm(negativeActiveAlarm).Active);
-            Assert.IsFalse(alarmSaver.FetchAlarm(negativeInactiveAlarm).Active);
+            Assert.IsTrue(alarmSaver.Fetch(positiveActiveAlarm).Active);
+            Assert.IsTrue(alarmSaver.Fetch(negativeActiveAlarm).Active);
+            Assert.IsFalse(alarmSaver.Fetch(negativeInactiveAlarm).Active);
         }
     }
 }

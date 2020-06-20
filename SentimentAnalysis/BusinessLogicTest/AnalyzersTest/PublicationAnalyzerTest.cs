@@ -38,19 +38,19 @@ namespace BusinessLogicTest
 
             sentimentSaver = new InMemorySentiment();
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
-            sentimentSaver.AddSentiment(firstPositiveSentiment);
+            sentimentSaver.Add(firstPositiveSentiment);
             secondPositiveSentiment = new PositiveSentiment("Amo");
-            sentimentSaver.AddSentiment(secondPositiveSentiment);
+            sentimentSaver.Add(secondPositiveSentiment);
             firstNegativeSentiment = new NegativeSentiment("Odio");
-            sentimentSaver.AddSentiment(firstNegativeSentiment);
+            sentimentSaver.Add(firstNegativeSentiment);
             secondNegativeSentiment = new NegativeSentiment("Me desagrada");
-            sentimentSaver.AddSentiment(secondNegativeSentiment);
+            sentimentSaver.Add(secondNegativeSentiment);
 
             entitySaver = new InMemoryEntity();
             firstEntity = new Entity("Coca-cola");
-            entitySaver.AddEntity(firstEntity);
+            entitySaver.Add(firstEntity);
             secondEntity = new Entity("Pepsi");
-            entitySaver.AddEntity(secondEntity);
+            entitySaver.Add(secondEntity);
 
             publicationAnalyzer = new PublicationAnalyzer(sentimentSaver, entitySaver);
         }

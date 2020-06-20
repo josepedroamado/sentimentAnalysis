@@ -34,7 +34,7 @@ namespace BusinessLogicTest
         {
             Sentiment sentiment = new PositiveSentiment("aname1");
             SentimentDeleter deleter = new SentimentDeleter(Data, sentiment);
-            Data.sentimentSaver.FetchSentiment(sentiment);
+            Data.sentimentSaver.Fetch(sentiment);
         }
         
     }

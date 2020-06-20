@@ -1,100 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public class Author
     {
-        public static int NextId = 1;
-
-        public int EntityId { get; set; }
+        public Guid AuthorId { get; set; }
 
         public String UserName { get; set; }
 
-        public String Name { get; set; }
+        public String FirstName { get; set; }
 
         public String LastName { get; set; }
 
         public DateTime BirthDate { get; set; }
 
-        private const int MAX_UserName_TEXT = 15;
+        private const int MIN_USERNAME_TEXT = 0;
+        private const int MAX_USERNAME_TEXT = 10;
+        private const int MIN_FIRSTNAME_TEXT = 0;
+        private const int MAX_FIRSTNAME_TEXT = 15;
+        private const int MIN_LASTNAME_TEXT = 0;
+        private const int MAX_LASTNAME_TEXT = 15;
+        private const int MIN_AGE = 13;
+        private const int MAX_AGE = 100;
 
-        private const int MAX_Name_TEXT = 10;
-
-        private const int MAX_LastName_TEXT = 10;
-
-        private const int Min_Name_TEXT = 0;
-
-        private const int Min_Age = 13;
-
-        private const int Max_Age = 100;
-
-        public Author(String aUserName, String aName, String aLastName, DateTime birthDate)
+        public Author(String aUserName, String aFirstName, String aLastName, DateTime aBirthDate)
         {
-            AssignId();
-            this.Name = SetText(aName, MAX_Name_TEXT, Min_Name_TEXT);
-            this.UserName = SetText(aUserName, MAX_UserName_TEXT, Min_Name_TEXT);
-            this.LastName = SetText(aLastName, MAX_LastName_TEXT, Min_Name_TEXT);
-            IsAgeOkay(birthDate);
-            this.BirthDate = birthDate;
+            AuthorId = Guid.NewGuid();
+            UserName = SetText(aUserName, MAX_USERNAME_TEXT, MIN_USERNAME_TEXT);
+            FirstName = SetText(aFirstName, MAX_FIRSTNAME_TEXT, MIN_FIRSTNAME_TEXT);
+            LastName = SetText(aLastName, MAX_LASTNAME_TEXT, MIN_LASTNAME_TEXT);
+            VerifyAge(aBirthDate);
+            BirthDate = aBirthDate;
         }
 
-        private String SetText(String aText, int max, int min)
+        private String SetText(String text, int max, int min)
         {
-            IsTextLenghtOkay(aText, max, min);
-            return aText;
+            VerifyTextLength(text, max, min);
+            return text;
         }
-        private bool IsTextLenghtOkay(String aName, int max, int Min)
+
+        private bool VerifyTextLength(String text, int max, int min)
         {
-            TooLong(aName, MAX_Name_TEXT);
-            TooShort(aName, Min_Name_TEXT);
+            VerifyTextTooLong(text, max);
+            VerifyTextTooShort(text, min);
             return true;
         }
-        private void TooLong(String aText, int aLength)
+
+        private void VerifyTextTooLong(String text, int length)
         {
-            if(aText.Length > aLength)
+            if(text.Length > length)
             {
-                throw new TextTooLongException(aLength);
+                throw new TextTooLongException(length);
             }
         }
-        private void TooShort(String aText, int aLength)
+        private void VerifyTextTooShort(String text, int length)
         {
-            if (aText.Length <= aLength)
+            if (text.Length <= length)
             {
-                throw new TextTooShortException(aLength);
+                throw new TextTooShortException(length);
             }
         }
 
-        public int GetNextId()
-        {
-            return NextId;
-        }
-
-        private void AssignId()
-        {
-            this.EntityId = NextId;
-            NextId++;
-        }
-        private void IsAgeOkay(DateTime birthdate)
+        private void VerifyAge(DateTime birthdate)
         {
             int age = GetAge(birthdate);
-            if(age < Min_Age)
+            if(age < MIN_AGE)
             {
-                throw new AgeTooShortException(Min_Age);
+                throw new AgeTooShortException(MIN_AGE);
             }
-            if (age > Max_Age)
+            if (age > MAX_AGE)
             {
-                throw new AgeTooLongException(Max_Age);
+                throw new AgeTooLongException(MAX_AGE);
             }
         }
+
         private int GetAge (DateTime birthdate)
         {
             var today = DateTime.Today;
             var age = today.Year - birthdate.Year;
-            if (birthdate.Date > today.AddYears(-age)) age--;
+            if (birthdate.Date > today.AddYears(-age))
+            {
+                age--;
+            }
             return age;
         }
     }

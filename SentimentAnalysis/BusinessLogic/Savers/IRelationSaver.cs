@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
     public interface IRelationSaver
     {
-        void AddRelation(Relation aRelation);
+        void Add(Relation aRelation);
 
-        void DeleteRelation(Relation aRelation);
+        void Delete(Relation aRelation);
 
-        void ModifyRelation(Relation original, Relation modified);
+        void Modify(Relation original, Relation modified);
 
-        Relation FetchRelation(Relation aRelation);
+        Relation Fetch(Relation aRelation);
 
-        Relation FetchRelation(Guid publicationId);
+        Relation Fetch(Guid publicationId);
 
         List<Relation> FetchAll();
 

@@ -15,6 +15,7 @@ namespace DatabaseAccessTest
         IEntitySaver entitySaver;
         ISentimentSaver sentimentSaver;
         IPublicationSaver publicationSaver;
+        IAuthorSaver authorSaver;
         Sentiment positiveSentiment;
         Sentiment negativeSentiment;
 
@@ -31,6 +32,8 @@ namespace DatabaseAccessTest
             entitySaver.Clear();
             sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
+            authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
             positiveSentiment = new PositiveSentiment("PositiveSentimentTest1");
             negativeSentiment = new NegativeSentiment("NegativeSentimentTest1");
         }
@@ -44,39 +47,39 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void AddNewSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectAlreadyExistsException))]
         public void SentimentWithThatTextAlreadyExistsTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
             Sentiment sentiment = new PositiveSentiment("PositiveSentimentTest1");
-            sentimentSaver.AddSentiment(sentiment);
+            sentimentSaver.Add(sentiment);
         }
 
         [TestMethod]
         public void DeleteExistingSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.DeleteSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Delete(positiveSentiment);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void DeleteNonExistingSentimentTest()
         {
-            sentimentSaver.DeleteSentiment(positiveSentiment);
+            sentimentSaver.Delete(positiveSentiment);
             Assert.IsNotNull(sentimentSaver);
         }
 
         [TestMethod]
         public void FetchExistingSentimentByObjectTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(positiveSentiment);
             Assert.IsNotNull(fetchedSentiment);
         }
 
@@ -84,15 +87,15 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingSentimentByObjectTest()
         {
-            Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment));
+            Assert.IsNotNull(sentimentSaver.Fetch(positiveSentiment));
         }
 
         [TestMethod]
         public void FetchExistingSentimentByIdTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(positiveSentiment);
-            Sentiment fetchedSentimentById = sentimentSaver.FetchSentiment(fetchedSentiment.SentimentId);
+            sentimentSaver.Add(positiveSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(positiveSentiment);
+            Sentiment fetchedSentimentById = sentimentSaver.Fetch(fetchedSentiment.SentimentId);
             Assert.IsNotNull(fetchedSentimentById);
         }
 
@@ -100,16 +103,16 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingSentimentByIdTest()
         {
-            Assert.IsNotNull(sentimentSaver.FetchSentiment(positiveSentiment.SentimentId));
+            Assert.IsNotNull(sentimentSaver.Fetch(positiveSentiment.SentimentId));
         }
 
         [TestMethod]
         public void ModifyExistingSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
+            sentimentSaver.Add(positiveSentiment);
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedPositiveSentimentTest");
-            sentimentSaver.ModifySentiment(positiveSentiment, modifiedSentiment);
-            Sentiment fetchedSentiment = sentimentSaver.FetchSentiment(modifiedSentiment);
+            sentimentSaver.Modify(positiveSentiment, modifiedSentiment);
+            Sentiment fetchedSentiment = sentimentSaver.Fetch(modifiedSentiment);
             Assert.AreEqual(fetchedSentiment.Text, modifiedSentiment.Text);
         }
 
@@ -118,31 +121,31 @@ namespace DatabaseAccessTest
         public void ModifyNonExistingSentimentTest()
         {
             Sentiment modifiedSentiment = new PositiveSentiment("ModifiedPositiveSentimentTest");
-            sentimentSaver.ModifySentiment(positiveSentiment, modifiedSentiment);
+            sentimentSaver.Modify(positiveSentiment, modifiedSentiment);
         }
 
         [TestMethod]
         public void FetchAllTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
             Assert.AreEqual(2, sentimentSaver.FetchAll().Count());
         }
 
         [TestMethod]
         public void FetchAllPositiveSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
-            Assert.AreEqual(1, sentimentSaver.FetchAllPositiveSentiments().Count());
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
+            Assert.AreEqual(1, sentimentSaver.FetchAllPositive().Count());
         }
 
         [TestMethod]
         public void FetchAllNegativeSentimentTest()
         {
-            sentimentSaver.AddSentiment(positiveSentiment);
-            sentimentSaver.AddSentiment(negativeSentiment);
-            Assert.AreEqual(1, sentimentSaver.FetchAllNegativeSentiments().Count());
+            sentimentSaver.Add(positiveSentiment);
+            sentimentSaver.Add(negativeSentiment);
+            Assert.AreEqual(1, sentimentSaver.FetchAllNegative().Count());
         }
     }
 }

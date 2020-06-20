@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public class EntityDatabaseSaver : IEntitySaver
     {
-        public void AddEntity(Entity anEntity)
+        public void Add(Entity anEntity)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -27,7 +25,7 @@ namespace DataAccess
             }
         }
 
-        public void DeleteEntity(Entity anEntity)
+        public void Delete(Entity anEntity)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -58,12 +56,12 @@ namespace DataAccess
             }
         }
 
-        public Entity FetchEntity(Entity anEntity)
+        public Entity Fetch(Entity anEntity)
         {
-            return FetchEntity(anEntity.EntityId);
+            return Fetch(anEntity.EntityId);
         }
 
-        public Entity FetchEntity(Guid entityId)
+        public Entity Fetch(Guid entityId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
@@ -80,7 +78,7 @@ namespace DataAccess
             }
         }
 
-        public void ModifyEntity(Entity original, Entity modified)
+        public void Modify(Entity original, Entity modified)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {

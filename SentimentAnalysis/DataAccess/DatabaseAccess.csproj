@@ -56,8 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmDatabaseSaver.cs" />
-    <Compile Include="AlarmDto.cs" />
+    <Compile Include="DTOs\AuthorDto.cs" />
+    <Compile Include="DatabaseSavers\AlarmDatabaseSaver.cs" />
+    <Compile Include="DTOs\Alarm\AlarmDto.cs" />
+    <Compile Include="DatabaseSavers\AuthorDatabaseSaver.cs" />
     <Compile Include="Migrations\202006192033563_Intial.cs" />
     <Compile Include="Migrations\202006192033563_Intial.designer.cs">
       <DependentUpon>202006192033563_Intial.cs</DependentUpon>
@@ -70,22 +72,30 @@
     <Compile Include="Migrations\202006192309135_alarm.designer.cs">
       <DependentUpon>202006192309135_alarm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006201641197_author.cs" />
+    <Compile Include="Migrations\202006201641197_author.designer.cs">
+      <DependentUpon>202006201641197_author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006201653096_authorv.1.cs" />
+    <Compile Include="Migrations\202006201653096_authorv.1.designer.cs">
+      <DependentUpon>202006201653096_authorv.1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="NegativeAlarmDto.cs" />
-    <Compile Include="NegativeSentimentDto.cs" />
+    <Compile Include="DTOs\Alarm\NegativeAlarmDto.cs" />
+    <Compile Include="DTOs\Sentiment\NegativeSentimentDto.cs" />
     <Compile Include="ObjectConversion.cs" />
-    <Compile Include="PositiveAlarmDto.cs" />
-    <Compile Include="PositiveSentimentDto.cs" />
-    <Compile Include="PublicationDatabaseSaver.cs" />
-    <Compile Include="PublicationDto.cs" />
-    <Compile Include="RelationDatabaseSaver.cs" />
-    <Compile Include="RelationDto.cs" />
+    <Compile Include="DTOs\Alarm\PositiveAlarmDto.cs" />
+    <Compile Include="DTOs\Sentiment\PositiveSentimentDto.cs" />
+    <Compile Include="DatabaseSavers\PublicationDatabaseSaver.cs" />
+    <Compile Include="DTOs\PublicationDto.cs" />
+    <Compile Include="DatabaseSavers\RelationDatabaseSaver.cs" />
+    <Compile Include="DTOs\RelationDto.cs" />
     <Compile Include="SentimentAnalysisContext.cs" />
-    <Compile Include="EntityDatabaseSaver.cs" />
-    <Compile Include="EntityDto.cs" />
+    <Compile Include="DatabaseSavers\EntityDatabaseSaver.cs" />
+    <Compile Include="DTOs\EntityDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SentimentDatabaseSaver.cs" />
-    <Compile Include="SentimentDto.cs" />
+    <Compile Include="DatabaseSavers\SentimentDatabaseSaver.cs" />
+    <Compile Include="DTOs\Sentiment\SentimentDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config.example">
@@ -111,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006192309135_alarm.resx">
       <DependentUpon>202006192309135_alarm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006201641197_author.resx">
+      <DependentUpon>202006201641197_author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006201653096_authorv.1.resx">
+      <DependentUpon>202006201653096_authorv.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

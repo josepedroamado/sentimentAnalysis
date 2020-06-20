@@ -15,19 +15,19 @@ namespace BusinessLogic
             this.Relations = new List<Relation>();
         }
 
-        public void AddRelation(Relation aRelation)
+        public void Add(Relation aRelation)
         {
             if (!RelationExists(aRelation)) Relations.Add(aRelation);
             else throw new ObjectAlreadyExistsException("Relacion");
         }
 
-        public void DeleteRelation(Relation aRelation)
+        public void Delete(Relation aRelation)
         {
             if (RelationExists(aRelation)) Relations.Remove(aRelation);
             else throw new ObjectDoesntExistException("Relacion");
         }
 
-        public void ModifyRelation(Relation original, Relation modified)
+        public void Modify(Relation original, Relation modified)
         {
             if (RelationExists(original))
             {
@@ -38,13 +38,13 @@ namespace BusinessLogic
             else throw new ObjectDoesntExistException("Relacion");
         }
 
-        public Relation FetchRelation(Relation aRelation)
+        public Relation Fetch(Relation aRelation)
         {
             if (RelationExists(aRelation)) return Relations[GetRelationListIndex(aRelation)];
             else throw new ObjectDoesntExistException("Relacion");
         }
 
-        public Relation FetchRelation(Guid publicationId)
+        public Relation Fetch(Guid publicationId)
         {
             if(this.Relations.Exists(relation => relation.Publication.PublicationId.Equals(publicationId)))
             {

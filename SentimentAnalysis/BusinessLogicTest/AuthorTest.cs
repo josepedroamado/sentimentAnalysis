@@ -30,7 +30,7 @@ namespace BusinessLogicTest
         public void AuthorIsNameOkTest()
         {
             Author actualAuthor = new Author("James45", "James", "Doe", ofAgeDate);
-            Assert.AreEqual(actualAuthor.Name, "James");
+            Assert.AreEqual(actualAuthor.FirstName, "James");
         }
         [TestMethod]
         public void AuthorIsLastNameOkTest()

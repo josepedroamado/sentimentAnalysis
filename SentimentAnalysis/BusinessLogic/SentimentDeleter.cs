@@ -14,7 +14,7 @@ namespace BusinessLogic
         }
         private void DeleteEntity(Sentiment sentimentToDelete, SystemData data)
         {
-            data.sentimentSaver.DeleteSentiment(sentimentToDelete);
+            data.sentimentSaver.Delete(sentimentToDelete);
         }
     }
 }
