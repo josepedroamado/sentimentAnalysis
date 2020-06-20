@@ -46,5 +46,15 @@ namespace UserInterface
             //    UpdateEntities();
             //}
         }
+
+        private void BtnModifyAuthor_Click(object sender, EventArgs e)
+        {
+            if (listBoxAuthors.SelectedValue != null)
+            {
+                object selectedId = listBoxAuthors.SelectedValue;
+                Guid selected = (Guid)selectedId;
+                mainWin.SwitchToModifyAuthorView(selected);
+            }
+        }
     }
 }
