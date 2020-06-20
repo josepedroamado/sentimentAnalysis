@@ -84,5 +84,17 @@ namespace BusinessLogic
             }
             return age;
         }
+
+        public override bool Equals(object obj)
+        {
+            Author author = obj as Author;
+            if (author != null) return this.UserName == author.UserName;
+            else return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.UserName.GetHashCode();
+        }
     }
 }

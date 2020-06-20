@@ -8,6 +8,7 @@ namespace BusinessLogicTest
     public class PublicationAdderTest
     {
         SystemData Data;
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
@@ -18,13 +19,16 @@ namespace BusinessLogicTest
             IRelationSaver relationSaver = new InMemoryRelation();
             IAlarmSaver alarmSaver = new InMemoryAlarm();
             Data = new SystemData(EntitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
+
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
         }
 
         [TestMethod]
         public void NewPublicationAdderTest()
         {
             DateTime date = new DateTime();
-            PublicationAdder adder = new PublicationAdder(Data, "text", date);
+            PublicationAdder adder = new PublicationAdder(Data, "text", date, anAuthor);
             Assert.IsNotNull(adder);
         }
 
@@ -32,7 +36,7 @@ namespace BusinessLogicTest
         public void AddPublicationTest()
         {
             DateTime date = new DateTime();
-            PublicationAdder adder = new PublicationAdder(Data, "sometext", date);
+            PublicationAdder adder = new PublicationAdder(Data, "sometext", date, anAuthor);
             Assert.AreEqual(1, Data.publicationSaver.FetchAll().Count);
         }
     }

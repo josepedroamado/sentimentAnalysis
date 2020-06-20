@@ -17,8 +17,11 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            Author anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+
             aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("Phrase", aDate);
+            aPublication = new Publication("Phrase", aDate, anAuthor);
             aSentiment = new PositiveSentiment("Positive");
             anEntity = new Entity("Entity");
             aRelation = new Relation(aPublication, aSentiment, anEntity);

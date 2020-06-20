@@ -51,21 +51,24 @@ namespace BusinessLogicTest
             alarmSaver = new InMemoryAlarm();
             data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
 
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            Author anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+
             firstDateTime = DateTime.Now.Subtract(new TimeSpan(10, 0, 0, 0));
-            firstPublication = new Publication("Me gusta Coca-cola", firstDateTime);
-            publicationSaver.Add(firstPublication);
+            firstPublication = new Publication("Me gusta Coca-cola", firstDateTime, anAuthor);
+            publicationSaver.AddPublication(firstPublication);
 
             fourthDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0, 0));
-            fourthPublication = new Publication("Amo Coca-cola", fourthDateTime);
-            publicationSaver.Add(fourthPublication);
+            fourthPublication = new Publication("Amo Coca-cola", fourthDateTime, anAuthor);
+            publicationSaver.AddPublication(fourthPublication);
            
             secondDateTime = DateTime.Now.Subtract(new TimeSpan(8, 0, 0, 0));
-            secondPublication = new Publication("Odio Pepsi", secondDateTime);
-            publicationSaver.Add(secondPublication);
+            secondPublication = new Publication("Odio Pepsi", secondDateTime, anAuthor);
+            publicationSaver.AddPublication(secondPublication);
 
             thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
-            thirdPublication = new Publication("Me desagrada Claro", thirdDateTime);
-            publicationSaver.Add(thirdPublication);       
+            thirdPublication = new Publication("Me desagrada Claro", thirdDateTime, anAuthor);
+            publicationSaver.AddPublication(thirdPublication);
           
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
             sentimentSaver.Add(firstPositiveSentiment);

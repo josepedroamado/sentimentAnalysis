@@ -24,17 +24,22 @@ namespace BusinessLogicTest
         Entity firstEntity;
         Entity secondEntity;
 
-        PublicationAnalyzer publicationAnalyzer;        
+        PublicationAnalyzer publicationAnalyzer;
+
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+
             firstDateTime = new DateTime(2020, 01, 01);
-            firstPublication = new Publication("Me gusta Coca-cola", firstDateTime);
+            firstPublication = new Publication("Me gusta Coca-cola", firstDateTime, anAuthor);
             secondDateTime = new DateTime(2020, 01, 11);
-            secondPublication = new Publication("Odio Pepsi", secondDateTime);
+            secondPublication = new Publication("Odio Pepsi", secondDateTime, anAuthor);
             thirdDateTime = new DateTime(2020, 01, 21);
-            thirdPublication = new Publication("No me banco a Claro", thirdDateTime);
+            thirdPublication = new Publication("No me banco a Claro", thirdDateTime, anAuthor);
 
             sentimentSaver = new InMemorySentiment();
             firstPositiveSentiment = new PositiveSentiment("Me gusta");

@@ -14,14 +14,17 @@ namespace BusinessLogic
 
         public DateTime Date { get; set; }
 
-        private const int MIN_BODY_TEXT = 2;
-        private const int MAX_BODY_TEXT = 100;
+        public Author Author { get; set; }
 
-        public Publication(string aPhrase, DateTime aDate)
+        private const int MAX_BODY_TEXT = 100;   
+        private const int MIN_BODY_TEXT = 2;
+
+        public Publication(string aPhrase, DateTime aDate, Author anAuthor)
         {
             PublicationId = Guid.NewGuid();
             SetPhrase(aPhrase);
             Date = aDate;
+            Author = anAuthor;
         }
 
         public override bool Equals(object obj)

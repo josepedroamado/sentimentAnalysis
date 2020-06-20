@@ -20,18 +20,22 @@ namespace BusinessLogicTest
         Relation firstRelation;
         Relation secondRelation;
         Relation thirdRelation;
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+
             relationSaver = new InMemoryRelation();
             relationSaver.Clear();
             firstEntity = new Entity("RelatonInMemoryTest");
             secondEntity = new Entity("Entity2");
             aDate = new DateTime(2020, 01, 01);
-            firstPublication = new Publication("RelationInMemoryPhrase", aDate);
-            secondPublication = new Publication("Second Publication", aDate);
-            thirdPublication = new Publication("Third Publication", aDate);
+            firstPublication = new Publication("RelationInMemoryPhrase", aDate, anAuthor);
+            secondPublication = new Publication("Second Publication", aDate, anAuthor);
+            thirdPublication = new Publication("Third Publication", aDate, anAuthor);
             aSentiment = new PositiveSentiment("RelationInMemoryText");
             firstRelation = new Relation(firstPublication, aSentiment, firstEntity);
             secondRelation = new Relation(secondPublication, aSentiment, secondEntity);
@@ -103,7 +107,7 @@ namespace BusinessLogicTest
             relationSaver.Add(firstRelation);
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
+            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate, anAuthor);
             Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.Modify(firstRelation, modifiedRelation);
@@ -119,7 +123,7 @@ namespace BusinessLogicTest
         {
             Entity anotherEntity = new Entity("RelatonInMemoryTest2");
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate);
+            Publication anotherPublication = new Publication("RelationInMemoryPhrase2", aDate, anAuthor);
             Sentiment anotherSentiment = new PositiveSentiment("RelationInMemoryText2");
             Relation modifiedRelation = new Relation(anotherPublication, anotherSentiment, anotherEntity);
             relationSaver.Modify(firstRelation, modifiedRelation);
