@@ -83,6 +83,18 @@
     <Compile Include="Alarms\AddAlarmView.Designer.cs">
       <DependentUpon>AddAlarmView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Authors\AddAuthorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Authors\AddAuthorView.Designer.cs">
+      <DependentUpon>AddAuthorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Authors\AuthorsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Authors\AuthorsView.Designer.cs">
+      <DependentUpon>AuthorsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\AddEntityView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -141,6 +153,12 @@
     </Compile>
     <EmbeddedResource Include="Alarms\AddAlarmView.resx">
       <DependentUpon>AddAlarmView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authors\AddAuthorView.resx">
+      <DependentUpon>AddAuthorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authors\AuthorsView.resx">
+      <DependentUpon>AuthorsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entity\AddEntityView.resx">
       <DependentUpon>AddEntityView.cs</DependentUpon>
