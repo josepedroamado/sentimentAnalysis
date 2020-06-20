@@ -8,9 +8,9 @@ namespace BusinessLogic
 {
     public class PublicationAdder
     {
-        public PublicationAdder(SystemData Data, String Phrase, DateTime Date)
+        public PublicationAdder(SystemData Data, String Phrase, DateTime Date, Author author)
         {
-            Publication publicationToAdd = new Publication(Phrase, Date);
+            Publication publicationToAdd = new Publication(Phrase, Date, author);
             AddPublicationToAdd(publicationToAdd, Data);
         }
 

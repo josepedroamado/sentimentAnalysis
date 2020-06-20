@@ -56,19 +56,19 @@ namespace BusinessLogicTest
 
             firstDateTime = DateTime.Now.Subtract(new TimeSpan(10, 0, 0, 0));
             firstPublication = new Publication("Me gusta Coca-cola", firstDateTime, anAuthor);
-            publicationSaver.AddPublication(firstPublication);
+            publicationSaver.Add(firstPublication);
 
             fourthDateTime = DateTime.Now.Subtract(new TimeSpan(3, 0, 0, 0));
             fourthPublication = new Publication("Amo Coca-cola", fourthDateTime, anAuthor);
-            publicationSaver.AddPublication(fourthPublication);
+            publicationSaver.Add(fourthPublication);
            
             secondDateTime = DateTime.Now.Subtract(new TimeSpan(8, 0, 0, 0));
             secondPublication = new Publication("Odio Pepsi", secondDateTime, anAuthor);
-            publicationSaver.AddPublication(secondPublication);
+            publicationSaver.Add(secondPublication);
 
             thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
             thirdPublication = new Publication("Me desagrada Claro", thirdDateTime, anAuthor);
-            publicationSaver.AddPublication(thirdPublication);
+            publicationSaver.Add(thirdPublication);
           
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
             sentimentSaver.Add(firstPositiveSentiment);
