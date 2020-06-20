@@ -12,13 +12,17 @@ namespace BusinessLogicTest
         IPublicationSaver publicationSaver;
         DateTime aDate;
         Publication aPublication;
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
         {
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+
             publicationSaver = new InMemoryPublication();
             aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("PublicationInMemoryPhrase", aDate);
+            aPublication = new Publication("PublicationInMemoryPhrase", aDate, anAuthor);
         }
 
         [TestMethod]
@@ -70,7 +74,7 @@ namespace BusinessLogicTest
         {
             publicationSaver.AddPublication(aPublication);
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase2", aDate);
+            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase2", aDate, anAuthor);
             publicationSaver.ModifyPublication(aPublication, modifiedPublication);
             Publication fetchedPublication = publicationSaver.FetchPublication(aPublication);
             Assert.AreEqual(fetchedPublication.Date, modifiedPublication.Date);
@@ -82,7 +86,7 @@ namespace BusinessLogicTest
         public void ModifyNonExistingPublicationTest()
         {
             DateTime anotherDate = new DateTime(2022, 01, 01);
-            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase3", aDate);
+            Publication modifiedPublication = new Publication("PublicationInMemoryPhrase3", aDate, anAuthor);
             publicationSaver.ModifyPublication(aPublication, modifiedPublication);
         }
 

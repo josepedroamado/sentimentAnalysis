@@ -26,7 +26,7 @@ namespace UserInterface
             {
                 String text = textBoxPhraseText.Text;
                 DateTime date = dateTimePickerPhraseDate.Value.Date;
-                PublicationAdder adder = new PublicationAdder(mainWin.Data, text, date);
+//                PublicationAdder adder = new PublicationAdder(mainWin.Data, text, date);
                 this.textBoxPhraseText.Clear();
             }
             catch(TextTooShortException)

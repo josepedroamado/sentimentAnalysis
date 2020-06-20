@@ -9,6 +9,7 @@ namespace BusinessLogicTest
     {
         SystemData data;
         RelationAdder relationAdder;
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
@@ -20,6 +21,9 @@ namespace BusinessLogicTest
             IAlarmSaver alarmSaver = new InMemoryAlarm();
             data = new SystemData(EntitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver);
             relationAdder = new RelationAdder(data);
+
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
         }
 
         [TestMethod]
@@ -31,7 +35,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddRelationTest()
         {
-            Publication publication = new Publication("Amo Coca-Cola.", DateTime.Now);
+            Publication publication = new Publication("Amo Coca-Cola.", DateTime.Now, anAuthor);
             relationAdder.AddRelation(publication);
             Assert.AreEqual(publication, data.relationSaver.FetchAll()[0].Publication);
         }
