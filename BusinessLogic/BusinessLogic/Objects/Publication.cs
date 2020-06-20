@@ -16,15 +16,18 @@ namespace BusinessLogic
 
         public DateTime Date { get; set; }
 
+        public Author Author { get; set; }
+
         private const int MAX_BODY_TEXT = 100;
 
         private const int MIN_BODY_TEXT = 2;
 
-        public Publication(string aPhrase, DateTime aDate)
+        public Publication(string aPhrase, DateTime aDate, Author anAuthor)
         {
             AssignId();
             SetPhrase(aPhrase);
             this.Date = aDate;
+            this.Author = anAuthor;
         }
 
         public override bool Equals(object obj)

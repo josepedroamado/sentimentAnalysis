@@ -10,7 +10,7 @@ namespace BusinessLogic
     {
         public static int NextId = 1;
 
-        public int EntityId { get; set; }
+        public int AuthorId { get; set; }
 
         public String UserName { get; set; }
 
@@ -75,7 +75,7 @@ namespace BusinessLogic
 
         private void AssignId()
         {
-            this.EntityId = NextId;
+            this.AuthorId = NextId;
             NextId++;
         }
         private void IsAgeOkay(DateTime birthdate)
@@ -96,6 +96,17 @@ namespace BusinessLogic
             var age = today.Year - birthdate.Year;
             if (birthdate.Date > today.AddYears(-age)) age--;
             return age;
+        }
+        public override bool Equals(object obj)
+        {
+            Author author = obj as Author;
+            if (author != null) return this.UserName == author.UserName;
+            else return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.UserName.GetHashCode();
         }
     }
 }

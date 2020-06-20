@@ -10,12 +10,15 @@ namespace BusinessLogicTest
         DateTime aDate;
         Publication aPublication;
         Publication anotherPublication;
+        Author anAuthor;
 
         [TestInitialize]
         public void TestInitialize()
         {
             aDate = new DateTime(2020, 01, 01);
-            aPublication = new Publication("PublicationTest1", aDate);
+            DateTime ofAgeDate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+            aPublication = new Publication("PublicationTest1", aDate, anAuthor);
         }
         [TestMethod]
         public void NewPublicationTest()
@@ -39,8 +42,13 @@ namespace BusinessLogicTest
         public void NewPublicationIdTest()
         {
             int nextId = aPublication.GetNextId();
-            anotherPublication = new Publication("PublicationTest2", aDate);
+            anotherPublication = new Publication("PublicationTest2", aDate, anAuthor);
             Assert.AreEqual(anotherPublication.PublicationId, nextId);
+        }
+        [TestMethod]
+        public void NewPublicationAuthorTest()
+        {
+            Assert.AreEqual(anAuthor, aPublication.Author);
         }
 
         [TestMethod]
@@ -52,7 +60,7 @@ namespace BusinessLogicTest
         [TestMethod]
         public void EqualsFalsePublicationTest()
         {
-            anotherPublication = new Publication("PublicationTest3", aDate);
+            anotherPublication = new Publication("PublicationTest3", aDate, anAuthor);
             Assert.AreNotEqual(aPublication, anotherPublication);
         }
 
@@ -65,14 +73,14 @@ namespace BusinessLogicTest
         [TestMethod]
         public void PublicationUnequalHashCodeTest()
         {
-            anotherPublication = new Publication("PublicationTest4", aDate);
+            anotherPublication = new Publication("PublicationTest4", aDate, anAuthor);
             Assert.AreNotEqual(aPublication.GetHashCode(), anotherPublication.GetHashCode());
         }
 
         [TestMethod]
         public void PublicationEqualHashCodeTest()
         {
-            anotherPublication = new Publication("PublicationTest5", aDate);
+            anotherPublication = new Publication("PublicationTest5", aDate, anAuthor);
             anotherPublication.PublicationId = aPublication.PublicationId;
             Assert.AreEqual(aPublication.GetHashCode(), anotherPublication.GetHashCode());
         }
@@ -81,7 +89,7 @@ namespace BusinessLogicTest
         public void PublicationTextToShortTest()
         {
             String name = "";
-            Publication aPublication = new Publication(name, aDate);
+            Publication aPublication = new Publication(name, aDate, anAuthor);
         }
         [TestMethod]
         [ExpectedException(typeof(TextTooLongException))]
@@ -92,7 +100,7 @@ namespace BusinessLogicTest
             {
                 name = name + "assdda";
             }
-            Publication aPublication = new Publication(name,aDate);
+            Publication aPublication = new Publication(name,aDate, anAuthor);
         }
     }
 }
