@@ -50,6 +50,20 @@ namespace UserInterface
             panelView.Controls.Add(view);
         }
 
+        public void SwitchToAuthorsView()
+        {
+            panelView.Controls.Clear();
+            AuthorsView view = new AuthorsView(this);
+            panelView.Controls.Add(view);
+        }
+
+        public void SwitchToAddAuthorView()
+        {
+            panelView.Controls.Clear();
+            AddAuthorView view = new AddAuthorView(this);
+            panelView.Controls.Add(view);
+        }
+
         public void SwitchToAlarmsView()
         {
             panelView.Controls.Clear();
@@ -109,6 +123,11 @@ namespace UserInterface
             panelView.Controls.Clear();
             HomeView view = new HomeView();
             panelView.Controls.Add(view);
+        }
+
+        private void BtnAuthorsView_Click(object sender, EventArgs e)
+        {
+            SwitchToAuthorsView();
         }
     }
 }
