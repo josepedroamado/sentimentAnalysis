@@ -101,6 +101,12 @@
     <Compile Include="Entity\AddEntityView.Designer.cs">
       <DependentUpon>AddEntityView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyAuthorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModifyAuthorView.Designer.cs">
+      <DependentUpon>ModifyAuthorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sentiment\AddSentimentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Entity\AddEntityView.resx">
       <DependentUpon>AddEntityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyAuthorView.resx">
+      <DependentUpon>ModifyAuthorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sentiment\AddSentimentView.resx">
       <DependentUpon>AddSentimentView.cs</DependentUpon>

@@ -32,6 +32,7 @@
             this.btnDeleteAuthor = new System.Windows.Forms.Button();
             this.btnAddAuthor = new System.Windows.Forms.Button();
             this.listBoxAuthors = new System.Windows.Forms.ListBox();
+            this.btnModifyAuthor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelAuthorsTitle
@@ -69,7 +70,7 @@
             this.btnAddAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnAddAuthor.Location = new System.Drawing.Point(722, 28);
+            this.btnAddAuthor.Location = new System.Drawing.Point(595, 31);
             this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddAuthor.Name = "btnAddAuthor";
             this.btnAddAuthor.Size = new System.Drawing.Size(138, 55);
@@ -92,11 +93,28 @@
             this.listBoxAuthors.Size = new System.Drawing.Size(997, 600);
             this.listBoxAuthors.TabIndex = 8;
             // 
+            // btnModifyAuthor
+            // 
+            this.btnModifyAuthor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnModifyAuthor.FlatAppearance.BorderSize = 0;
+            this.btnModifyAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModifyAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModifyAuthor.ForeColor = System.Drawing.Color.White;
+            this.btnModifyAuthor.Location = new System.Drawing.Point(745, 30);
+            this.btnModifyAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnModifyAuthor.Name = "btnModifyAuthor";
+            this.btnModifyAuthor.Size = new System.Drawing.Size(138, 55);
+            this.btnModifyAuthor.TabIndex = 12;
+            this.btnModifyAuthor.Text = "Modificar";
+            this.btnModifyAuthor.UseVisualStyleBackColor = false;
+            this.btnModifyAuthor.Click += new System.EventHandler(this.BtnModifyAuthor_Click);
+            // 
             // AuthorsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.btnModifyAuthor);
             this.Controls.Add(this.labelAuthorsTitle);
             this.Controls.Add(this.btnDeleteAuthor);
             this.Controls.Add(this.btnAddAuthor);
@@ -114,5 +132,6 @@
         private System.Windows.Forms.Button btnDeleteAuthor;
         private System.Windows.Forms.Button btnAddAuthor;
         private System.Windows.Forms.ListBox listBoxAuthors;
+        private System.Windows.Forms.Button btnModifyAuthor;
     }
 }
