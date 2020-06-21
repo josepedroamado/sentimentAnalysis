@@ -18,8 +18,11 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            dateTimePickerAuthorBirthdate.MinDate = DateTimePicker.MinDateTime;
+            dateTimePickerAuthorBirthdate.MaxDate = DateTime.Today.AddYears(-13);
+            dateTimePickerAuthorBirthdate.MinDate = DateTime.Today.AddYears(-100);
             //load UI with author data
-            
+
         }
 
         private void BtnCancelModifyAuthor_Click(object sender, EventArgs e)
