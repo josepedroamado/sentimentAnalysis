@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
@@ -26,12 +24,8 @@ namespace BusinessLogic
 
         public void AnalyzeAlarm(Alarm alarm)
         {
-            String alarmType = alarm.GetType().Name;
-            String sentimentType = "NeutralSentiment";
-            if (alarmType == "PositiveAlarm") sentimentType = "PositiveSentiment";
-            if (alarmType == "NegativeAlarm") sentimentType = "NegativeSentiment";
-            TimeSpan timeframe = new TimeSpan(alarm.TimeFrame);
-            DateTime lowerDateBoundary = DateTime.Now - timeframe;
+            string sentimentType = AnalyzeSentimentType(alarm);
+            DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
             List<Relation> relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
             if (relations.Count() >= alarm.RequiredPostQuantity)
             {
@@ -40,7 +34,36 @@ namespace BusinessLogic
             else alarm.Active = false;
         }
 
-        public List<Relation> GetMatchingRelations(Alarm alarm, String sentimentType, DateTime lowerDateBoundary)
+        private string AnalyzeSentimentType(Alarm alarm)
+        {
+            string alarmType = alarm.GetType().Name;
+            string sentimentType = "NeutralSentiment";
+            if (alarmType == "PositiveAlarm") sentimentType = "PositiveSentiment";
+            if (alarmType == "NegativeAlarm") sentimentType = "NegativeSentiment";
+            if (alarmType == "AuthorAlarm")
+            {
+                AuthorAlarm theAlarm = (AuthorAlarm)alarm;
+                if (theAlarm.PhrasesType == "Positivas")
+                {
+                    sentimentType = "PositiveSentiment";
+                }
+                else
+                {
+                    sentimentType = "NegativeSentiment";
+                }
+
+            }
+            return sentimentType;
+        }
+
+        private DateTime CalculateLowerDateBoundary(Alarm alarm)
+        {
+            TimeSpan timeframe = new TimeSpan(alarm.TimeFrame);
+            DateTime lowerDateBoundary = DateTime.Now - timeframe;
+            return lowerDateBoundary;
+        }
+
+        private List<Relation> GetMatchingRelations(Alarm alarm, string sentimentType, DateTime lowerDateBoundary)
         {
             return data.relationSaver.FetchAll().FindAll(
                     relation => (relation.Entity == alarm.Entity &&
@@ -48,6 +71,24 @@ namespace BusinessLogic
                                  relation.Publication.Date >= lowerDateBoundary
                                 )
                 );
+        }
+
+        public List<Author> GetMatchingRelationsAuthors(Alarm alarm)
+        {
+            string sentimentType = AnalyzeSentimentType(alarm);
+            DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
+            List<Relation> relations = data.relationSaver.FetchAll().FindAll(
+                    relation => (relation.Entity == alarm.Entity &&
+                                 relation.Sentiment.GetType().Name == sentimentType &&
+                                 relation.Publication.Date >= lowerDateBoundary
+                                )
+                );
+            List<Author> authors = new List<Author>();
+            foreach (Relation relation in relations)
+            {
+                authors.Add(relation.Publication.Author);
+            }
+            return authors;
         }
     }
 }

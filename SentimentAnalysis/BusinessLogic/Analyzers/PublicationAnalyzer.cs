@@ -20,7 +20,7 @@ namespace BusinessLogic
         public Entity AnalyzeEntity(Publication publication)
         {
             List<Entity> entities = entitySaver.FetchAll();
-            String phrase = publication.Phrase;
+            string phrase = publication.Phrase;
             foreach (Entity entity in entities)
             {
                 if (phrase.ToLower().Contains(entity.Name.ToLower())) return entity;
@@ -31,7 +31,7 @@ namespace BusinessLogic
         public Sentiment AnalyzeSentiment(Publication publication)
         {
             List<Sentiment> sentiments = sentimentSaver.FetchAll();
-            String phrase = publication.Phrase.ToLower();
+            string phrase = publication.Phrase.ToLower();
             foreach (Sentiment sentiment in sentiments)
             {
                 if (phrase.Contains(sentiment.Text.ToLower())) return sentiment;
