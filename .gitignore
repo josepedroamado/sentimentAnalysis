@@ -8,6 +8,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Project Specific
+SentimentAnalysis/UserInterface/App.config
+SentimentAnalysis/DataAccess/App.config
+SentimentAnalysis/DataAccess/Migrations/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -509,3 +514,11 @@ MigrationBackup/
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
 # End of https://www.gitignore.io/api/csharp,visualstudio
+<<<<<<< HEAD
+SentimentAnalysis/DatabaseAccessTest/App.config
+=======
+SentimentAnalysis/DataAccess/Migrations/
+SentimentAnalysis/DataAccess/App.config
+SentimentAnalysis/DatabaseAccessTest/App.config
+SentimentAnalysis/UserInterface/App.config
+>>>>>>> origin/develop
