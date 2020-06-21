@@ -10,7 +10,8 @@ namespace DatabaseAccessTest
     {
         SystemData data;
         bool hours;
-        bool positive;
+        string alarmType;
+        string phrasesType;
         int alarmTime;
         int numberOfPosts;
         Entity entity;
@@ -36,7 +37,8 @@ namespace DatabaseAccessTest
             data.entitySaver.Add(entity);
             numberOfPosts = 2;
             alarmTime = 3;
-            positive = true;
+            alarmType = "Positiva";
+            phrasesType = "Positivas";
             hours = true;
             adder = new AlarmAdder(data);
         }
@@ -50,21 +52,21 @@ namespace DatabaseAccessTest
         [TestMethod]
         public void AddAlarmEntityTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, positive, hours);
+            adder.Add(entity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
 
         [TestMethod]
         public void AddAlarmInDaysTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, positive, false);
+            adder.Add(entity, numberOfPosts, alarmTime, alarmType, false, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
 
         [TestMethod]
         public void AddNegativeAlarmTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, false, hours);
+            adder.Add(entity, numberOfPosts, alarmTime, "Negativa", hours, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
     }

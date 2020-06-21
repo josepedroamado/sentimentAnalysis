@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Alarm\AuthorAlarmDto.cs" />
     <Compile Include="DTOs\AuthorDto.cs" />
     <Compile Include="DatabaseSavers\AlarmDatabaseSaver.cs" />
     <Compile Include="DTOs\Alarm\AlarmDto.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\202006202310005_Initial.cs" />
     <Compile Include="Migrations\202006202310005_Initial.designer.cs">
       <DependentUpon>202006202310005_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006211531300_authorAlarm.cs" />
+    <Compile Include="Migrations\202006211531300_authorAlarm.designer.cs">
+      <DependentUpon>202006211531300_authorAlarm.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DTOs\Alarm\NegativeAlarmDto.cs" />
@@ -99,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006202310005_Initial.resx">
       <DependentUpon>202006202310005_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211531300_authorAlarm.resx">
+      <DependentUpon>202006211531300_authorAlarm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

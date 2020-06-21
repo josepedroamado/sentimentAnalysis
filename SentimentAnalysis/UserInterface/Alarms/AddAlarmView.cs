@@ -20,6 +20,7 @@ namespace UserInterface
             InitializeComponent();
             mainWin = main;
             LoadObjects();
+            SetPhrasesUIVisible(false);
         }
 
         private void BtnCancelAddAlarm_Click(object sender, EventArgs e)
@@ -29,29 +30,65 @@ namespace UserInterface
         private void LoadObjects()
         {
             comboBoxEntity.DataSource = null;
-
             comboBoxEntity.Items.Clear();
-
             comboBoxEntity.DataSource = mainWin.Data.entitySaver.FetchAll();
-
             comboBoxEntity.DisplayMember = "Name";
-
             comboBoxEntity.ValueMember = "EntityId";
+
+            comboBoxAlarmType.DataSource = null;
+            comboBoxAlarmType.Items.Clear();
+            comboBoxAlarmType.DisplayMember = "Text";
+            comboBoxAlarmType.ValueMember = "Value";
+            var alarmTypes = new[] {
+                new { Text = "Positiva", Value = "Positiva" },
+                new { Text = "Negativa", Value = "Negativa" },
+                new { Text = "Autores", Value = "Autores" }
+            };
+            comboBoxAlarmType.DataSource = alarmTypes;
+
+            comboBoxPhrasesType.DataSource = null;
+            comboBoxPhrasesType.Items.Clear();
+            comboBoxPhrasesType.DisplayMember = "Text";
+            comboBoxPhrasesType.ValueMember = "Value";
+            var phraseTypes = new[] {
+                new { Text = "Positivas", Value = "Positivas" },
+                new { Text = "Negativas", Value = "Negativas" }
+            };
+            comboBoxPhrasesType.DataSource = phraseTypes;
         }
         private void BtnAddAlarm_Click(object sender, EventArgs e)
         {
-            object selectedId = comboBoxEntity.SelectedValue;
-            string selected = selectedId.ToString();
-            Guid selectedFinal = Guid.Parse(selected);
-            Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selectedFinal);
+            Guid selected = (Guid)comboBoxEntity.SelectedValue;
+            Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selected);
             int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
             int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
-            Boolean positive = radioButtonPositive.Checked;
-            Boolean hours = radioButtonHours.Checked;
+            string alarmType = (string)comboBoxAlarmType.SelectedValue;
+            string phrasesType = (string)comboBoxPhrasesType.SelectedValue;
+            bool hours = radioButtonHours.Checked;
             AlarmAdder adder = new AlarmAdder(mainWin.Data);
-            adder.Add(SelectedEntity, numberOfPosts, alarmTime, positive, hours);
+            adder.Add(SelectedEntity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
             mainWin.SwitchToAlarmsView();
         }
 
+        private void ComboBoxAlarmType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string alarmType = (string)comboBoxAlarmType.SelectedValue;
+            if (alarmType == "Autores")
+            {
+                SetPhrasesUIVisible(true);
+            }
+            else
+            {
+                SetPhrasesUIVisible(false);
+            }
+        }
+
+        private void SetPhrasesUIVisible(bool active)
+        {
+            comboBoxPhrasesType.Visible = active;
+            comboBoxPhrasesType.Enabled = active;
+            labelPhrasesType.Visible = active;
+            labelPhrasesType.Enabled = active;
+        }
     }
 }

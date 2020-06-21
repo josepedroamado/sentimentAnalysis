@@ -11,17 +11,21 @@ namespace BusinessLogic
             this.data = data;
         }
 
-        public void Add(Entity selectedEntity, int numberOfPosts, int alarmTime, bool positive, bool hours)
+        public void Add(Entity selectedEntity, int numberOfPosts, int alarmTime, string alarmType, bool hours, string phrasesType)
         {
             TimeSpan timeSpan = SetTimeSpan(alarmTime, hours);
             Alarm newAlarm;
-            if (positive)
+            if (alarmType == "Positiva")
             {
                 newAlarm = new PositiveAlarm(selectedEntity, numberOfPosts, timeSpan);
             }
-            else
+            else if(alarmType == "Negativa")
             {
                 newAlarm = new NegativeAlarm(selectedEntity, numberOfPosts, timeSpan);
+            }
+            else
+            {
+                newAlarm = new AuthorAlarm(selectedEntity, numberOfPosts, timeSpan, phrasesType);
             }
 
             data.alarmSaver.Add(newAlarm);

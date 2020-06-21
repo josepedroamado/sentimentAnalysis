@@ -18,6 +18,9 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            dateTimePickerAuthorBirthdate.MinDate = DateTimePicker.MinDateTime;
+            dateTimePickerAuthorBirthdate.MaxDate = DateTime.Today.AddYears(-13);
+            dateTimePickerAuthorBirthdate.MinDate = DateTime.Today.AddYears(-100);
         }
 
         private void BtnAddAuthor_Click(object sender, EventArgs e)

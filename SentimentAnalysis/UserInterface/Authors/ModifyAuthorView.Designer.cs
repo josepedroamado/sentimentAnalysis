@@ -48,8 +48,6 @@
             this.dateTimePickerAuthorBirthdate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerAuthorBirthdate.Location = new System.Drawing.Point(334, 364);
             this.dateTimePickerAuthorBirthdate.Margin = new System.Windows.Forms.Padding(6);
-            this.dateTimePickerAuthorBirthdate.MaxDate = new System.DateTime(2107, 12, 31, 0, 0, 0, 0);
-            this.dateTimePickerAuthorBirthdate.MinDate = new System.DateTime(2007, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerAuthorBirthdate.Name = "dateTimePickerAuthorBirthdate";
             this.dateTimePickerAuthorBirthdate.Size = new System.Drawing.Size(547, 33);
             this.dateTimePickerAuthorBirthdate.TabIndex = 42;
