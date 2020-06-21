@@ -41,10 +41,13 @@ namespace BusinessLogic
             {
                 tipo = "Negativa";
             }
-            
-            String toReturn = String.Format("Entidad: " + Entity.Name + ", Cantidad de posts: " 
-                + RequiredPostQuantity + " de tipo " + tipo + " en " + new TimeSpan(TimeFrame).Hours 
-                + " horas, Estado: " + status);
+            TimeSpan timeFrame = new TimeSpan(TimeFrame);
+            String toReturn = String.Format(
+                "Entidad: " + Entity.Name
+                + ", Cantidad de posts: " 
+                + RequiredPostQuantity + " de tipo " + tipo 
+                + " en " + timeFrame.Days + " días " 
+                + timeFrame.Hours + " horas, Estado: " + status);
             return toReturn;
         }
     }

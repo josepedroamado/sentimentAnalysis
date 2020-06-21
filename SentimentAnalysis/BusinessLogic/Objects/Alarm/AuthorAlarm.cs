@@ -4,7 +4,7 @@ namespace BusinessLogic
 {
     public class AuthorAlarm: Alarm
     {
-        private string phrasesType;
+        public string PhrasesType { get; set; }
         
         public AuthorAlarm(Entity aEntity, int aRequiredPostQuantity, TimeSpan aTimeSpan, string aPhrasesType)
         {
@@ -13,7 +13,7 @@ namespace BusinessLogic
             RequiredPostQuantity = aRequiredPostQuantity;
             TimeFrame = aTimeSpan.Ticks;
             Active = false;
-            phrasesType = aPhrasesType;
+            PhrasesType = aPhrasesType;
         }
 
         public override string ToString()
@@ -23,12 +23,12 @@ namespace BusinessLogic
             {
                 status = "Activa";
             }
-
+            TimeSpan timeFrame = new TimeSpan(TimeFrame);
             String toReturn = String.Format(
                 "Entidad: " + Entity.Name
-                + ", Cantidad de posts " + phrasesType + ": " + RequiredPostQuantity 
-                + " de tipo Autores en " + new TimeSpan(TimeFrame).Hours
-                + " horas, Estado: " + status);
+                + ", Cantidad de posts " + PhrasesType + ": " + RequiredPostQuantity 
+                + " de tipo Autores en " + timeFrame.Days + " días "
+                + timeFrame.Hours + " horas, Estado: " + status);
             return toReturn;
         }
     }

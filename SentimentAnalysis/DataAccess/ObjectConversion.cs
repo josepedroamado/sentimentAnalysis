@@ -132,6 +132,14 @@ namespace DataAccess
             {
                 convertedAlarm = new PositiveAlarmDto();
             }
+            else if (anAlarm.GetType().Name.Equals("AuthorAlarm"))
+            {
+                AuthorAlarm authorAlarm = (AuthorAlarm)anAlarm;
+                convertedAlarm = new AuthorAlarmDto()
+                {
+                    PhrasesType = authorAlarm.PhrasesType
+                };
+            }
             else
             {
                 convertedAlarm = new NegativeAlarmDto();
@@ -149,11 +157,23 @@ namespace DataAccess
             Alarm convertedAlarm;
             if (anAlarm.GetType().Name.Equals("PositiveAlarmDto"))
             {
-                convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, new TimeSpan(anAlarm.TimeFrame));
+                convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity),
+                                                   anAlarm.RequiredPostQuantity,
+                                                   new TimeSpan(anAlarm.TimeFrame));
+            }
+            else if (anAlarm.GetType().Name.Equals("AuthorAlarmDto"))
+            {
+                AuthorAlarmDto authorAlarm = (AuthorAlarmDto)anAlarm;
+                convertedAlarm = new AuthorAlarm(ConvertToObject(anAlarm.Entity),
+                                                 anAlarm.RequiredPostQuantity,
+                                                 new TimeSpan(anAlarm.TimeFrame),
+                                                 authorAlarm.PhrasesType);
             }
             else
             {
-                convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity), anAlarm.RequiredPostQuantity, new TimeSpan(anAlarm.TimeFrame));
+                convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity),
+                                                   anAlarm.RequiredPostQuantity,
+                                                   new TimeSpan(anAlarm.TimeFrame));
             }
             convertedAlarm.AlarmId = anAlarm.AlarmDtoId;
             return convertedAlarm;
