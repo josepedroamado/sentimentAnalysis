@@ -83,10 +83,5 @@ namespace BusinessLogicTest
             secondAlarm.AlarmId = alarm.AlarmId;
             Assert.AreEqual(alarm.GetHashCode(), secondAlarm.GetHashCode());
         }
-        [TestMethod]
-        public void ToStringTest()
-        {
-            Assert.AreEqual("Entidad: NegativeAlarmEntity1, Cantidad de posts: 1 de tipo Negativa en 1 horas, Estado: Inactiva", alarm.ToString());
-        }
     }
 }

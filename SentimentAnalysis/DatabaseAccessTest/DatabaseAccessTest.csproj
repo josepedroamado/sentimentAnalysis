@@ -68,6 +68,7 @@
     <Compile Include="DatabaseSaverTests\RelationDatabaseSaverTest.cs" />
     <Compile Include="DatabaseSaverTests\SentimentDatabaseSaverTest.cs" />
     <Compile Include="PublicationAdderTest.cs" />
+    <Compile Include="RelationAdderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config.example" />

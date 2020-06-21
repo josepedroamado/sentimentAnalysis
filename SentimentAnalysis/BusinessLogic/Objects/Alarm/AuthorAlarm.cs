@@ -15,21 +15,5 @@ namespace BusinessLogic
             Active = false;
             PhrasesType = aPhrasesType;
         }
-
-        public override string ToString()
-        {
-            string status = "Inactiva";
-            if (Active)
-            {
-                status = "Activa";
-            }
-            TimeSpan timeFrame = new TimeSpan(TimeFrame);
-            String toReturn = String.Format(
-                "Entidad: " + Entity.Name
-                + ", Cantidad de posts " + PhrasesType + ": " + RequiredPostQuantity 
-                + " de tipo Autores en " + timeFrame.Days + " días "
-                + timeFrame.Hours + " horas, Estado: " + status);
-            return toReturn;
-        }
     }
 }
