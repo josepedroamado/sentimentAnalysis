@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AlarmAdderTest.cs" />
     <Compile Include="AnalyzersTest\AlarmAnalyzerTest.cs" />
+    <Compile Include="ObjectsTest\AlarmTest\AuthorAlarmTest.cs" />
     <Compile Include="ObjectsTest\AuthorTest.cs" />
     <Compile Include="EntityAdderTest.cs" />
     <Compile Include="EntityDeleterTest.cs" />

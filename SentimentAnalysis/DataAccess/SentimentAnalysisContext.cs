@@ -68,6 +68,12 @@ namespace DataAccess
             modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.AlarmDtoId).HasColumnName("AlarmId");
             modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.RequiredPostQuantity).IsRequired();
             modelBuilder.Entity<NegativeAlarmDto>().Property(p => p.TimeFrame).IsRequired();
+
+            modelBuilder.Entity<AuthorAlarmDto>().ToTable("AuthorAlarms");
+            modelBuilder.Entity<AuthorAlarmDto>().Property(p => p.AlarmDtoId).HasColumnName("AlarmId");
+            modelBuilder.Entity<AuthorAlarmDto>().Property(p => p.RequiredPostQuantity).IsRequired();
+            modelBuilder.Entity<AuthorAlarmDto>().Property(p => p.TimeFrame).IsRequired();
+            modelBuilder.Entity<AuthorAlarmDto>().Property(p => p.PhrasesType).IsRequired();
         }
     }
 }

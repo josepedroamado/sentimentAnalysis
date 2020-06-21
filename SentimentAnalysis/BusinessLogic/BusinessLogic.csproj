@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\TooYoungException.cs" />
     <Compile Include="AlarmAdder.cs" />
     <Compile Include="Analyzers\AlarmAnalyzer.cs" />
+    <Compile Include="Objects\Alarm\AuthorAlarm.cs" />
     <Compile Include="Savers\IAuthorSaver.cs" />
     <Compile Include="Objects\Author.cs" />
     <Compile Include="EntityDeleter.cs" />

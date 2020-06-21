@@ -8,7 +8,8 @@ namespace BusinessLogicTest
     {
         SystemData data;
         bool hours;
-        bool positive;
+        string alarmType;
+        string phrasesType;
         int alarmTime;
         int numberOfPosts;
         Entity entity;
@@ -26,8 +27,9 @@ namespace BusinessLogicTest
             entity = new Entity ("aText");
             numberOfPosts = 2;
             alarmTime = 3;
-            positive = true;
+            alarmType = "Positiva";
             hours = true;
+            phrasesType = "Positivas";
             adder = new AlarmAdder(data);
         }
 
@@ -40,21 +42,21 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddAlarmTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, positive, hours);
+            adder.Add(entity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
 
         [TestMethod]
         public void AddAlarmInDaysTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, positive, false);
+            adder.Add(entity, numberOfPosts, alarmTime, alarmType, false, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
 
         [TestMethod]
         public void AddNegativeAlarmTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, false, hours);
+            adder.Add(entity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
     }
