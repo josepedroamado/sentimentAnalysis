@@ -159,7 +159,10 @@ namespace DataAccess
             {
                 convertedAlarm = new PositiveAlarm(ConvertToObject(anAlarm.Entity),
                                                    anAlarm.RequiredPostQuantity,
-                                                   new TimeSpan(anAlarm.TimeFrame));
+                                                   new TimeSpan(anAlarm.TimeFrame))
+                {
+                    Active = anAlarm.Active
+                };
             }
             else if (anAlarm.GetType().Name.Equals("AuthorAlarmDto"))
             {
@@ -167,13 +170,19 @@ namespace DataAccess
                 convertedAlarm = new AuthorAlarm(ConvertToObject(anAlarm.Entity),
                                                  anAlarm.RequiredPostQuantity,
                                                  new TimeSpan(anAlarm.TimeFrame),
-                                                 authorAlarm.PhrasesType);
+                                                 authorAlarm.PhrasesType)
+                {
+                    Active = anAlarm.Active
+                };
             }
             else
             {
                 convertedAlarm = new NegativeAlarm(ConvertToObject(anAlarm.Entity),
                                                    anAlarm.RequiredPostQuantity,
-                                                   new TimeSpan(anAlarm.TimeFrame));
+                                                   new TimeSpan(anAlarm.TimeFrame))
+                {
+                    Active = anAlarm.Active
+                };
             }
             convertedAlarm.AlarmId = anAlarm.AlarmDtoId;
             return convertedAlarm;

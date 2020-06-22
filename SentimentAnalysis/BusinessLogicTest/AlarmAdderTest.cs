@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessLogic;
+﻿using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
@@ -18,18 +19,28 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
-            IEntitySaver entitySaver = new InMemoryEntity();
-            ISentimentSaver sentimentSaver = new InMemorySentiment();
-            IPublicationSaver publicationSaver = new InMemoryPublication();
-            IRelationSaver relationSaver = new InMemoryRelation();
-            IAlarmSaver alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
-            entity = new Entity ("aText");
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
+
+            entity = new Entity("aText");
+            data.entitySaver.Add(entity);
             numberOfPosts = 2;
             alarmTime = 3;
             alarmType = "Positiva";
-            hours = true;
             phrasesType = "Positivas";
+            hours = true;
             adder = new AlarmAdder(data);
         }
 
@@ -40,7 +51,7 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
-        public void AddAlarmTest()
+        public void AddAlarmEntityTest()
         {
             adder.Add(entity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
@@ -56,7 +67,21 @@ namespace BusinessLogicTest
         [TestMethod]
         public void AddNegativeAlarmTest()
         {
-            adder.Add(entity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
+            adder.Add(entity, numberOfPosts, alarmTime, "Negativa", hours, phrasesType);
+            Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
+        }
+
+        [TestMethod]
+        public void AddAuthorPositiveAlarmTest()
+        {
+            adder.Add(entity, numberOfPosts, alarmTime, "Autor", hours, phrasesType);
+            Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
+        }
+
+        [TestMethod]
+        public void AddAuthorNegativeAlarmTest()
+        {
+            adder.Add(entity, numberOfPosts, alarmTime, "Autor", hours, "Negativas");
             Assert.AreEqual(1, data.alarmSaver.FetchAll().Count);
         }
     }

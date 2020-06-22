@@ -1,5 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusinessLogic;
+﻿using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
@@ -12,12 +13,20 @@ namespace BusinessLogicTest
         [TestInitialize]
         public void TestInitialize()
         {
-            IEntitySaver entitySaver = new InMemoryEntity();
-            ISentimentSaver sentimentSaver = new InMemorySentiment();
-            IPublicationSaver publicationSaver = new InMemoryPublication();
-            IRelationSaver relationSaver = new InMemoryRelation();
-            IAlarmSaver alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
             adder = new EntityAdder(data);
         }
 
@@ -33,7 +42,7 @@ namespace BusinessLogicTest
         {
             adder.Add("sometext");
             Entity expectedEntity = new Entity("sometext");
-            Assert.AreEqual(expectedEntity.Name , data.entitySaver.FetchAll()[0].Name);
+            Assert.AreEqual(expectedEntity.Name, data.entitySaver.FetchAll()[0].Name);
         }
     }
 }

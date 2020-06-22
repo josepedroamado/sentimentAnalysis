@@ -26,12 +26,17 @@ namespace BusinessLogic
         {
             string sentimentType = AnalyzeSentimentType(alarm);
             DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
-            List<Relation> relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
-            if (relations.Count() >= alarm.RequiredPostQuantity)
+            int relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
+            if (relations >= alarm.RequiredPostQuantity)
             {
                 alarm.Active = true;
+                data.alarmSaver.Modify(alarm, alarm);
             }
-            else alarm.Active = false;
+            else
+            {
+                alarm.Active = false;
+                data.alarmSaver.Modify(alarm, alarm);
+            }
         }
 
         private string AnalyzeSentimentType(Alarm alarm)
@@ -63,14 +68,14 @@ namespace BusinessLogic
             return lowerDateBoundary;
         }
 
-        private List<Relation> GetMatchingRelations(Alarm alarm, string sentimentType, DateTime lowerDateBoundary)
+        private int GetMatchingRelations(Alarm alarm, string sentimentType, DateTime lowerDateBoundary)
         {
             return data.relationSaver.FetchAll().FindAll(
-                    relation => (relation.Entity == alarm.Entity &&
+                    relation => (relation.Entity.Equals(alarm.Entity) &&
                                  relation.Sentiment.GetType().Name == sentimentType &&
                                  relation.Publication.Date >= lowerDateBoundary
                                 )
-                );
+                ).Count;
         }
 
         public List<Author> GetMatchingRelationsAuthors(Alarm alarm)
@@ -78,7 +83,7 @@ namespace BusinessLogic
             string sentimentType = AnalyzeSentimentType(alarm);
             DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
             List<Relation> relations = data.relationSaver.FetchAll().FindAll(
-                    relation => (relation.Entity == alarm.Entity &&
+                    relation => (relation.Entity.Equals(alarm.Entity) &&
                                  relation.Sentiment.GetType().Name == sentimentType &&
                                  relation.Publication.Date >= lowerDateBoundary
                                 )
@@ -86,7 +91,10 @@ namespace BusinessLogic
             List<Author> authors = new List<Author>();
             foreach (Relation relation in relations)
             {
-                authors.Add(relation.Publication.Author);
+                if (!authors.Contains(relation.Publication.Author))
+                {
+                    authors.Add(relation.Publication.Author);
+                }
             }
             return authors;
         }

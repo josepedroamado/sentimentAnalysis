@@ -21,6 +21,7 @@ namespace DatabaseAccessTest
         TimeSpan timeFrame;
         Alarm aPositiveAlarm;
         Alarm aNegativeAlarm;
+        Alarm anAuthorAlarm;
 
         [TestInitialize]
         public void TestInitialize()
@@ -44,6 +45,7 @@ namespace DatabaseAccessTest
             timeFrame = new TimeSpan(1, 0, 0);
             aPositiveAlarm = new PositiveAlarm(anEntity, 1, timeFrame);
             aNegativeAlarm = new NegativeAlarm(anEntity, 1, timeFrame);
+            anAuthorAlarm = new AuthorAlarm(anEntity, 1, timeFrame, "Positivas");
         }
 
         [TestMethod]
@@ -66,6 +68,14 @@ namespace DatabaseAccessTest
         {
             alarmSaver.Add(aNegativeAlarm);
             alarmSaver.Add(aNegativeAlarm);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectAlreadyExistsException))]
+        public void AddNewAuthorAlarmTest()
+        {
+            alarmSaver.Add(anAuthorAlarm);
+            alarmSaver.Add(anAuthorAlarm);
         }
 
         [TestMethod]
@@ -95,6 +105,15 @@ namespace DatabaseAccessTest
         {
             alarmSaver.Add(aPositiveAlarm);
             Alarm fetchedAlarm = alarmSaver.Fetch(aPositiveAlarm);
+            Assert.IsNotNull(fetchedAlarm);
+        }
+
+
+        [TestMethod]
+        public void FetchExistingAuthorAlarmTest()
+        {
+            alarmSaver.Add(anAuthorAlarm);
+            Alarm fetchedAlarm = alarmSaver.Fetch(anAuthorAlarm);
             Assert.IsNotNull(fetchedAlarm);
         }
 

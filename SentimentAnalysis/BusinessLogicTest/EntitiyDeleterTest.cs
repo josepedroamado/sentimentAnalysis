@@ -2,7 +2,7 @@
 using DataAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DatabaseAccessTest
+namespace BusinessLogicTest
 {
     [TestClass]
     public class EntitiyDeleterTest
@@ -13,18 +13,19 @@ namespace DatabaseAccessTest
         [TestInitialize]
         public void TestInitialize()
         {
-            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
-            authorSaver.Clear();
-            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
-            alarmSaver.Clear();
             IRelationSaver relationSaver = new RelationDatabaseSaver();
             relationSaver.Clear();
             IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
             publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
             IEntitySaver entitySaver = new EntityDatabaseSaver();
             entitySaver.Clear();
             ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
             sentimentSaver.Clear();
+
             data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
             EntityAdder adder = new EntityAdder(data);
             adder.Add("name");

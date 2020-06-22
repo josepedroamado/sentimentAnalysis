@@ -17,7 +17,7 @@ namespace BusinessLogic
 
         List<Relation> FetchAll();
 
-        List<Publication> FetchAllPublicationsOfEntity(Guid entityId);
+        List<Publication> FetchAllPublicationsOfEntity(Guid entityId);     
 
         void Clear();
     }

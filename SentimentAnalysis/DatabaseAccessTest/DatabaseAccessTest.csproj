@@ -57,18 +57,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmAdderTest.cs" />
     <Compile Include="DatabaseSaverTests\AuthorDatabaseSaverTest.cs" />
     <Compile Include="DatabaseSaverTests\AlarmDatabaseSaverTest.cs" />
     <Compile Include="DatabaseSaverTests\EntityDatabaseSaverTest.cs" />
-    <Compile Include="EntitiyDeleterTest.cs" />
-    <Compile Include="EntityAdderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseSaverTests\PublicationDatabaseSaverTest.cs" />
     <Compile Include="DatabaseSaverTests\RelationDatabaseSaverTest.cs" />
     <Compile Include="DatabaseSaverTests\SentimentDatabaseSaverTest.cs" />
-    <Compile Include="PublicationAdderTest.cs" />
-    <Compile Include="RelationAdderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config.example" />
