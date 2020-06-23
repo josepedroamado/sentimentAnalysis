@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -24,9 +25,9 @@ namespace UserInterface
         {
             listBoxAuthors.DataSource = null;
             listBoxAuthors.Items.Clear();
-            //listBoxAuthors.DataSource = mainWin.Data.entitySaver.FetchAll();
-            //listBoxAuthors.DisplayMember = "Name";
-            //listBoxAuthors.ValueMember = "EntityId";
+            listBoxAuthors.DataSource = mainWin.Data.authorSaver.FetchAll();
+            listBoxAuthors.DisplayMember = "UserName";
+            listBoxAuthors.ValueMember = "AuthorId";
         }
 
         private void BtnAddAuthor_Click(object sender, EventArgs e)
@@ -36,15 +37,14 @@ namespace UserInterface
 
         private void BtnDeleteAuthor_Click(object sender, EventArgs e)
         {
-            //if (listBoxEntities.SelectedValue != null)
-            //{
-            //    object selectedId = listBoxEntities.SelectedValue;
-            //    string selected = selectedId.ToString();
-            //    int selectedFinal = Int32.Parse(selected);
-            //    Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
-            //    EntityDeleter deleter = new EntityDeleter(mainWin.Data, SelectedEntity);
-            //    UpdateEntities();
-            //}
+            if (listBoxAuthors.SelectedValue != null)
+            {
+                Guid selected = (Guid)listBoxAuthors.SelectedValue;
+                Author selectedAuthor = mainWin.Data.authorSaver.Fetch(selected);
+                AuthorDeleter deleter = new AuthorDeleter(mainWin.Data);
+                deleter.Delete(selectedAuthor);
+                UpdateAuthors();
+            }
         }
 
         private void BtnModifyAuthor_Click(object sender, EventArgs e)

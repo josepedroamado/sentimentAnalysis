@@ -31,7 +31,20 @@ namespace UserInterface
             String lastName = textBoxAuthorLastname.Text;
             DateTime dateOfBirth = dateTimePickerAuthorBirthdate.Value;
             AuthorAdder adder = new AuthorAdder(mainWin.Data);
-            adder.Add(name, lastName, username, dateOfBirth);
+            try
+            {
+                adder.Add(name, lastName, username, dateOfBirth);
+            }
+            catch(TextTooShortException)
+            {
+                labelAuthorException.Visible = true;
+                labelAuthorException.Text = "Error: El texto del nombre/apellido o usuario debe ser mas largo";
+            }
+            catch (TextTooLongException)
+            {
+                labelAuthorException.Visible = true;
+                labelAuthorException.Text = "Error: El texto del nombre/apellido o usuario debe ser mas corto";
+            }
             //capturar excepciones
         }
 
