@@ -19,14 +19,15 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
-            LoadBox();
+            LoadTable();
         }
 
         private void BtnAddAlarm_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToAddAlarmView();
         }
-        private void LoadBox()
+
+        private void LoadTable()
         {
             DataTable table = new DataTable();
             table.Columns.Add("Activa", typeof(string));
