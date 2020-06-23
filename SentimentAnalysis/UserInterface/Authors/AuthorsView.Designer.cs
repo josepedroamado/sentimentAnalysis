@@ -46,10 +46,10 @@
             this.labelAuthorsTitle.AutoSize = true;
             this.labelAuthorsTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorsTitle.ForeColor = System.Drawing.Color.White;
-            this.labelAuthorsTitle.Location = new System.Drawing.Point(119, 41);
-            this.labelAuthorsTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorsTitle.Location = new System.Drawing.Point(130, 43);
+            this.labelAuthorsTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorsTitle.Name = "labelAuthorsTitle";
-            this.labelAuthorsTitle.Size = new System.Drawing.Size(98, 31);
+            this.labelAuthorsTitle.Size = new System.Drawing.Size(110, 36);
             this.labelAuthorsTitle.TabIndex = 11;
             this.labelAuthorsTitle.Text = "Autores";
             // 
@@ -60,10 +60,10 @@
             this.btnDeleteAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteAuthor.Location = new System.Drawing.Point(895, 30);
-            this.btnDeleteAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDeleteAuthor.Location = new System.Drawing.Point(976, 31);
+            this.btnDeleteAuthor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnDeleteAuthor.Name = "btnDeleteAuthor";
-            this.btnDeleteAuthor.Size = new System.Drawing.Size(138, 55);
+            this.btnDeleteAuthor.Size = new System.Drawing.Size(151, 57);
             this.btnDeleteAuthor.TabIndex = 10;
             this.btnDeleteAuthor.Text = "Eliminar";
             this.btnDeleteAuthor.UseVisualStyleBackColor = false;
@@ -76,10 +76,10 @@
             this.btnAddAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnAddAuthor.Location = new System.Drawing.Point(595, 31);
-            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddAuthor.Location = new System.Drawing.Point(649, 32);
+            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnAddAuthor.Name = "btnAddAuthor";
-            this.btnAddAuthor.Size = new System.Drawing.Size(138, 55);
+            this.btnAddAuthor.Size = new System.Drawing.Size(151, 57);
             this.btnAddAuthor.TabIndex = 9;
             this.btnAddAuthor.Text = "Agregar";
             this.btnAddAuthor.UseVisualStyleBackColor = false;
@@ -92,10 +92,10 @@
             this.btnModifyAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModifyAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifyAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnModifyAuthor.Location = new System.Drawing.Point(745, 30);
-            this.btnModifyAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnModifyAuthor.Location = new System.Drawing.Point(813, 31);
+            this.btnModifyAuthor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnModifyAuthor.Name = "btnModifyAuthor";
-            this.btnModifyAuthor.Size = new System.Drawing.Size(138, 55);
+            this.btnModifyAuthor.Size = new System.Drawing.Size(151, 57);
             this.btnModifyAuthor.TabIndex = 12;
             this.btnModifyAuthor.Text = "Modificar";
             this.btnModifyAuthor.UseVisualStyleBackColor = false;
@@ -134,7 +134,8 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewAuthors.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewAuthors.GridColor = System.Drawing.Color.Gray;
-            this.dataGridViewAuthors.Location = new System.Drawing.Point(23, 116);
+            this.dataGridViewAuthors.Location = new System.Drawing.Point(25, 121);
+            this.dataGridViewAuthors.MultiSelect = false;
             this.dataGridViewAuthors.Name = "dataGridViewAuthors";
             this.dataGridViewAuthors.ReadOnly = true;
             this.dataGridViewAuthors.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -155,12 +156,13 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewAuthors.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewAuthors.RowTemplate.Height = 31;
-            this.dataGridViewAuthors.Size = new System.Drawing.Size(1187, 684);
+            this.dataGridViewAuthors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAuthors.Size = new System.Drawing.Size(1295, 712);
             this.dataGridViewAuthors.TabIndex = 13;
             // 
             // AuthorsView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.Controls.Add(this.dataGridViewAuthors);
@@ -169,7 +171,7 @@
             this.Controls.Add(this.btnDeleteAuthor);
             this.Controls.Add(this.btnAddAuthor);
             this.Name = "AuthorsView";
-            this.Size = new System.Drawing.Size(1236, 834);
+            this.Size = new System.Drawing.Size(1348, 869);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

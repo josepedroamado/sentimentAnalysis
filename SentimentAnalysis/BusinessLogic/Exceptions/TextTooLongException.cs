@@ -6,16 +6,10 @@ namespace BusinessLogic
     [Serializable]
     public class TextTooLongException : Exception
     {
-
-
-        public TextTooLongException(int mAX_BODY_TEXT)
-            : base(String.Format("The text cannot be bigger than: "+ mAX_BODY_TEXT))
+        public TextTooLongException(int max)
+            : base(String.Format("El nombre no puede ser mayor a "+ max + " caracteres."))
         {
             
-        }
-
-
-
-       
+        }     
     }
 }

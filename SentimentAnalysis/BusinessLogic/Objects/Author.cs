@@ -78,8 +78,8 @@ namespace BusinessLogic
         {
             DateTime today = DateTime.Today;
             int age = today.Year - birthdate.Year;
-            int dateComparison = birthdate.CompareTo(today);
-            if (dateComparison < 1)
+            int dateComparison = birthdate.AddYears(age).CompareTo(today);
+            if (dateComparison < 0)
             {
                 age--;
             }

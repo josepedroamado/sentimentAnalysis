@@ -47,10 +47,10 @@
             this.labelAuthorException.AutoSize = true;
             this.labelAuthorException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorException.ForeColor = System.Drawing.Color.Red;
-            this.labelAuthorException.Location = new System.Drawing.Point(120, 419);
-            this.labelAuthorException.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorException.Location = new System.Drawing.Point(131, 436);
+            this.labelAuthorException.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorException.Name = "labelAuthorException";
-            this.labelAuthorException.Size = new System.Drawing.Size(59, 28);
+            this.labelAuthorException.Size = new System.Drawing.Size(65, 30);
             this.labelAuthorException.TabIndex = 24;
             this.labelAuthorException.Text = "Error";
             this.labelAuthorException.Visible = false;
@@ -62,11 +62,11 @@
             this.btnCancelAddAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelAddAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnCancelAddAuthor.Location = new System.Drawing.Point(574, 467);
-            this.btnCancelAddAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnCancelAddAuthor.Location = new System.Drawing.Point(626, 486);
+            this.btnCancelAddAuthor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnCancelAddAuthor.Name = "btnCancelAddAuthor";
-            this.btnCancelAddAuthor.Size = new System.Drawing.Size(138, 55);
-            this.btnCancelAddAuthor.TabIndex = 23;
+            this.btnCancelAddAuthor.Size = new System.Drawing.Size(151, 57);
+            this.btnCancelAddAuthor.TabIndex = 6;
             this.btnCancelAddAuthor.Text = "Cancelar";
             this.btnCancelAddAuthor.UseVisualStyleBackColor = false;
             this.btnCancelAddAuthor.Click += new System.EventHandler(this.BtnCancelAddAuthor_Click);
@@ -78,11 +78,11 @@
             this.btnAddAuthor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAuthor.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAuthor.ForeColor = System.Drawing.Color.White;
-            this.btnAddAuthor.Location = new System.Drawing.Point(378, 467);
-            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddAuthor.Location = new System.Drawing.Point(412, 486);
+            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnAddAuthor.Name = "btnAddAuthor";
-            this.btnAddAuthor.Size = new System.Drawing.Size(138, 55);
-            this.btnAddAuthor.TabIndex = 22;
+            this.btnAddAuthor.Size = new System.Drawing.Size(151, 57);
+            this.btnAddAuthor.TabIndex = 5;
             this.btnAddAuthor.Text = "Ingresar";
             this.btnAddAuthor.UseVisualStyleBackColor = false;
             this.btnAddAuthor.Click += new System.EventHandler(this.BtnAddAuthor_Click);
@@ -93,23 +93,23 @@
             this.textBoxAuthorUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAuthorUsername.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAuthorUsername.ForeColor = System.Drawing.Color.White;
-            this.textBoxAuthorUsername.Location = new System.Drawing.Point(334, 144);
-            this.textBoxAuthorUsername.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxAuthorUsername.Location = new System.Drawing.Point(364, 150);
+            this.textBoxAuthorUsername.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBoxAuthorUsername.MaxLength = 10;
             this.textBoxAuthorUsername.Multiline = true;
             this.textBoxAuthorUsername.Name = "textBoxAuthorUsername";
-            this.textBoxAuthorUsername.Size = new System.Drawing.Size(550, 46);
-            this.textBoxAuthorUsername.TabIndex = 21;
+            this.textBoxAuthorUsername.Size = new System.Drawing.Size(600, 48);
+            this.textBoxAuthorUsername.TabIndex = 1;
             // 
             // labelAuthorUsername
             // 
             this.labelAuthorUsername.AutoSize = true;
             this.labelAuthorUsername.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorUsername.ForeColor = System.Drawing.Color.White;
-            this.labelAuthorUsername.Location = new System.Drawing.Point(119, 144);
-            this.labelAuthorUsername.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorUsername.Location = new System.Drawing.Point(130, 150);
+            this.labelAuthorUsername.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorUsername.Name = "labelAuthorUsername";
-            this.labelAuthorUsername.Size = new System.Drawing.Size(184, 28);
+            this.labelAuthorUsername.Size = new System.Drawing.Size(204, 30);
             this.labelAuthorUsername.TabIndex = 20;
             this.labelAuthorUsername.Text = "Nombre de Usuario";
             // 
@@ -118,10 +118,10 @@
             this.labelAddAuthorTitle.AutoSize = true;
             this.labelAddAuthorTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAddAuthorTitle.ForeColor = System.Drawing.Color.White;
-            this.labelAddAuthorTitle.Location = new System.Drawing.Point(119, 41);
-            this.labelAddAuthorTitle.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAddAuthorTitle.Location = new System.Drawing.Point(130, 43);
+            this.labelAddAuthorTitle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAddAuthorTitle.Name = "labelAddAuthorTitle";
-            this.labelAddAuthorTitle.Size = new System.Drawing.Size(194, 31);
+            this.labelAddAuthorTitle.Size = new System.Drawing.Size(220, 36);
             this.labelAddAuthorTitle.TabIndex = 19;
             this.labelAddAuthorTitle.Text = "Ingreso de Autor";
             // 
@@ -131,23 +131,23 @@
             this.textBoxAuthorName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAuthorName.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAuthorName.ForeColor = System.Drawing.Color.White;
-            this.textBoxAuthorName.Location = new System.Drawing.Point(334, 217);
-            this.textBoxAuthorName.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxAuthorName.Location = new System.Drawing.Point(364, 226);
+            this.textBoxAuthorName.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBoxAuthorName.MaxLength = 15;
             this.textBoxAuthorName.Multiline = true;
             this.textBoxAuthorName.Name = "textBoxAuthorName";
-            this.textBoxAuthorName.Size = new System.Drawing.Size(550, 46);
-            this.textBoxAuthorName.TabIndex = 26;
+            this.textBoxAuthorName.Size = new System.Drawing.Size(600, 48);
+            this.textBoxAuthorName.TabIndex = 2;
             // 
             // labelAuthorName
             // 
             this.labelAuthorName.AutoSize = true;
             this.labelAuthorName.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorName.ForeColor = System.Drawing.Color.White;
-            this.labelAuthorName.Location = new System.Drawing.Point(119, 217);
-            this.labelAuthorName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorName.Location = new System.Drawing.Point(130, 226);
+            this.labelAuthorName.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorName.Name = "labelAuthorName";
-            this.labelAuthorName.Size = new System.Drawing.Size(172, 28);
+            this.labelAuthorName.Size = new System.Drawing.Size(190, 30);
             this.labelAuthorName.TabIndex = 25;
             this.labelAuthorName.Text = "Nombre del Autor";
             // 
@@ -157,23 +157,23 @@
             this.textBoxAuthorLastname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAuthorLastname.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAuthorLastname.ForeColor = System.Drawing.Color.White;
-            this.textBoxAuthorLastname.Location = new System.Drawing.Point(334, 289);
-            this.textBoxAuthorLastname.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxAuthorLastname.Location = new System.Drawing.Point(364, 301);
+            this.textBoxAuthorLastname.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.textBoxAuthorLastname.MaxLength = 15;
             this.textBoxAuthorLastname.Multiline = true;
             this.textBoxAuthorLastname.Name = "textBoxAuthorLastname";
-            this.textBoxAuthorLastname.Size = new System.Drawing.Size(550, 46);
-            this.textBoxAuthorLastname.TabIndex = 28;
+            this.textBoxAuthorLastname.Size = new System.Drawing.Size(600, 48);
+            this.textBoxAuthorLastname.TabIndex = 3;
             // 
             // labelAuthorLastname
             // 
             this.labelAuthorLastname.AutoSize = true;
             this.labelAuthorLastname.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorLastname.ForeColor = System.Drawing.Color.White;
-            this.labelAuthorLastname.Location = new System.Drawing.Point(119, 289);
-            this.labelAuthorLastname.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorLastname.Location = new System.Drawing.Point(130, 301);
+            this.labelAuthorLastname.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorLastname.Name = "labelAuthorLastname";
-            this.labelAuthorLastname.Size = new System.Drawing.Size(173, 28);
+            this.labelAuthorLastname.Size = new System.Drawing.Size(189, 30);
             this.labelAuthorLastname.TabIndex = 27;
             this.labelAuthorLastname.Text = "Apellido del Autor";
             // 
@@ -181,27 +181,27 @@
             // 
             this.dateTimePickerAuthorBirthdate.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerAuthorBirthdate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerAuthorBirthdate.Location = new System.Drawing.Point(334, 364);
-            this.dateTimePickerAuthorBirthdate.Margin = new System.Windows.Forms.Padding(6);
+            this.dateTimePickerAuthorBirthdate.Location = new System.Drawing.Point(364, 379);
+            this.dateTimePickerAuthorBirthdate.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.dateTimePickerAuthorBirthdate.Name = "dateTimePickerAuthorBirthdate";
-            this.dateTimePickerAuthorBirthdate.Size = new System.Drawing.Size(547, 33);
-            this.dateTimePickerAuthorBirthdate.TabIndex = 30;
+            this.dateTimePickerAuthorBirthdate.Size = new System.Drawing.Size(596, 37);
+            this.dateTimePickerAuthorBirthdate.TabIndex = 4;
             // 
             // labelAuthorBirthdate
             // 
             this.labelAuthorBirthdate.AutoSize = true;
             this.labelAuthorBirthdate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAuthorBirthdate.ForeColor = System.Drawing.Color.White;
-            this.labelAuthorBirthdate.Location = new System.Drawing.Point(120, 364);
-            this.labelAuthorBirthdate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelAuthorBirthdate.Location = new System.Drawing.Point(131, 379);
+            this.labelAuthorBirthdate.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.labelAuthorBirthdate.Name = "labelAuthorBirthdate";
-            this.labelAuthorBirthdate.Size = new System.Drawing.Size(191, 28);
+            this.labelAuthorBirthdate.Size = new System.Drawing.Size(212, 30);
             this.labelAuthorBirthdate.TabIndex = 29;
             this.labelAuthorBirthdate.Text = "Fecha de nacimiento";
             // 
             // AddAuthorView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.Controls.Add(this.dateTimePickerAuthorBirthdate);
@@ -217,7 +217,7 @@
             this.Controls.Add(this.labelAuthorUsername);
             this.Controls.Add(this.labelAddAuthorTitle);
             this.Name = "AddAuthorView";
-            this.Size = new System.Drawing.Size(1236, 834);
+            this.Size = new System.Drawing.Size(1348, 869);
             this.ResumeLayout(false);
             this.PerformLayout();
 

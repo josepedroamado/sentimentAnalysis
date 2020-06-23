@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorAdder.cs" />
+    <Compile Include="AuthorDeleter.cs" />
     <Compile Include="Exceptions\TooOldException.cs" />
     <Compile Include="Exceptions\TooYoungException.cs" />
     <Compile Include="AlarmAdder.cs" />

@@ -6,16 +6,10 @@ namespace BusinessLogic
     [Serializable]
     public class TextTooShortException : Exception
     {
-
-
-        public TextTooShortException(int Length)
-            : base(String.Format("The text cannot be Shorter than: " + Length))
+        public TextTooShortException(int min)
+            : base(String.Format("El nombre no puede ser menor a " + min + " caracteres."))
         {
 
         }
-
-
-
-
     }
 }

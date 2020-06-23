@@ -33,35 +33,32 @@ namespace UserInterface
 
         private void BtnAddAuthor_Click(object sender, EventArgs e)
         {
-            mainWin.SwitchToAddAuthorView();
+            mainWin.SwitchToAddAuthorView(null);
         }
 
         private void BtnDeleteAuthor_Click(object sender, EventArgs e)
         {
-            //if (listBoxEntities.SelectedValue != null)
-            //{
-            //    object selectedId = listBoxEntities.SelectedValue;
-            //    string selected = selectedId.ToString();
-            //    int selectedFinal = Int32.Parse(selected);
-            //    Entity SelectedEntity = mainWin.Data.entitySaver.FetchEntity(selectedFinal);
-            //    EntityDeleter deleter = new EntityDeleter(mainWin.Data, SelectedEntity);
-            //    UpdateEntities();
-            //}
+            Guid authorId = Guid.Parse(GetSelectedAuthorId());
+            Author selectedAuthor = mainWin.Data.authorSaver.Fetch(authorId);
+            mainWin.Data.authorSaver.Delete(selectedAuthor);
+            mainWin.SwitchToAuthorsView();
         }
 
         private void BtnModifyAuthor_Click(object sender, EventArgs e)
         {
-            //if (dataGridViewAuthors.SelectedValue != null)
-            //{
-            //    object selectedId = listBoxAuthors.SelectedValue;
-            //    Guid selected = (Guid)selectedId;
-            //    mainWin.SwitchToModifyAuthorView(selected);
-            //}
+            mainWin.SwitchToAddAuthorView(GetSelectedAuthorId());
+        }
+
+        private string GetSelectedAuthorId()
+        {
+            int selectedRow = dataGridViewAuthors.CurrentCell.RowIndex;
+            return dataGridViewAuthors.Rows[selectedRow].Cells[0].Value.ToString();
         }
 
         private void LoadTable()
         {
             DataTable table = new DataTable();
+            table.Columns.Add("id", typeof(string));
             table.Columns.Add("Usuario", typeof(string));
             table.Columns.Add("Nombre", typeof(string));
             table.Columns.Add("Apellido", typeof(string));
@@ -70,53 +67,11 @@ namespace UserInterface
             table.Columns.Add("Entidades Mencionadas", typeof(int));
             table.Columns.Add("Promedio Frases Diarias Positivas", typeof(int));
 
-            //List<Alarm> allAlarms = mainWin.Data.alarmSaver.FetchAll();
-            //foreach (Alarm alarm in allAlarms)
-            //{
-            //    string active = "No";
-            //    if (alarm.Active)
-            //    {
-            //        active = "Si";
-            //    }
-
-            //    string alarmType = alarm.GetType().Name;
-            //    string type = "Negativa";
-            //    string sentiment = "Negativo";
-            //    string authorNames = "No aplica";
-            //    if (alarmType == "PositiveAlarm")
-            //    {
-            //        type = "Positiva";
-            //        sentiment = "Positivo";
-            //    }
-            //    if (alarmType == "AuthorAlarm")
-            //    {
-            //        type = "Autores";
-            //        AuthorAlarm authorAlarm = (AuthorAlarm)alarm;
-            //        if (authorAlarm.PhrasesType == "Positivas")
-            //        {
-            //            sentiment = "Positivo";
-            //        }
-            //        AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(mainWin.Data);
-            //        List<Author> authors = alarmAnalyzer.GetMatchingRelationsAuthors(alarm);
-            //        if (authors.Count == 0)
-            //        {
-            //            authorNames = "Ninguno";
-            //        }
-            //        else
-            //        {
-            //            foreach (Author author in authors)
-            //            {
-            //                authorNames += ", " + author.UserName;
-            //            }
-            //        }
-
-            //    }
-
-            //    TimeSpan timeSpan = new TimeSpan(alarm.TimeFrame);
-            //    string timeFrame = timeSpan.Days + " días " + timeSpan.Hours + " horas";
-
-            //    table.Rows.Add(active, alarm.Entity.Name, type, alarm.RequiredPostQuantity, timeFrame, sentiment, authorNames);
-            //}
+            List<Author> allAuthors = mainWin.Data.authorSaver.FetchAll();
+            foreach (Author author in allAuthors)
+            {              
+                table.Rows.Add(author.AuthorId, author.UserName, author.FirstName, author.LastName, 0, 0, 0, 0);
+            }
 
             dataGridViewAuthors.DataSource = table;
             dataGridViewAuthors.EnableHeadersVisualStyles = false;
@@ -126,6 +81,7 @@ namespace UserInterface
             {
                 dataGridViewAuthors.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            dataGridViewAuthors.Columns[0].Visible = false;
         }
     }
 }

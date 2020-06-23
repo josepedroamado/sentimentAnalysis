@@ -57,10 +57,10 @@ namespace UserInterface
             panelView.Controls.Add(view);
         }
 
-        public void SwitchToAddAuthorView()
+        public void SwitchToAddAuthorView(string selectedAuthor)
         {
             panelView.Controls.Clear();
-            AddAuthorView view = new AddAuthorView(this);
+            AddAuthorView view = new AddAuthorView(this, selectedAuthor);
             panelView.Controls.Add(view);
         }
         public void SwitchToModifyAuthorView(Guid selectedAuthor)
