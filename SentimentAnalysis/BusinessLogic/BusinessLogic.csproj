@@ -57,17 +57,12 @@
     <Compile Include="PublicationAdder.cs" />
     <Compile Include="RelationAdder.cs" />
     <Compile Include="Savers\IAlarmSaver.cs" />
-    <Compile Include="InMemory\InMemoryAlarm.cs" />
-    <Compile Include="InMemory\InMemoryRelation.cs" />
-    <Compile Include="InMemory\InMemorySentiment.cs" />
     <Compile Include="Savers\IRelationSaver.cs" />
     <Compile Include="Objects\Relation.cs" />
     <Compile Include="Objects\Entity.cs" />
-    <Compile Include="InMemory\InMemoryPublication.cs" />
     <Compile Include="Exceptions\ObjectAlreadyExistsException.cs" />
     <Compile Include="Exceptions\ObjectDoesntExistException.cs" />
     <Compile Include="Savers\IEntitySaver.cs" />
-    <Compile Include="InMemory\InMemoryEntity.cs" />
     <Compile Include="Savers\IPublicationSaver.cs" />
     <Compile Include="Savers\ISentimentSaver.cs" />
     <Compile Include="Objects\Sentiment\NegativeSentiment.cs" />

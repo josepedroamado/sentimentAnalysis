@@ -12,7 +12,7 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                if (context.Alarms.Include("Entity").Any(alarm => alarm.AlarmDtoId == anAlarm.AlarmId))
+                if (context.Alarms.Include("Entity").Any(alarm => alarm.AlarmDtoId.Equals(anAlarm.AlarmId)))
                 {
                     throw new ObjectAlreadyExistsException("Alarma");
                 }
@@ -31,7 +31,8 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                AlarmDto alarmToDelete = context.Alarms.Include("Entity").FirstOrDefault(alarm => alarm.AlarmDtoId == anAlarm.AlarmId);
+                AlarmDto alarmToDelete = context.Alarms.Include("Entity")
+                                            .FirstOrDefault(alarm => alarm.AlarmDtoId.Equals(anAlarm.AlarmId));
                 if (alarmToDelete == null)
                 {
                     throw new ObjectDoesntExistException("Alarma");
@@ -62,7 +63,8 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                AlarmDto fetchedAlarm = context.Alarms.Include("Entity").FirstOrDefault(alarm => alarm.AlarmDtoId == anAlarm.AlarmId);
+                AlarmDto fetchedAlarm = context.Alarms.Include("Entity")
+                                            .FirstOrDefault(alarm => alarm.AlarmDtoId.Equals(anAlarm.AlarmId));
                 if (fetchedAlarm == null)
                 {
                     throw new ObjectDoesntExistException("Alarma");
@@ -79,7 +81,8 @@ namespace DataAccess
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
-                AlarmDto fetchedAlarm = context.Alarms.Include("Entity").FirstOrDefault(alarm => alarm.AlarmDtoId == original.AlarmId);
+                AlarmDto fetchedAlarm = context.Alarms.Include("Entity")
+                                            .FirstOrDefault(alarm => alarm.AlarmDtoId.Equals(original.AlarmId));
                 if (fetchedAlarm == null)
                 {
                     throw new ObjectDoesntExistException("Alarma");
@@ -88,11 +91,14 @@ namespace DataAccess
                 {
                     ObjectConversion convert = new ObjectConversion();
                     fetchedAlarm.Active = modified.Active;
-                    EntityDto entity = convert.ConvertToDto(modified.Entity);
-                    fetchedAlarm.Entity = entity;
+                    if (!original.Entity.EntityId.Equals(modified.Entity.EntityId))
+                    {
+                        EntityDto entity = convert.ConvertToDto(modified.Entity);
+                        fetchedAlarm.Entity = entity;
+                        context.Entry(entity).State = EntityState.Unchanged;
+                    }  
                     fetchedAlarm.RequiredPostQuantity = modified.RequiredPostQuantity;
                     fetchedAlarm.TimeFrame = modified.TimeFrame;
-                    context.Entry(entity).State = EntityState.Unchanged;
                     context.SaveChanges();
                 }
             }

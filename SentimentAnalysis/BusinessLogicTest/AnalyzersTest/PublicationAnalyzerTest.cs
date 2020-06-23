@@ -1,47 +1,59 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using DataAccess;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class PublicationAnalyzerTest
     {
-        DateTime firstDateTime;
+        SystemData data;
+
         Publication firstPublication;
-        DateTime secondDateTime;
         Publication secondPublication;
-        DateTime thirdDateTime;
         Publication thirdPublication;
 
-        ISentimentSaver sentimentSaver;
         Sentiment firstPositiveSentiment;
         Sentiment secondPositiveSentiment;
         Sentiment firstNegativeSentiment;
         Sentiment secondNegativeSentiment;
 
-        IEntitySaver entitySaver;
         Entity firstEntity;
         Entity secondEntity;
 
-        PublicationAnalyzer publicationAnalyzer;
-
         Author anAuthor;
+
+        PublicationAnalyzer publicationAnalyzer;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            DateTime ofAgeDate = new DateTime(2002, 01, 01);
-            anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
 
-            firstDateTime = new DateTime(2020, 01, 01);
-            firstPublication = new Publication("Me gusta Coca-cola", firstDateTime, anAuthor);
-            secondDateTime = new DateTime(2020, 01, 11);
-            secondPublication = new Publication("Odio Pepsi", secondDateTime, anAuthor);
-            thirdDateTime = new DateTime(2020, 01, 21);
-            thirdPublication = new Publication("No me banco a Claro", thirdDateTime, anAuthor);
+            DateTime birthdate = new DateTime(2002, 01, 01);
+            anAuthor = new Author("James45", "James", "Doe", birthdate);
+            authorSaver.Add(anAuthor);
+            
+            firstPublication = new Publication("Me gusta Coca-cola", new DateTime(2020, 01, 01), anAuthor);
+            secondPublication = new Publication("Odio Pepsi", new DateTime(2020, 01, 11), anAuthor);
+            thirdPublication = new Publication("No me banco a Claro", new DateTime(2020, 01, 21), anAuthor);
+            publicationSaver.Add(firstPublication);
+            publicationSaver.Add(secondPublication);
+            publicationSaver.Add(thirdPublication);
 
-            sentimentSaver = new InMemorySentiment();
             firstPositiveSentiment = new PositiveSentiment("Me gusta");
             sentimentSaver.Add(firstPositiveSentiment);
             secondPositiveSentiment = new PositiveSentiment("Amo");
@@ -51,7 +63,6 @@ namespace BusinessLogicTest
             secondNegativeSentiment = new NegativeSentiment("Me desagrada");
             sentimentSaver.Add(secondNegativeSentiment);
 
-            entitySaver = new InMemoryEntity();
             firstEntity = new Entity("Coca-cola");
             entitySaver.Add(firstEntity);
             secondEntity = new Entity("Pepsi");

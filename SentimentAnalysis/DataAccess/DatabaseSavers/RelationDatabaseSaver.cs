@@ -15,10 +15,10 @@ namespace DataAccess
                 ObjectConversion convert = new ObjectConversion();
                 RelationDto newRelation = convert.ConvertToDto(aRelation);
                 if (context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment")
-                        .Any(relation => relation.Entity.Name == newRelation.Entity.Name
-                                      && relation.Publication.Phrase == newRelation.Publication.Phrase
+                        .Any(relation => relation.Entity.EntityDtoId == newRelation.Entity.EntityDtoId
+                                      && relation.Publication.PublicationDtoId == newRelation.Publication.PublicationDtoId
                                       && relation.Publication.Author.AuthorDtoId == newRelation.Publication.Author.AuthorDtoId
-                                      && relation.Sentiment.Text == newRelation.Sentiment.Text))
+                                      && relation.Sentiment.SentimentDtoId == newRelation.Sentiment.SentimentDtoId))
                 {
                     throw new ObjectAlreadyExistsException("Relacion");
                 }

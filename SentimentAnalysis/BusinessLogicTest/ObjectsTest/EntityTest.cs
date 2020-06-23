@@ -63,6 +63,7 @@ namespace BusinessLogicTest
             anotherEntity.EntityId = anEntity.EntityId;
             Assert.AreEqual(anEntity.GetHashCode(), anotherEntity.GetHashCode());
         }
+
         [TestMethod]
         [ExpectedException(typeof(TextTooLongException))]
         public void EntityTextToLongTest()
@@ -74,6 +75,7 @@ namespace BusinessLogicTest
             }
             Entity aEntity = new Entity(name);
         }
+
         [TestMethod]
         [ExpectedException(typeof(TextTooShortException))]
         public void EntityTextToShortTest()

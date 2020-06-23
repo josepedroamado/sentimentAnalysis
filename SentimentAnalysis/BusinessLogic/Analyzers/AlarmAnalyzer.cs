@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
@@ -26,28 +24,79 @@ namespace BusinessLogic
 
         public void AnalyzeAlarm(Alarm alarm)
         {
-            String alarmType = alarm.GetType().Name;
-            String sentimentType = "NeutralSentiment";
-            if (alarmType == "PositiveAlarm") sentimentType = "PositiveSentiment";
-            if (alarmType == "NegativeAlarm") sentimentType = "NegativeSentiment";
-            TimeSpan timeframe = new TimeSpan(alarm.TimeFrame);
-            DateTime lowerDateBoundary = DateTime.Now - timeframe;
-            List<Relation> relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
-            if (relations.Count() >= alarm.RequiredPostQuantity)
+            string sentimentType = AnalyzeSentimentType(alarm);
+            DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
+            int relations = GetMatchingRelations(alarm, sentimentType, lowerDateBoundary);
+            if (relations >= alarm.RequiredPostQuantity)
             {
                 alarm.Active = true;
+                data.alarmSaver.Modify(alarm, alarm);
             }
-            else alarm.Active = false;
+            else
+            {
+                alarm.Active = false;
+                data.alarmSaver.Modify(alarm, alarm);
+            }
         }
 
-        public List<Relation> GetMatchingRelations(Alarm alarm, String sentimentType, DateTime lowerDateBoundary)
+        private string AnalyzeSentimentType(Alarm alarm)
+        {
+            string alarmType = alarm.GetType().Name;
+            string sentimentType = "NeutralSentiment";
+            if (alarmType == "PositiveAlarm") sentimentType = "PositiveSentiment";
+            if (alarmType == "NegativeAlarm") sentimentType = "NegativeSentiment";
+            if (alarmType == "AuthorAlarm")
+            {
+                AuthorAlarm theAlarm = (AuthorAlarm)alarm;
+                if (theAlarm.PhrasesType == "Positivas")
+                {
+                    sentimentType = "PositiveSentiment";
+                }
+                else
+                {
+                    sentimentType = "NegativeSentiment";
+                }
+
+            }
+            return sentimentType;
+        }
+
+        private DateTime CalculateLowerDateBoundary(Alarm alarm)
+        {
+            TimeSpan timeframe = new TimeSpan(alarm.TimeFrame);
+            DateTime lowerDateBoundary = DateTime.Now - timeframe;
+            return lowerDateBoundary;
+        }
+
+        private int GetMatchingRelations(Alarm alarm, string sentimentType, DateTime lowerDateBoundary)
         {
             return data.relationSaver.FetchAll().FindAll(
-                    relation => (relation.Entity == alarm.Entity &&
+                    relation => (relation.Entity.Equals(alarm.Entity) &&
+                                 relation.Sentiment.GetType().Name == sentimentType &&
+                                 relation.Publication.Date >= lowerDateBoundary
+                                )
+                ).Count;
+        }
+
+        public List<Author> GetMatchingRelationsAuthors(Alarm alarm)
+        {
+            string sentimentType = AnalyzeSentimentType(alarm);
+            DateTime lowerDateBoundary = CalculateLowerDateBoundary(alarm);
+            List<Relation> relations = data.relationSaver.FetchAll().FindAll(
+                    relation => (relation.Entity.Equals(alarm.Entity) &&
                                  relation.Sentiment.GetType().Name == sentimentType &&
                                  relation.Publication.Date >= lowerDateBoundary
                                 )
                 );
+            List<Author> authors = new List<Author>();
+            foreach (Relation relation in relations)
+            {
+                if (!authors.Contains(relation.Publication.Author))
+                {
+                    authors.Add(relation.Publication.Author);
+                }
+            }
+            return authors;
         }
     }
 }

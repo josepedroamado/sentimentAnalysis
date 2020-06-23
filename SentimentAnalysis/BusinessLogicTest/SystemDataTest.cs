@@ -1,34 +1,38 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLogicTest
 {
     [TestClass]
     public class SystemDataTest
     {
-        IEntitySaver entitySaver;
-        ISentimentSaver sentimentSaver;
-        IPublicationSaver publicationSaver;
-        IRelationSaver relationSaver;
-        IAlarmSaver alarmSaver;
-        SystemData systemData;
+        SystemData data;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            entitySaver = new InMemoryEntity();
-            sentimentSaver = new InMemorySentiment();
-            publicationSaver = new InMemoryPublication();
-            relationSaver = new InMemoryRelation();
-            alarmSaver = new InMemoryAlarm();
-            systemData = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
         }
 
         [TestMethod]
         public void NewSystemDataTest()
         {
-            Assert.IsNotNull(systemData);
+            Assert.IsNotNull(data);
         }
     }
 }

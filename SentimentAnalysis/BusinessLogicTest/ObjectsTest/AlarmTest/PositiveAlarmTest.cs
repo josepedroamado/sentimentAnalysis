@@ -83,31 +83,5 @@ namespace BusinessLogicTest
             secondAlarm.AlarmId = alarm.AlarmId;
             Assert.AreEqual(alarm.GetHashCode(), secondAlarm.GetHashCode());
         }
-        [TestMethod]
-        public void ToStringTest()
-        {
-            Assert.AreEqual("Entidad: PositiveAlarmEntity1, Cantidad de posts: 1 de tipo Positiva en 1 horas, Estado: Inactiva", alarm.ToString());
-        }
-        [TestMethod]
-        public void ToStringAtiveTest()
-        {
-            alarm.Active = true;
-            Assert.AreEqual("Entidad: PositiveAlarmEntity1, Cantidad de posts: 1 de tipo Positiva en 1 horas, Estado: Activa", alarm.ToString());
-        }
     }
 }
-//string status = "Inactiva";
-//            if(Active)
-//            {
-//                status = "Activa";
-//            }
-//            string tipo = "Positiva";
-//            if(this.GetType().Name == "NegativeAlarm")
-//            {
-//    tipo = "Negativa";
-//}
-
-//String toReturn = String.Format("Entidad: " + this.Entity.Name + ", Cantidad de posts: " 
-//                + this.RequiredPostQuantity + " de tipo " + tipo + " en " + this.TimeFrame.Hours 
-//                + " horas, Estado: " + status);
-//            return toReturn;

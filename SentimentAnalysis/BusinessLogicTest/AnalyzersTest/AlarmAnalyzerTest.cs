@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLogic;
+using DataAccess;
 
 namespace BusinessLogicTest
 {
@@ -8,7 +9,6 @@ namespace BusinessLogicTest
     public class AlarmAnalyzerTest
     {
         SystemData data;
-        IPublicationSaver publicationSaver;
         DateTime firstDateTime;
         Publication firstPublication;
         DateTime secondDateTime;
@@ -17,21 +17,15 @@ namespace BusinessLogicTest
         Publication thirdPublication;
         DateTime fourthDateTime;
         Publication fourthPublication;
-
-        ISentimentSaver sentimentSaver;
+        
         Sentiment firstPositiveSentiment;
         Sentiment secondPositiveSentiment;
         Sentiment firstNegativeSentiment;
         Sentiment secondNegativeSentiment;
-
-        IEntitySaver entitySaver;
+        
         Entity firstEntity;
         Entity secondEntity;
-        Entity thirdEntity;
-
-        IRelationSaver relationSaver;
-
-        IAlarmSaver alarmSaver;
+        Entity thirdEntity;     
 
         PublicationAnalyzer publicationAnalyzer;
 
@@ -44,15 +38,40 @@ namespace BusinessLogicTest
     [TestInitialize]
         public void TestInitialize()
         {
-            relationSaver = new InMemoryRelation();
-            publicationSaver = new InMemoryPublication();
-            sentimentSaver = new InMemorySentiment();
-            entitySaver = new InMemoryEntity();
-            alarmSaver = new InMemoryAlarm();
-            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, null);
+            IRelationSaver relationSaver = new RelationDatabaseSaver();
+            relationSaver.Clear();
+            IPublicationSaver publicationSaver = new PublicationDatabaseSaver();
+            publicationSaver.Clear();
+            IAuthorSaver authorSaver = new AuthorDatabaseSaver();
+            authorSaver.Clear();
+            IAlarmSaver alarmSaver = new AlarmDatabaseSaver();
+            alarmSaver.Clear();
+            IEntitySaver entitySaver = new EntityDatabaseSaver();
+            entitySaver.Clear();
+            ISentimentSaver sentimentSaver = new SentimentDatabaseSaver();
+            sentimentSaver.Clear();
+
+            data = new SystemData(entitySaver, sentimentSaver, publicationSaver, relationSaver, alarmSaver, authorSaver);
 
             DateTime ofAgeDate = new DateTime(2002, 01, 01);
             Author anAuthor = new Author("James45", "James", "Doe", ofAgeDate);
+            authorSaver.Add(anAuthor);
+
+            firstPositiveSentiment = new PositiveSentiment("Me gusta");
+            sentimentSaver.Add(firstPositiveSentiment);
+            secondPositiveSentiment = new PositiveSentiment("Amo");
+            sentimentSaver.Add(secondPositiveSentiment);
+            firstNegativeSentiment = new NegativeSentiment("Odio");
+            sentimentSaver.Add(firstNegativeSentiment);
+            secondNegativeSentiment = new NegativeSentiment("Me desagrada");
+            sentimentSaver.Add(secondNegativeSentiment);
+
+            firstEntity = new Entity("Coca-cola");
+            entitySaver.Add(firstEntity);
+            secondEntity = new Entity("Pepsi");
+            entitySaver.Add(secondEntity);
+            thirdEntity = new Entity("Claro");
+            entitySaver.Add(thirdEntity);
 
             firstDateTime = DateTime.Now.Subtract(new TimeSpan(10, 0, 0, 0));
             firstPublication = new Publication("Me gusta Coca-cola", firstDateTime, anAuthor);
@@ -69,22 +88,6 @@ namespace BusinessLogicTest
             thirdDateTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0, 0));
             thirdPublication = new Publication("Me desagrada Claro", thirdDateTime, anAuthor);
             publicationSaver.Add(thirdPublication);
-          
-            firstPositiveSentiment = new PositiveSentiment("Me gusta");
-            sentimentSaver.Add(firstPositiveSentiment);
-            secondPositiveSentiment = new PositiveSentiment("Amo");
-            sentimentSaver.Add(secondPositiveSentiment);
-            firstNegativeSentiment = new NegativeSentiment("Odio");
-            sentimentSaver.Add(firstNegativeSentiment);
-            secondNegativeSentiment = new NegativeSentiment("Me desagrada");
-            sentimentSaver.Add(secondNegativeSentiment);
-           
-            firstEntity = new Entity("Coca-cola");
-            entitySaver.Add(firstEntity);
-            secondEntity = new Entity("Pepsi");
-            entitySaver.Add(secondEntity);
-            thirdEntity = new Entity("Claro");
-            entitySaver.Add(thirdEntity);
 
             publicationAnalyzer = new PublicationAnalyzer(sentimentSaver, entitySaver);
             relationSaver.Add(publicationAnalyzer.AnalyzePublication(firstPublication));
@@ -92,14 +95,14 @@ namespace BusinessLogicTest
             relationSaver.Add(publicationAnalyzer.AnalyzePublication(thirdPublication));
             relationSaver.Add(publicationAnalyzer.AnalyzePublication(fourthPublication));
 
-            alarmAnalyzer = new AlarmAnalyzer(data);
-
             positiveActiveAlarm = new PositiveAlarm(firstEntity, 2, new TimeSpan(11, 0, 0, 0));
             negativeActiveAlarm = new NegativeAlarm(secondEntity, 1, new TimeSpan(9, 0, 0, 0));
             negativeInactiveAlarm = new NegativeAlarm(thirdEntity, 4, new TimeSpan(5, 0, 0, 0));
             alarmSaver.Add(positiveActiveAlarm);
             alarmSaver.Add(negativeActiveAlarm);
             alarmSaver.Add(negativeInactiveAlarm);
+
+            alarmAnalyzer = new AlarmAnalyzer(data);
         }
 
         [TestMethod]
@@ -133,9 +136,16 @@ namespace BusinessLogicTest
         public void AnalyzeAllAlarmsTest()
         {
             alarmAnalyzer.AnalyzeAllAlarms();
-            Assert.IsTrue(alarmSaver.Fetch(positiveActiveAlarm).Active);
-            Assert.IsTrue(alarmSaver.Fetch(negativeActiveAlarm).Active);
-            Assert.IsFalse(alarmSaver.Fetch(negativeInactiveAlarm).Active);
+            Assert.IsTrue(data.alarmSaver.Fetch(positiveActiveAlarm).Active);
+            Assert.IsTrue(data.alarmSaver.Fetch(negativeActiveAlarm).Active);
+            Assert.IsFalse(data.alarmSaver.Fetch(negativeInactiveAlarm).Active);
+        }
+
+        [TestMethod]
+        public void PositiveAlarmActiveGetAuthorsAnalyzerTest()
+        {
+            alarmAnalyzer.AnalyzeAlarm(positiveActiveAlarm);
+            Assert.AreEqual(1, alarmAnalyzer.GetMatchingRelationsAuthors(positiveActiveAlarm).Count);
         }
     }
 }
