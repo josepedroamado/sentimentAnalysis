@@ -22,15 +22,6 @@ namespace UserInterface
             LoadTable();
         }
 
-        private void UpdateAuthors()
-        {
-            //dataGridViewAuthors.DataSource = null;
-            //dataGridViewAuthors.Items.Clear();
-            //listBoxAuthors.DataSource = mainWin.Data.entitySaver.FetchAll();
-            //listBoxAuthors.DisplayMember = "Name";
-            //listBoxAuthors.ValueMember = "EntityId";
-        }
-
         private void BtnAddAuthor_Click(object sender, EventArgs e)
         {
             mainWin.SwitchToAddAuthorView(null);

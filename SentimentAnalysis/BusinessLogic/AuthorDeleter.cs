@@ -1,4 +1,5 @@
 ﻿namespace BusinessLogic
+
 {
     public class AuthorDeleter
     {

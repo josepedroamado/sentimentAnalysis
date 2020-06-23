@@ -89,7 +89,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Author author = obj as Author;
-            if (author != null) return AuthorId == author.AuthorId;
+            if (author != null) return UserName == author.UserName;
             else return false;
         }
 
