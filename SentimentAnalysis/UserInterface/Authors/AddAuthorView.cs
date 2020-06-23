@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace UserInterface
 {
@@ -25,7 +26,13 @@ namespace UserInterface
 
         private void BtnAddAuthor_Click(object sender, EventArgs e)
         {
-
+            String username = textBoxAuthorUsername.Text;
+            String name = textBoxAuthorName.Text;
+            String lastName = textBoxAuthorLastname.Text;
+            DateTime dateOfBirth = dateTimePickerAuthorBirthdate.Value;
+            AuthorAdder adder = new AuthorAdder(mainWin.Data);
+            adder.Add(name, lastName, username, dateOfBirth);
+            //capturar excepciones
         }
 
         private void BtnCancelAddAuthor_Click(object sender, EventArgs e)
