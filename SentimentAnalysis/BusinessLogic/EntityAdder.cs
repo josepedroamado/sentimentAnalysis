@@ -11,9 +11,9 @@ namespace BusinessLogic
             this.data = data;
         }
 
-        public void Add(String Name)
+        public void Add(String name)
         {
-            Entity newEntity = new Entity(Name);
+            Entity newEntity = new Entity(name);
             data.entitySaver.Add(newEntity);
         }
     }
