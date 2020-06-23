@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelAuthorsTitle = new System.Windows.Forms.Label();
             this.btnDeleteAuthor = new System.Windows.Forms.Button();
             this.btnAddAuthor = new System.Windows.Forms.Button();
-            this.listBoxAuthors = new System.Windows.Forms.ListBox();
             this.btnModifyAuthor = new System.Windows.Forms.Button();
+            this.dataGridViewAuthors = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthors)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAuthorsTitle
@@ -79,20 +85,6 @@
             this.btnAddAuthor.UseVisualStyleBackColor = false;
             this.btnAddAuthor.Click += new System.EventHandler(this.BtnAddAuthor_Click);
             // 
-            // listBoxAuthors
-            // 
-            this.listBoxAuthors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.listBoxAuthors.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxAuthors.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxAuthors.ForeColor = System.Drawing.Color.White;
-            this.listBoxAuthors.FormattingEnabled = true;
-            this.listBoxAuthors.ItemHeight = 25;
-            this.listBoxAuthors.Location = new System.Drawing.Point(121, 116);
-            this.listBoxAuthors.Margin = new System.Windows.Forms.Padding(6);
-            this.listBoxAuthors.Name = "listBoxAuthors";
-            this.listBoxAuthors.Size = new System.Drawing.Size(997, 600);
-            this.listBoxAuthors.TabIndex = 8;
-            // 
             // btnModifyAuthor
             // 
             this.btnModifyAuthor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -109,18 +101,76 @@
             this.btnModifyAuthor.UseVisualStyleBackColor = false;
             this.btnModifyAuthor.Click += new System.EventHandler(this.BtnModifyAuthor_Click);
             // 
+            // dataGridViewAuthors
+            // 
+            this.dataGridViewAuthors.AllowUserToAddRows = false;
+            this.dataGridViewAuthors.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAuthors.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewAuthors.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.dataGridViewAuthors.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewAuthors.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAuthors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewAuthors.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewAuthors.GridColor = System.Drawing.Color.Gray;
+            this.dataGridViewAuthors.Location = new System.Drawing.Point(23, 116);
+            this.dataGridViewAuthors.Name = "dataGridViewAuthors";
+            this.dataGridViewAuthors.ReadOnly = true;
+            this.dataGridViewAuthors.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAuthors.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewAuthors.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewAuthors.RowTemplate.Height = 31;
+            this.dataGridViewAuthors.Size = new System.Drawing.Size(1187, 684);
+            this.dataGridViewAuthors.TabIndex = 13;
+            // 
             // AuthorsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.dataGridViewAuthors);
             this.Controls.Add(this.btnModifyAuthor);
             this.Controls.Add(this.labelAuthorsTitle);
             this.Controls.Add(this.btnDeleteAuthor);
             this.Controls.Add(this.btnAddAuthor);
-            this.Controls.Add(this.listBoxAuthors);
             this.Name = "AuthorsView";
             this.Size = new System.Drawing.Size(1236, 834);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuthors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,7 +181,7 @@
         private System.Windows.Forms.Label labelAuthorsTitle;
         private System.Windows.Forms.Button btnDeleteAuthor;
         private System.Windows.Forms.Button btnAddAuthor;
-        private System.Windows.Forms.ListBox listBoxAuthors;
         private System.Windows.Forms.Button btnModifyAuthor;
+        private System.Windows.Forms.DataGridView dataGridViewAuthors;
     }
 }
