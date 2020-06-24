@@ -25,7 +25,7 @@ namespace BusinessLogic
             {
                 if (phrase.ToLower().Contains(entity.Name.ToLower())) return entity;
             }
-            return null;
+            return entitySaver.Fetch(Guid.Parse("c77213bd-ab43-416b-a37a-9a08b81ec6af"));
         }
 
         public Sentiment AnalyzeSentiment(Publication publication)
@@ -36,18 +36,14 @@ namespace BusinessLogic
             {
                 if (phrase.Contains(sentiment.Text.ToLower())) return sentiment;
             }           
-            return null;
+            return sentimentSaver.Fetch(Guid.Parse("6e3512e5-45ff-45ba-b54c-542c81564a20"));
         }
 
         public Relation AnalyzePublication(Publication publication)
         {
             Entity detectedEntity = AnalyzeEntity(publication);
-            if (detectedEntity == null) return new Relation(publication, null, null);
-            else
-            {
-                Sentiment detectedSentiment = AnalyzeSentiment(publication);
-                return new Relation(publication, detectedSentiment, detectedEntity);
-            }
+            Sentiment detectedSentiment = AnalyzeSentiment(publication);
+            return new Relation(publication, detectedSentiment, detectedEntity);       
         }
     }
 }

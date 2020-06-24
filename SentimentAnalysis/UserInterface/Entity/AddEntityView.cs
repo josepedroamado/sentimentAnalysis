@@ -35,20 +35,20 @@ namespace UserInterface
                 adder.Add(text);
                 mainWin.SwitchToEntitiesView();
             }
-            catch(ObjectAlreadyExistsException)
+            catch(ObjectAlreadyExistsException exception)
             {
                 labelEntityNameException.Visible = true;
-                labelEntityNameException.Text = "Error: La entidad que intenta ingresar ya existe";
+                labelEntityNameException.Text = "Error: " + exception.Message;
             }
-            catch(TextTooLongException)
+            catch(TextTooLongException exception)
             {
                 labelEntityNameException.Visible = true;
-                labelEntityNameException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy largo";
+                labelEntityNameException.Text = "Error: " + exception.Message;
             }
-            catch (TextTooShortException)
+            catch (TextTooShortException exception)
             {
                 labelEntityNameException.Visible = true;
-                labelEntityNameException.Text = "Error: La entidad que intenta ingresar tiene un nombre muy corto o vacio";
+                labelEntityNameException.Text = "Error: " + exception.Message;
             }
         }
     }

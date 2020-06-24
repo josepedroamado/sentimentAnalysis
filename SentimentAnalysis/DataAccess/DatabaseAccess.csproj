@@ -63,7 +63,16 @@
     <Compile Include="DatabaseSavers\AuthorDatabaseSaver.cs" />
     <Compile Include="DTOs\Alarm\NegativeAlarmDto.cs" />
     <Compile Include="DTOs\Sentiment\NegativeSentimentDto.cs" />
+    <Compile Include="Migrations\202006232352164_initial.cs" />
+    <Compile Include="Migrations\202006232352164_initial.designer.cs">
+      <DependentUpon>202006232352164_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006240242269_initial2.cs" />
+    <Compile Include="Migrations\202006240242269_initial2.designer.cs">
+      <DependentUpon>202006240242269_initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="DTOs\Sentiment\NeutralSentimentDto.cs" />
     <Compile Include="ObjectConversion.cs" />
     <Compile Include="DTOs\Alarm\PositiveAlarmDto.cs" />
     <Compile Include="DTOs\Sentiment\PositiveSentimentDto.cs" />
@@ -92,6 +101,14 @@
       <Project>{C6DA8016-89F8-441A-9FBA-AAAB433CF6C6}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006232352164_initial.resx">
+      <DependentUpon>202006232352164_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006240242269_initial2.resx">
+      <DependentUpon>202006240242269_initial2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

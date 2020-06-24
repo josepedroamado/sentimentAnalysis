@@ -33,23 +33,21 @@ namespace UserInterface
         private void LoadEntityAndSentimentType()
         {
             Object selectedValue = comboBoxPhrase.SelectedValue;
-            if (selectedValue != null)
+            if (selectedValue != null &&
+                mainWin.Data.publicationSaver.FetchAll().Count > 0 &&
+                mainWin.Data.sentimentSaver.FetchAll().Count > 0 &&
+                mainWin.Data.relationSaver.FetchAll().Count > 0)
             {
                 Guid publicationId = (Guid)selectedValue;
+
                 textBoxEntity.Clear();
-                if (mainWin.Data.relationSaver.Fetch(publicationId).Entity != null)
-                {
-                    String entityName = mainWin.Data.relationSaver.Fetch(publicationId).Entity.Name;
-                    textBoxEntity.Text = entityName;
-                }
-                else textBoxEntity.Text = "No se ha detectado entidad";
+                String entityName = mainWin.Data.relationSaver.FetchWithPublication(publicationId).Entity.Name;
+                textBoxEntity.Text = entityName;
+
                 textBoxSentimentType.Clear();
-                if (mainWin.Data.relationSaver.Fetch(publicationId).Sentiment != null)
-                {
-                    String sentimentType = mainWin.Data.relationSaver.Fetch(publicationId).Sentiment.GetType().Name;
-                    if (sentimentType == "PositiveSentiment") textBoxSentimentType.Text = "Positivo";
-                    else if (sentimentType == "NegativeSentiment") textBoxSentimentType.Text = "Negativo";
-                }
+                String sentimentType = mainWin.Data.relationSaver.FetchWithPublication(publicationId).Sentiment.GetType().Name;
+                if (sentimentType == "PositiveSentiment") textBoxSentimentType.Text = "Positivo";
+                else if (sentimentType == "NegativeSentiment") textBoxSentimentType.Text = "Negativo";
                 else textBoxSentimentType.Text = "Neutro";
             }
         }

@@ -95,12 +95,6 @@
     <Compile Include="Authors\AuthorsView.Designer.cs">
       <DependentUpon>AuthorsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Authors\ModifyAuthorView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Authors\ModifyAuthorView.Designer.cs">
-      <DependentUpon>ModifyAuthorView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entity\AddEntityView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,9 +159,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Authors\AuthorsView.resx">
       <DependentUpon>AuthorsView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Authors\ModifyAuthorView.resx">
-      <DependentUpon>ModifyAuthorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Entity\AddEntityView.resx">
       <DependentUpon>AddEntityView.cs</DependentUpon>

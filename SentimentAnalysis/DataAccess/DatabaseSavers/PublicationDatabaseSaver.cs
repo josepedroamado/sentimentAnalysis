@@ -58,6 +58,23 @@ namespace DataAccess
             }
         }
 
+        public List<Publication> FetchAllPublicationsOfAuthor(Guid authorId)
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                ObjectConversion convert = new ObjectConversion();
+                List<Publication> allPublications = new List<Publication>();
+                foreach (PublicationDto publication in context.Publications.Include("Author"))
+                {
+                    if (publication.Author.AuthorDtoId.Equals(authorId))
+                    {
+                        allPublications.Add(convert.ConvertToObject(publication));
+                    }
+                }
+                return allPublications;
+            }
+        }
+
         public Publication Fetch(Publication aPublication)
         {
             return FetchPublication(aPublication.PublicationId);

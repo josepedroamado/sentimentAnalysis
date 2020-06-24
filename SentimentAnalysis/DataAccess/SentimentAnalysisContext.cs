@@ -48,6 +48,11 @@ namespace DataAccess
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).HasColumnName("Text");
             modelBuilder.Entity<NegativeSentimentDto>().Property(p => p.Text).IsRequired();
 
+            modelBuilder.Entity<NeutralSentimentDto>().ToTable("NeutralSentiments");
+            modelBuilder.Entity<NeutralSentimentDto>().Property(p => p.SentimentDtoId).HasColumnName("SentimentId");
+            modelBuilder.Entity<NeutralSentimentDto>().Property(p => p.Text).HasColumnName("Text");
+            modelBuilder.Entity<NeutralSentimentDto>().Property(p => p.Text).IsRequired();
+
             modelBuilder.Entity<PublicationDto>().ToTable("Publications");
             modelBuilder.Entity<PublicationDto>().Property(p => p.PublicationDtoId).HasColumnName("PublicationId");
             modelBuilder.Entity<PublicationDto>().Property(p => p.Phrase).IsRequired();

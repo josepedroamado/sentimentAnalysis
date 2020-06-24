@@ -27,7 +27,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Relation relation = obj as Relation;
-            if (relation != null) return this.RelationId == relation.RelationId;
+            if (relation != null) return this.RelationId.Equals(relation.RelationId);
             else return false;
         }
 

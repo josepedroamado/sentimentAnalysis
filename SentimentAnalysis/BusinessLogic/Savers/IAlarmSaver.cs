@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -13,6 +14,8 @@ namespace BusinessLogic
         Alarm Fetch(Alarm anAlarm);
 
         List<Alarm> FetchAll();
+
+        List<Alarm> FetchAllOfEntity(Guid entityId);
 
         void Clear();
     }

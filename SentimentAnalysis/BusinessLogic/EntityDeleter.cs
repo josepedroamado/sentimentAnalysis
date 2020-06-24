@@ -1,4 +1,6 @@
-﻿namespace BusinessLogic
+﻿using System.Collections.Generic;
+
+namespace BusinessLogic
 {
     public class EntityDeleter
     {
@@ -11,7 +13,21 @@
 
         public void Delete(Entity entityToDelete)
         {
-            data.entitySaver.Delete(entityToDelete);
+            if (entityToDelete != null)
+            {
+                List<Relation> relations = data.relationSaver.FetchAllWithEntity(entityToDelete.EntityId);
+                foreach (Relation relationToDelete in relations)
+                {
+                    data.relationSaver.Delete(relationToDelete);
+                }
+
+                List<Alarm> alarms = data.alarmSaver.FetchAllOfEntity(entityToDelete.EntityId);
+                foreach (Alarm alarmToDelete in alarms)
+                {
+                    data.alarmSaver.Delete(alarmToDelete);
+                }
+                data.entitySaver.Delete(entityToDelete);
+            }
         }
     }
 }

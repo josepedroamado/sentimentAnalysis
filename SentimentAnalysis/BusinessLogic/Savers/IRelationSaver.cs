@@ -13,9 +13,15 @@ namespace BusinessLogic
 
         Relation Fetch(Relation aRelation);
 
-        Relation Fetch(Guid publicationId);
+        Relation FetchWithPublication(Guid publicationId);
 
-        List<Relation> FetchAll();
+        List<Relation> FetchAllWithEntity(Guid entityId);
+
+        List<Relation> FetchAllWithSentiment(Guid sentimentId);
+
+        List<Relation> FetchAllWithAuthor(Guid authorId);
+
+        List<Relation> FetchAll();      
 
         List<Publication> FetchAllPublicationsOfEntity(Guid entityId);     
 

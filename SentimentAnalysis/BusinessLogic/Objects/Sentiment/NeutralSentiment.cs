@@ -2,9 +2,9 @@
 
 namespace BusinessLogic
 {
-    public class NegativeSentiment : Sentiment
+    public class NeutralSentiment: Sentiment
     {
-        public NegativeSentiment(String Text)
+        public NeutralSentiment(String Text)
         {
             SentimentId = Guid.NewGuid();
             SetText(Text);

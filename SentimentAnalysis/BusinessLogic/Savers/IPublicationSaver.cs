@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic
 {
@@ -13,6 +14,8 @@ namespace BusinessLogic
         Publication Fetch(Publication aPublication);
 
         List<Publication> FetchAll();
+
+        List<Publication> FetchAllPublicationsOfAuthor(Guid authorId);
 
         void Clear();
     }

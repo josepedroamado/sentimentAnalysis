@@ -21,7 +21,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Alarm alarm = obj as Alarm;
-            if (alarm != null) return this.AlarmId == alarm.AlarmId;
+            if (alarm != null) return this.AlarmId.Equals(alarm.AlarmId);
             else return false;
         }
 

@@ -1,4 +1,6 @@
-﻿namespace BusinessLogic
+﻿using System.Collections.Generic;
+
+namespace BusinessLogic
 
 {
     public class AuthorDeleter
@@ -12,7 +14,17 @@
 
         public void Delete(Author authorToDelete)
         {
-            data.authorSaver.Delete(authorToDelete);
+            if (authorToDelete != null)
+            {
+                List<Publication> publications = data.publicationSaver.FetchAllPublicationsOfAuthor(authorToDelete.AuthorId);
+                foreach (Publication publicationToDelete in publications)
+                {
+                    Relation relationToDelete = data.relationSaver.FetchWithPublication(publicationToDelete.PublicationId);
+                    data.relationSaver.Delete(relationToDelete);
+                    data.publicationSaver.Delete(publicationToDelete);
+                }
+                data.authorSaver.Delete(authorToDelete);
+            }
         }
     }
 }

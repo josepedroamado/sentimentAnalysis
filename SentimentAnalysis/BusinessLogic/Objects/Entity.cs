@@ -51,7 +51,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Entity entity = obj as Entity;
-            if (entity != null) return this.EntityId == entity.EntityId || this.Name.ToLower() == entity.Name.ToLower();
+            if (entity != null) return this.EntityId.Equals(entity.EntityId) || this.Name.ToLower() == entity.Name.ToLower();
             else return false;
         }
 

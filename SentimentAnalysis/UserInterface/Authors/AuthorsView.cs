@@ -31,7 +31,8 @@ namespace UserInterface
         {
             Guid authorId = Guid.Parse(GetSelectedAuthorId());
             Author selectedAuthor = mainWin.Data.authorSaver.Fetch(authorId);
-            mainWin.Data.authorSaver.Delete(selectedAuthor);
+            AuthorDeleter deleter = new AuthorDeleter(mainWin.Data);
+            deleter.Delete(selectedAuthor);
             mainWin.SwitchToAuthorsView();
         }
 
@@ -59,9 +60,14 @@ namespace UserInterface
             table.Columns.Add("Promedio Frases Diarias Positivas", typeof(int));
 
             List<Author> allAuthors = mainWin.Data.authorSaver.FetchAll();
+            AuthorStatistics statistics = new AuthorStatistics(mainWin.Data);
             foreach (Author author in allAuthors)
-            {              
-                table.Rows.Add(author.AuthorId, author.UserName, author.FirstName, author.LastName, 0, 0, 0, 0);
+            {
+                int positivePercentage = statistics.SentimentPublictionsPercentage(author.AuthorId, "PositiveSentiment");
+                int negativePercentage = statistics.SentimentPublictionsPercentage(author.AuthorId, "NegativeSentiment");
+                int entitiesMentioned = statistics.EntitiesMentioned(author.AuthorId);
+                int publicationAverage = statistics.DailyPublicationAverage(author.AuthorId);
+                table.Rows.Add(author.AuthorId, author.UserName, author.FirstName, author.LastName, positivePercentage, negativePercentage, entitiesMentioned, publicationAverage);
             }
 
             dataGridViewAuthors.DataSource = table;

@@ -58,6 +58,22 @@ namespace DataAccess
                 return allAlarms;
             }
         }
+        public List<Alarm> FetchAllOfEntity(Guid entityId)
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                List<Alarm> allAlarms = new List<Alarm>();
+                foreach (AlarmDto alarm in context.Alarms.Include("Entity"))
+                {
+                    if (alarm.Entity.EntityDtoId.Equals(entityId))
+                    {
+                        ObjectConversion convert = new ObjectConversion();
+                        allAlarms.Add(convert.ConvertToObject(alarm));
+                    }
+                }
+                return allAlarms;
+            }
+        }
 
         public Alarm Fetch(Alarm anAlarm)
         {

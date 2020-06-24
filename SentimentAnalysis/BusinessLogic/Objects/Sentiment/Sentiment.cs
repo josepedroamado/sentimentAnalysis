@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
@@ -19,7 +15,7 @@ namespace BusinessLogic
         public override bool Equals(Object obj)
         {
             Sentiment sentiment = obj as Sentiment;
-            if (sentiment != null) return this.SentimentId == sentiment.SentimentId || this.Text.ToLower() == sentiment.Text.ToLower();
+            if (sentiment != null) return this.SentimentId.Equals(sentiment.SentimentId) || this.Text.ToLower() == sentiment.Text.ToLower();
             else return false;
         }
 

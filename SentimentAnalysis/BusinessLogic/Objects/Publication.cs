@@ -30,7 +30,7 @@ namespace BusinessLogic
         public override bool Equals(object obj)
         {
             Publication publication = obj as Publication;
-            if (publication != null) return this.PublicationId == publication.PublicationId;
+            if (publication != null) return this.PublicationId.Equals(publication.PublicationId);
             else return false;
         }
 

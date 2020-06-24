@@ -18,15 +18,22 @@ namespace UserInterface
         {
             InitializeComponent();
             mainWin = main;
+            LoadAuthors();
         }
 
-        private void LoadObjects()
+        private void LoadAuthors()
         {
             comboBoxPhraseAuthor.DataSource = null;
             comboBoxPhraseAuthor.Items.Clear();
             comboBoxPhraseAuthor.DataSource = mainWin.Data.authorSaver.FetchAll();
             comboBoxPhraseAuthor.DisplayMember = "UserName";
             comboBoxPhraseAuthor.ValueMember = "AuthorId";
+            if(mainWin.Data.authorSaver.FetchAll().Count == 0)
+            {
+                btnAddPhrase.Enabled = false;
+                labelPhraseTextException.Visible = true;
+                labelPhraseTextException.Text = "Error: No hay autores registrados en el sistema.";
+            }
         }
 
         private void BtnAddPhrase_Click(object sender, EventArgs e)
@@ -35,7 +42,7 @@ namespace UserInterface
             {
                 Guid selected = (Guid)comboBoxPhraseAuthor.SelectedValue;
                 Author SelectedAuthor = mainWin.Data.authorSaver.Fetch(selected);
-                String text = textBoxPhraseText.Text;
+                string text = textBoxPhraseText.Text;
                 DateTime date = dateTimePickerPhraseDate.Value.Date;
                 if(SelectedAuthor != null)
                 {
@@ -48,11 +55,22 @@ namespace UserInterface
                     labelPhraseTextException.Visible = true;
                     labelPhraseTextException.Text = "Error: No ha seleccionado un Autor";
                 }
+                mainWin.SwitchToPhrasesView();
             }
-            catch(TextTooShortException)
+            catch(TextTooShortException exception)
             {
                 labelPhraseTextException.Visible = true;
-                labelPhraseTextException.Text = "Error: La Publicacion que intenta ingresar tiene un texto muy corto o vacio";
+                labelPhraseTextException.Text = "Error: " + exception.Message;
+            }
+            catch(TextTooLongException exception)
+            {
+                labelPhraseTextException.Visible = true;
+                labelPhraseTextException.Text = "Error: " + exception.Message;
+            }
+            catch(ObjectAlreadyExistsException exception)
+            {
+                labelPhraseTextException.Visible = true;
+                labelPhraseTextException.Text = "Error: " + exception.Message;
             }
         }
 

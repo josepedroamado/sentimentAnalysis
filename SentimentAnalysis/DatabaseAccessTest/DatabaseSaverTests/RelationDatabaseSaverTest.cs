@@ -117,7 +117,7 @@ namespace DatabaseAccessTest
         public void FetchExistingRelationByPublicationIdTest()
         {
             relationSaver.Add(firstRelation);
-            Relation fetchedRelation = relationSaver.Fetch(firstPublication.PublicationId);
+            Relation fetchedRelation = relationSaver.FetchWithPublication(firstPublication.PublicationId);
             Assert.AreEqual(firstRelation, fetchedRelation);
         }
 
@@ -125,7 +125,7 @@ namespace DatabaseAccessTest
         [ExpectedException(typeof(ObjectDoesntExistException))]
         public void FetchNonExistingRelationByPublicationIdTest()
         {
-            Assert.IsNotNull(relationSaver.Fetch(firstRelation.Publication.PublicationId));
+            Assert.IsNotNull(relationSaver.FetchWithPublication(firstRelation.Publication.PublicationId));
         }
 
         [TestMethod]

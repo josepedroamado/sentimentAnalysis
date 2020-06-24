@@ -67,6 +67,57 @@ namespace DataAccess
             }
         }
 
+        public List<Relation> FetchAllWithEntity(Guid entityId)
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                List<Relation> allRelations = new List<Relation>();
+                ObjectConversion convert = new ObjectConversion();
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment"))
+                {
+                    if (relation.Entity.EntityDtoId.Equals(entityId))
+                    {
+                        allRelations.Add(convert.ConvertToObject(relation));
+                    }
+                }
+                return allRelations;
+            }
+        }
+
+        public List<Relation> FetchAllWithSentiment(Guid sentimentId)
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                List<Relation> allRelations = new List<Relation>();
+                ObjectConversion convert = new ObjectConversion();
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment"))
+                {
+                    if (relation.Sentiment.SentimentDtoId.Equals(sentimentId))
+                    {
+                        allRelations.Add(convert.ConvertToObject(relation));
+                    }
+                }
+                return allRelations;
+            }
+        }
+
+        public List<Relation> FetchAllWithAuthor(Guid authorId)
+        {
+            using (SentimentAnalysisContext context = new SentimentAnalysisContext())
+            {
+                List<Relation> allRelations = new List<Relation>();
+                ObjectConversion convert = new ObjectConversion();
+                foreach (RelationDto relation in context.Relations.Include("Entity").Include("Publication").Include("Publication.Author").Include("Sentiment"))
+                {
+                    if (relation.Publication.Author.AuthorDtoId.Equals(authorId))
+                    {
+                        allRelations.Add(convert.ConvertToObject(relation));
+                    }
+                }
+                return allRelations;
+            }
+        }
+
         public List<Publication> FetchAllPublicationsOfEntity(Guid entityId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
@@ -103,7 +154,7 @@ namespace DataAccess
             }
         }
 
-        public Relation Fetch(Guid publicationId)
+        public Relation FetchWithPublication(Guid publicationId)
         {
             using (SentimentAnalysisContext context = new SentimentAnalysisContext())
             {
