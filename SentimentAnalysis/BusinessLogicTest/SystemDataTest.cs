@@ -34,5 +34,12 @@ namespace BusinessLogicTest
         {
             Assert.IsNotNull(data);
         }
+
+        [TestMethod]
+        public void NewWithLoadedDefaultsTest()
+        {
+            data = new SystemData(data.entitySaver, data.sentimentSaver, data.publicationSaver, data.relationSaver, data.alarmSaver, data.authorSaver);
+            Assert.IsNotNull(data);
+        }
     }
 }

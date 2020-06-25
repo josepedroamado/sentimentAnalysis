@@ -48,5 +48,14 @@ namespace BusinessLogicTest
             Author expectedAuthor = new Author("username", "firstname", "lastname", aDate);
             Assert.AreEqual(expectedAuthor.UserName, data.authorSaver.FetchAll()[0].UserName);
         }
+
+        [TestMethod]
+        public void ModifyTest()
+        {
+            DateTime aDate = new DateTime(1997, 3, 7);
+            adder.Add("firstname", "lastname", "username", aDate);
+            adder.Modify(data.authorSaver.FetchAll()[0].AuthorId, "newUsrname", "newfirstName", "newLastName", DateTime.Today.AddYears(-50));
+            Assert.AreEqual("newUsrname", data.authorSaver.FetchAll()[0].UserName);
+        }
     }
 }

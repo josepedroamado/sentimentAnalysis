@@ -40,7 +40,7 @@ namespace BusinessLogicTest
         public void AddSentimentTest()
         {
             adder.Add("sometext", true);
-            Assert.AreEqual("sometext", data.sentimentSaver.FetchAll()[0].Text);
+            Assert.AreEqual("sometext", data.sentimentSaver.FetchAll()[1].Text);
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace BusinessLogicTest
         {
             adder.Add("sometext", false);
             Sentiment expectedSentiment = new NegativeSentiment("sometext");
-            Assert.AreEqual(expectedSentiment.GetType(), data.sentimentSaver.FetchAll()[0].GetType());
+            Assert.AreEqual(expectedSentiment.GetType(), data.sentimentSaver.FetchAll()[1].GetType());
         }
     }
 }

@@ -75,6 +75,13 @@ namespace BusinessLogicTest
         }
 
         [TestMethod]
+        public void AuthorVerifyAgeDateBirthMonthEarlierDayTest()
+        {
+            Author newAuthor = new Author("James45", "James", "Doe", DateTime.Today.AddDays(1).AddYears(-50));
+            Assert.AreEqual(49, newAuthor.CalculateAge(newAuthor.BirthDate));
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(TooYoungException))]
         public void AuthorIsTooYoungTest()
         {

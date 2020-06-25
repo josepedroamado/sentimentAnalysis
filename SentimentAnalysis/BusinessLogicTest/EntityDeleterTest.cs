@@ -1,15 +1,15 @@
-﻿using System;
-using BusinessLogic;
+﻿using BusinessLogic;
 using DataAccess;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace BusinessLogicTest
 {
     [TestClass]
-    public class SentimentDeleterTest
+    public class EntityDeleterTest
     {
-        SystemData data;
-        SentimentDeleter sentimentDeleter;
+        SystemData data;       
+        EntityDeleter entityDeleter;
 
         [TestInitialize]
         public void TestInitialize()
@@ -45,23 +45,35 @@ namespace BusinessLogicTest
             publicationAdder.Add("Amo coca-cola", DateTime.Today.AddDays(-4), author);
             publicationAdder.Add("Odio coca-cola", DateTime.Today.AddDays(-3), author);
             publicationAdder.Add("Me gusta Pepsi", DateTime.Today.AddDays(-2), author);
-            publicationAdder.Add("Uso Netflix", DateTime.Today.AddDays(-1), author);         
+            publicationAdder.Add("Uso Netflix", DateTime.Today.AddDays(-1), author);
 
-            sentimentDeleter = new SentimentDeleter(data);
+            AlarmAdder alarmAdder = new AlarmAdder(data);
+            alarmAdder.Add(data.entitySaver.FetchAll()[1], 1, 2, "Positiva", false, null);
+
+            entityDeleter = new EntityDeleter(data);
         }
 
         [TestMethod]
-        public void NewSentimentDeleterTest()
+        public void NewEntityDeleterTest()
         {
-            Assert.IsNotNull(sentimentDeleter);
+            Assert.IsNotNull(entityDeleter);
         }
 
         [TestMethod]
-        public void DeleteSentimentTest()
+        public void DeleteEntityTest()
         {
-            Sentiment sentiment = data.sentimentSaver.FetchAll()[1];
-            sentimentDeleter.Delete(sentiment);
-            Assert.AreEqual(2, data.sentimentSaver.FetchAll().Count);
+            Entity entity = data.entitySaver.FetchAll()[1];
+            entityDeleter.Delete(entity);
+            Assert.AreEqual(2, data.entitySaver.FetchAll().Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ObjectDoesntExistException))]
+        public void DeleteNonExistingEntityTest()
+        {
+            Entity entity = new Entity("Salus");
+            entityDeleter.Delete(entity);
+            data.entitySaver.Fetch(entity);
         }
     }
 }

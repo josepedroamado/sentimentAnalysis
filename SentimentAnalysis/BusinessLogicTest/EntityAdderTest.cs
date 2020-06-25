@@ -42,7 +42,7 @@ namespace BusinessLogicTest
         {
             adder.Add("sometext");
             Entity expectedEntity = new Entity("sometext");
-            Assert.AreEqual(expectedEntity.Name, data.entitySaver.FetchAll()[0].Name);
+            Assert.AreEqual(2, data.entitySaver.FetchAll().Count);
         }
     }
 }

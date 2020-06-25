@@ -61,7 +61,7 @@
     <Compile Include="AnalyzersTest\AlarmAnalyzerTest.cs" />
     <Compile Include="AuthorAdderTest.cs" />
     <Compile Include="AuthorDeleterTest.cs" />
-    <Compile Include="EntitiyDeleterTest.cs" />
+    <Compile Include="EntityDeleterTest.cs" />
     <Compile Include="EntityAdderTest.cs" />
     <Compile Include="ObjectsTest\AlarmTest\AuthorAlarmTest.cs" />
     <Compile Include="ObjectsTest\AuthorTest.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="SentimentAdderTest.cs" />
     <Compile Include="SentimentDeleterTest.cs" />
     <Compile Include="SystemDataTest.cs" />
+    <Compile Include="AuthorStatisticsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

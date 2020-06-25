@@ -23,15 +23,15 @@ namespace BusinessLogic
             {
                 return 0;
             }
-            int positivePublications = 0;
+            int publicationsOfSentimentType = 0;
             foreach (Relation relation in relations)
             {
                 if (relation.Sentiment.GetType().Name == sentimentType)
                 {
-                    positivePublications++;
+                    publicationsOfSentimentType++;
                 }
             }
-            decimal total = (positivePublications *100 )/ totalRelations;
+            decimal total = (publicationsOfSentimentType *100 )/ totalRelations;
             return (int)total;
         }
 

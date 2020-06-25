@@ -95,7 +95,7 @@ namespace BusinessLogicTest
         public void AnalyzeIncorrectEntityTest()
         {
             Entity detectedEntity = publicationAnalyzer.AnalyzeEntity(thirdPublication);
-            Assert.IsNull(detectedEntity);
+            Assert.AreEqual(Guid.Parse("c77213bd-ab43-416b-a37a-9a08b81ec6af"), detectedEntity.EntityId);
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace BusinessLogicTest
         public void AnalyzeIncorrectSentimentTest()
         {
             Sentiment detectedSentiment = publicationAnalyzer.AnalyzeSentiment(thirdPublication);
-            Assert.IsNull(detectedSentiment);
+            Assert.AreEqual(Guid.Parse("6e3512e5-45ff-45ba-b54c-542c81564a20"), detectedSentiment.SentimentId);
         }
 
         [TestMethod]
@@ -143,7 +143,9 @@ namespace BusinessLogicTest
         public void AnalyzeNoSentimentNoEntityPublicationTest()
         {
             Relation detectedRelation = publicationAnalyzer.AnalyzePublication(thirdPublication);
-            Relation expectedRelation = new Relation(thirdPublication, null, null);
+            Relation expectedRelation = new Relation(thirdPublication,
+                                                    data.sentimentSaver.Fetch(Guid.Parse("6e3512e5-45ff-45ba-b54c-542c81564a20")),
+                                                    data.entitySaver.Fetch(Guid.Parse("c77213bd-ab43-416b-a37a-9a08b81ec6af")));
             Assert.AreEqual(detectedRelation.Publication, expectedRelation.Publication);
             Assert.AreEqual(detectedRelation.Sentiment, expectedRelation.Sentiment);
             Assert.AreEqual(detectedRelation.Entity, expectedRelation.Entity);
