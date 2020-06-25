@@ -59,7 +59,7 @@
             this.textBoxPhraseText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPhraseText.ForeColor = System.Drawing.Color.White;
             this.textBoxPhraseText.Location = new System.Drawing.Point(310, 176);
-            this.textBoxPhraseText.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxPhraseText.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxPhraseText.MaxLength = 100;
             this.textBoxPhraseText.Multiline = true;
             this.textBoxPhraseText.Name = "textBoxPhraseText";
@@ -95,7 +95,7 @@
             this.dateTimePickerPhraseDate.CalendarFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerPhraseDate.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerPhraseDate.Location = new System.Drawing.Point(310, 360);
-            this.dateTimePickerPhraseDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dateTimePickerPhraseDate.Margin = new System.Windows.Forms.Padding(6);
             this.dateTimePickerPhraseDate.Name = "dateTimePickerPhraseDate";
             this.dateTimePickerPhraseDate.Size = new System.Drawing.Size(547, 33);
             this.dateTimePickerPhraseDate.TabIndex = 13;
@@ -108,7 +108,7 @@
             this.btnAddPhrase.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPhrase.ForeColor = System.Drawing.Color.White;
             this.btnAddPhrase.Location = new System.Drawing.Point(378, 470);
-            this.btnAddPhrase.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnAddPhrase.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddPhrase.Name = "btnAddPhrase";
             this.btnAddPhrase.Size = new System.Drawing.Size(138, 55);
             this.btnAddPhrase.TabIndex = 14;
@@ -124,7 +124,7 @@
             this.btnCancelAddPhrase.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelAddPhrase.ForeColor = System.Drawing.Color.White;
             this.btnCancelAddPhrase.Location = new System.Drawing.Point(574, 470);
-            this.btnCancelAddPhrase.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnCancelAddPhrase.Margin = new System.Windows.Forms.Padding(6);
             this.btnCancelAddPhrase.Name = "btnCancelAddPhrase";
             this.btnCancelAddPhrase.Size = new System.Drawing.Size(138, 55);
             this.btnCancelAddPhrase.TabIndex = 15;
@@ -181,7 +181,7 @@
             this.Controls.Add(this.labelPhraseText);
             this.Controls.Add(this.textBoxPhraseText);
             this.Controls.Add(this.labelPhrasesTitle);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "PhrasesView";
             this.Size = new System.Drawing.Size(1236, 834);
             this.ResumeLayout(false);

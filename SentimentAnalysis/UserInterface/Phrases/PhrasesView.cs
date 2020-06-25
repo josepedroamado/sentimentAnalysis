@@ -19,6 +19,8 @@ namespace UserInterface
             InitializeComponent();
             mainWin = main;
             LoadAuthors();
+            dateTimePickerPhraseDate.Format = DateTimePickerFormat.Custom;
+            dateTimePickerPhraseDate.CustomFormat = "dd/MM/yyyy HH:mm";
         }
 
         private void LoadAuthors()
@@ -43,7 +45,7 @@ namespace UserInterface
                 Guid selected = (Guid)comboBoxPhraseAuthor.SelectedValue;
                 Author SelectedAuthor = mainWin.Data.authorSaver.Fetch(selected);
                 string text = textBoxPhraseText.Text;
-                DateTime date = dateTimePickerPhraseDate.Value.Date;
+                DateTime date = dateTimePickerPhraseDate.Value;
                 if(SelectedAuthor != null)
                 {
                     PublicationAdder adder = new PublicationAdder(mainWin.Data);

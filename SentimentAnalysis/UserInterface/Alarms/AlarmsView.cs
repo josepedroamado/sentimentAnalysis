@@ -20,6 +20,8 @@ namespace UserInterface
             InitializeComponent();
             mainWin = main;
             LoadTable();
+            AlarmAnalyzer alarmAnalyzer = new AlarmAnalyzer(mainWin.Data);
+            alarmAnalyzer.AnalyzeAllAlarms();
         }
 
         private void BtnAddAlarm_Click(object sender, EventArgs e)
@@ -72,9 +74,19 @@ namespace UserInterface
                     }
                     else
                     {
+                        bool firstAuthor = true;
+                        authorNames = "";
                         foreach (Author author in authors)
                         {
-                            authorNames += ", " + author.UserName;
+                            if (firstAuthor)
+                            {
+                                authorNames += author.UserName;
+                            }
+                            else
+                            {
+                                authorNames += ",\n " + author.UserName;
+                            }
+                            firstAuthor = false;
                         }
                     }
 
@@ -94,6 +106,7 @@ namespace UserInterface
             {
                 dataGridViewAlarms.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            dataGridViewAlarms.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
     }
 }

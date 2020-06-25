@@ -71,6 +71,8 @@
             // 
             this.dataGridViewAlarms.AllowUserToAddRows = false;
             this.dataGridViewAlarms.AllowUserToDeleteRows = false;
+            this.dataGridViewAlarms.AllowUserToResizeColumns = false;
+            this.dataGridViewAlarms.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.142858F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -79,7 +81,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewAlarms.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewAlarms.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.dataGridViewAlarms.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.dataGridViewAlarms.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewAlarms.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -101,6 +103,7 @@
             this.dataGridViewAlarms.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewAlarms.GridColor = System.Drawing.Color.Gray;
             this.dataGridViewAlarms.Location = new System.Drawing.Point(121, 116);
+            this.dataGridViewAlarms.MultiSelect = false;
             this.dataGridViewAlarms.Name = "dataGridViewAlarms";
             this.dataGridViewAlarms.ReadOnly = true;
             this.dataGridViewAlarms.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -121,7 +124,8 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewAlarms.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewAlarms.RowTemplate.Height = 31;
-            this.dataGridViewAlarms.Size = new System.Drawing.Size(971, 600);
+            this.dataGridViewAlarms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAlarms.Size = new System.Drawing.Size(1021, 600);
             this.dataGridViewAlarms.TabIndex = 12;
             // 
             // AlarmsView

@@ -79,9 +79,13 @@ namespace DataAccess
             {
                 convertedSentiment = new PositiveSentimentDto();
             }
-            else
+            else if (aSentiment.GetType().Name.Equals("NegativeSentiment"))
             {
                 convertedSentiment = new NegativeSentimentDto();
+            }
+            else
+            {
+                convertedSentiment = new NeutralSentimentDto();
             }
             convertedSentiment.SentimentDtoId = aSentiment.SentimentId;
             convertedSentiment.Text = aSentiment.Text;
@@ -95,9 +99,13 @@ namespace DataAccess
             {
                 convertedSentiment = new PositiveSentiment(aSentiment.Text);
             }
-            else
+            else if (aSentiment.GetType().Name.Equals("NegativeSentimentDto"))
             {
                 convertedSentiment = new NegativeSentiment(aSentiment.Text);
+            }
+            else
+            {
+                convertedSentiment = new NeutralSentiment(aSentiment.Text);
             }
             convertedSentiment.SentimentId = aSentiment.SentimentDtoId;
             return convertedSentiment;
