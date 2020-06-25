@@ -83,5 +83,19 @@ namespace BusinessLogicTest
             secondAlarm.AlarmId = alarm.AlarmId;
             Assert.AreEqual(alarm.GetHashCode(), secondAlarm.GetHashCode());
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(QuantityTooLow))]
+        public void SetRequiredPostQuantityTooLowTest()
+        {
+            Alarm alarm = new AuthorAlarm(anEntity, 0, aTimeFrame, "TooLow");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(QuantityTooHigh))]
+        public void SetRequiredPostQuantityTooHighTest()
+        {
+            Alarm alarm = new AuthorAlarm(anEntity, 1001, aTimeFrame, "TooHigh");
+        }
     }
 }

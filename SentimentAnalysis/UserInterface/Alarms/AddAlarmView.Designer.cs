@@ -115,6 +115,11 @@
             this.numericUpDownPosts.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDownPosts.Location = new System.Drawing.Point(343, 190);
             this.numericUpDownPosts.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDownPosts.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownPosts.Minimum = new decimal(new int[] {
             1,
             0,
@@ -228,7 +233,7 @@
             this.labelAlarmEntityException.AutoSize = true;
             this.labelAlarmEntityException.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAlarmEntityException.ForeColor = System.Drawing.Color.Red;
-            this.labelAlarmEntityException.Location = new System.Drawing.Point(735, 144);
+            this.labelAlarmEntityException.Location = new System.Drawing.Point(120, 423);
             this.labelAlarmEntityException.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelAlarmEntityException.Name = "labelAlarmEntityException";
             this.labelAlarmEntityException.Size = new System.Drawing.Size(59, 28);

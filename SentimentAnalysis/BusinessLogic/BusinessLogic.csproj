@@ -44,6 +44,8 @@
     <Compile Include="AuthorAdder.cs" />
     <Compile Include="AuthorDeleter.cs" />
     <Compile Include="AuthorStatistics.cs" />
+    <Compile Include="Exceptions\QuantityTooHigh.cs" />
+    <Compile Include="Exceptions\QuantityTooLow.cs" />
     <Compile Include="Exceptions\TooOldException.cs" />
     <Compile Include="Exceptions\TooYoungException.cs" />
     <Compile Include="AlarmAdder.cs" />

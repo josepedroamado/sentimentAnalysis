@@ -58,16 +58,29 @@ namespace UserInterface
         }
         private void BtnAddAlarm_Click(object sender, EventArgs e)
         {
-            Guid selected = (Guid)comboBoxEntity.SelectedValue;
-            Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selected);
-            int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
-            int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
-            string alarmType = (string)comboBoxAlarmType.SelectedValue;
-            string phrasesType = (string)comboBoxPhrasesType.SelectedValue;
-            bool hours = radioButtonHours.Checked;
-            AlarmAdder adder = new AlarmAdder(mainWin.Data);
-            adder.Add(SelectedEntity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
-            mainWin.SwitchToAlarmsView();
+            try
+            {
+                Guid selected = (Guid)comboBoxEntity.SelectedValue;
+                Entity SelectedEntity = mainWin.Data.entitySaver.Fetch(selected);
+                int numberOfPosts = Convert.ToInt32(numericUpDownPosts.Value);
+                int alarmTime = Convert.ToInt32(numericUpDownAlarmTime.Value);
+                string alarmType = (string)comboBoxAlarmType.SelectedValue;
+                string phrasesType = (string)comboBoxPhrasesType.SelectedValue;
+                bool hours = radioButtonHours.Checked;
+                AlarmAdder adder = new AlarmAdder(mainWin.Data);
+                adder.Add(SelectedEntity, numberOfPosts, alarmTime, alarmType, hours, phrasesType);
+                mainWin.SwitchToAlarmsView();
+            }
+            catch (QuantityTooHigh exception)
+            {
+                labelAlarmEntityException.Visible = true;
+                labelAlarmEntityException.Text = "Error: " + exception.Message;
+            }
+            catch (QuantityTooLow exception)
+            {
+                labelAlarmEntityException.Visible = true;
+                labelAlarmEntityException.Text = "Error: " + exception.Message;
+            }
         }
 
         private void ComboBoxAlarmType_SelectedIndexChanged(object sender, EventArgs e)
