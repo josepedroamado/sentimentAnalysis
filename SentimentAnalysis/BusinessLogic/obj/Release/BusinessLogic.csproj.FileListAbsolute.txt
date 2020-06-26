@@ -1,0 +1,6 @@
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\bin\Release\BusinessLogic.dll
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\bin\Release\BusinessLogic.pdb
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\obj\Release\BusinessLogic.csprojAssemblyReference.cache
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\obj\Release\BusinessLogic.csproj.CoreCompileInputs.cache
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\obj\Release\BusinessLogic.dll
+D:\OneDrive - SSI Ltda\Docs\Lopez-Amado\SentimentAnalysis\BusinessLogic\obj\Release\BusinessLogic.pdb
